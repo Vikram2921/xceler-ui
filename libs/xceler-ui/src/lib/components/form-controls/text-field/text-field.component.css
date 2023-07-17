@@ -1,0 +1,19 @@
+.text-field-box {
+  border: 1px solid #ccc;
+  width: 100%;
+  display: inline-flex;
+  height: min-content;
+  padding: 0.5rem;
+  min-width: 10rem;
+  box-sizing: border-box;
+}
+
+.text-field-box:focus-visible {
+  outline: none;
+}
+
+.text-field-box:disabled {
+  cursor: default;
+  background-color: rgba(128, 128, 128, 0.22);
+  color: rgba(0, 0, 0, 0.76);
+}

@@ -1,0 +1,77 @@
+<div class="aio-control-container" id="{{field}}" [tabIndex]="-1" (focusin)="onFocusIn($event)">
+  <p class="aio-control-header" *ngIf="(header !== null && header !== undefined && header.length > 0)">{{header}}</p>
+  <ng-container *ngIf="controlDisabledView && disabled;else normal">
+    <ng-container [ngSwitch]="pipe">
+      <ng-container *ngSwitchCase="'dateFormat'">{{value | date : pipeOptions.format}}</ng-container>
+      <ng-container *ngSwitchDefault>
+        {{value}}
+      </ng-container>
+    </ng-container>
+  </ng-container>
+  <ng-template #normal>
+    <ng-container *ngIf="controlType == 'text_field'" [ngTemplateOutlet]="text_field"></ng-container>
+    <ng-container *ngIf="controlType == 'label'" [ngTemplateOutlet]="label"></ng-container>
+    <ng-container *ngIf="controlType == 'dropdown'" [ngTemplateOutlet]="dropdown"></ng-container>
+    <ng-container *ngIf="controlType == 'multi_select'" [ngTemplateOutlet]="multi_select"></ng-container>
+    <ng-container *ngIf="controlType == 'option_button'" [ngTemplateOutlet]="option_button"></ng-container>
+    <ng-container *ngIf="controlType == 'unit_input'" [ngTemplateOutlet]="unit_input"></ng-container>
+    <ng-container *ngIf="controlType == 'toggle_button'" [ngTemplateOutlet]="toggle_button"></ng-container>
+    <ng-container *ngIf="controlType == 'number'" [ngTemplateOutlet]="number"></ng-container>
+    <ng-container *ngIf="controlType == 'button'" [ngTemplateOutlet]="button"></ng-container>
+    <ng-container *ngIf="controlType == 'datepicker'" [ngTemplateOutlet]="datepicker"></ng-container>
+    <ng-container *ngIf="controlType == 'textarea'" [ngTemplateOutlet]="textarea"></ng-container>
+    <ng-container *ngIf="controlType == 'dual_slider'" [ngTemplateOutlet]="dualslider"></ng-container>
+    <ng-container *ngIf="controlType == 'slider'" [ngTemplateOutlet]="slider"></ng-container>
+  </ng-template>
+</div>
+
+<ng-template #text_field>
+    <text-field placeholder="Enter {{header}}"  [disabled]="disabled" [(ngModel)]="value" (ngModelChange)="onChangeValue.emit($event)"></text-field>
+</ng-template>
+
+
+<ng-template #number>
+  <text-field placeholder="Enter {{header}}"  [disabled]="disabled" [type]="'number'" [(ngModel)]="value" (ngModelChange)="onChangeValue.emit($event)"></text-field>
+</ng-template>
+
+<ng-template #label>
+  <text-field placeholder="Enter {{header}}"  [disabled]="true" [(ngModel)]="value" (ngModelChange)="onChangeValue.emit($event)"></text-field>
+</ng-template>
+
+<ng-template #dropdown>
+  <dropdown [disabled]="disabled" [listOptions]="listOptions" [(ngModel)]="value" (ngModelChange)="onChangeValue.emit($event)"></dropdown>
+</ng-template>
+
+
+<ng-template #multi_select>
+  <dropdown [disabled]="disabled" [multiple]="true" [listOptions]="listOptions" [(ngModel)]="value" (ngModelChange)="onChangeValue.emit($event)"></dropdown>
+</ng-template>
+<ng-template #option_button>
+  <option-button [disabled]="disabled" [options]="listOptions" [(ngModel)]="value" (ngModelChange)="onChangeValue.emit($event)"></option-button>
+</ng-template>
+
+<ng-template #unit_input>
+  <unit-input [disabled]="disabled" [options]="listOptions" [(ngModel)]="value" (ngModelChange)="onChangeValue.emit($event)"></unit-input>
+</ng-template>
+
+<ng-template #toggle_button>
+  <toggle-button [disabled]="disabled" [options]="listOptions" [(ngModel)]="value" (ngModelChange)="onChangeValue.emit($event)"></toggle-button>
+</ng-template>
+
+<ng-template #button>
+  <button class="aio_button" [disabled]="disabled" (click)="onButtonClick()">{{header}}</button>
+</ng-template>
+
+<ng-template #textarea>
+  <text-area [(ngModel)]="value" [disabled]="disabled" (ngModelChange)="onChangeValue.emit($event)"></text-area>
+</ng-template>
+
+<ng-template #datepicker>
+  <date-picker placeholder="Select {{header}}" [disabled]="disabled" [(ngModel)]="value" (ngModelChange)="onChangeValue.emit($event)"></date-picker>
+</ng-template>
+<ng-template #dualslider>
+  <dual-slider [(ngModel)]="value" [disabled]="disabled" (ngModelChange)="onChangeValue.emit($event)"></dual-slider>
+</ng-template>
+<ng-template #slider>
+  <slider [(ngModel)]="value" [disabled]="disabled" (ngModelChange)="onChangeValue.emit($event)"></slider>
+</ng-template>

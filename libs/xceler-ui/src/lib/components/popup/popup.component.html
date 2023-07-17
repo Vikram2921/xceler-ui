@@ -1,0 +1,31 @@
+<ng-container *ngFor="let popup of PopupService.getAll()">
+  <div *ngIf="popup.popupProp?.modal" class="container"
+       (click)="popup.popupProp?.closeOnModal?PopupService.removePopup(popup.id):''"></div>
+  <div class="popup"
+       [style.width]="popup.popupProp?.width"
+       [ngClass]="{'popup-left': popup.popupProp?.position === 'left', 'popup-right': popup.popupProp?.position === 'right', 'popup-center': popup.popupProp?.position === 'center'}">
+    <div style="overflow:auto;display: flex;flex-direction: column;height: 100%;">
+      <div *ngIf="popup.headerProp?.show" class="header">
+        <ng-container [ngTemplateOutlet]="header" [ngTemplateOutletContext]="{props:popup.headerProp,id:popup.id}"></ng-container>
+      </div>
+      <div style="width: inherit;height:inherit;overflow: hidden;padding: 0.5rem">
+        <ng-template [loadComponent]="popup.popup" [componentId]="popup.id" [props]="popup.props"></ng-template>
+      </div>
+      <div *ngIf="popup.footerProp?.show" class="footer">
+        <ng-container [ngTemplateOutlet]="footer" [ngTemplateOutletContext]="{props:popup.footerProp,id:popup.id}"></ng-container>
+      </div>
+    </div>
+  </div>
+</ng-container>
+<ng-template #header let-prop="props" let-id="id">
+  <div style="display: inline-flex;width: 100%;padding: 0.7rem">
+    <p style="width: inherit;font-weight: bold">{{prop.title}}</p>
+    <fa-icon style="cursor: pointer;user-select: none" icon="times" (click)="PopupService.removePopup(id)"></fa-icon>
+  </div>
+</ng-template>
+
+<ng-template #footer let-prop="props" let-id="id">
+  <div style="padding: 0.2rem">
+    <button class="cancel-button" (click)="PopupService.removePopup(id)">Close</button>
+  </div>
+</ng-template>

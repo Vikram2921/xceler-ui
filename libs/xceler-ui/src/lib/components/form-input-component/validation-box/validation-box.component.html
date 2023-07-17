@@ -1,0 +1,31 @@
+<ng-container *ngIf="validationSections">
+  <div *ngFor="let key of getKeys()" class="section bottomGap">
+    <div (click)="goToField(key,key)" class="sectionTitle">
+      <ng-container *ngIf="getIconFromValidations(formGroup,this.validationSections[key]);else invalid">
+        <fa-icon class="iconCls colorTick"  [icon]="['fas','check']"></fa-icon>
+      </ng-container>
+      <ng-template #invalid>
+        <fa-icon class="iconCls colorCross"  [icon]="['fas','times']"></fa-icon>
+      </ng-template>
+      <p class="{{focusedSection === key?'focused':''}}">{{key}}</p>
+    </div>
+    <div>
+      <div *ngFor="let field of this.validationSections[key]"
+           class="leftShift">
+        <div *ngIf="field.grid && hasErrors(field)" class="section">
+          <div *ngFor="let error of getKeysFromObject(getErrors(field))" class="sectionTitle">
+            <fa-icon [icon]="'arrow-right'" class="iconClassValidation"></fa-icon>
+            <p class="{{currentlyFocusedField === field.field?'focused':''}}">{{getValidationErrorMessage(formGroup.controls[field.field], getHeader(field,error))}}</p>
+          </div>
+        </div>
+        <div *ngIf="(field.grid === null || field.grid === undefined || !field.grid) && !isHidden(field)" class="section">
+          <div *ngIf="field.field !== '' " class="sectionTitle">
+            <fa-icon [icon]="'arrow-right'" class="iconClassValidation"></fa-icon>
+            <p (click)="goToField(field.field,key)" class="{{currentlyFocusedField === field.field?'focused':''}}">{{getValidationErrorMessage(formGroup.controls[field.field], field.header)}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</ng-container>

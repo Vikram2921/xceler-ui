@@ -1,0 +1,50 @@
+.navbar {
+  width: 100%;
+  display: inline-flex;
+  align-items: center;
+  padding-left: 15px;
+  user-select: none;
+  height: 5rem;
+  min-height: 5rem;
+  background-color: #150d4e;
+}
+
+.switcher {
+  position: absolute;
+  top: 50%;
+  left: 20px;
+  transform: translate(0%, -50%);
+}
+
+.project_title {
+  color: white;
+  padding-left: 10px;
+  border-left: 1px solid #ffffff;
+  align-self: center;
+  font-family: 'Raleway', sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.left {
+  width: 100%;
+  align-self: center;
+
+}
+
+.right {
+  width: 100%;
+  display: inline-flex;
+  padding-right: 2rem;
+}
+
+.profile_pic {
+  background-color: rgba(229, 139, 255, 0.72);
+  height: 2.9em;
+  border-radius: 50%;
+  cursor: pointer;
+  width: 2.9rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

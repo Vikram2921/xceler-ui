@@ -1,0 +1,138 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Lato', sans-serif !important;
+}
+
+
+table {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  overflow-y: auto;
+  overflow-x: auto;
+}
+
+thead {
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.05), 0 3px 6px rgba(0, 0, 0, 0.10) !important;
+}
+
+thead tr {
+  background: #d9dbde;
+}
+
+
+th,td {
+  text-align: left;
+  z-index: 1;
+  align-self: center;
+  align-items: center;
+  background: white;
+  align-content: center;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  padding: 0.5rem 0.5rem 0.5rem 0.5rem;
+  cursor: default;
+}
+
+.checkbox-col {
+  min-width: 3rem;
+  max-width: 3rem;
+  width: 3rem;
+  text-align: center;
+  position: sticky;
+  left: 0;
+  z-index: 2;
+  cursor: pointer;
+  user-select: none;
+}
+
+.z-1 {
+  z-index: 1 !important;
+}
+
+.z-2 {
+  z-index: 2 !important;
+}
+
+th {
+  background: #d9dbde;
+  color: #767676;
+  z-index: 0;
+  font-size: 0.80rem;
+  height: 2.5rem;
+  font-family: 'Lato', sans-serif !important;
+  font-weight: 600;
+  position: sticky;
+  top: 0;
+}
+
+td {
+  background: #f8f8f8;
+  height: 3rem;
+  font-size: 13px;
+  color: #333333;
+  border-bottom: 1px solid rgba(51, 51, 51, 0.12);
+  font-family: 'Lato', sans-serif !important;
+}
+
+.table-container {
+  width: 100%;
+  height: inherit;
+  overflow: auto;
+}
+
+.action {
+  position: sticky;
+  width: 7rem;
+  font-size: 0.80rem;
+  font-family: 'Raleway',sans-serif;
+  font-weight: 600;
+  min-width: 7rem;
+  left: 3rem;
+  max-width: 7rem;
+  text-align: left;
+}
+
+.divider {
+  height: 1.3rem;
+  width: 0.5rem;
+  margin-right: 10px;
+  border-right: 0.15rem solid #b9b9b9;
+}
+
+.headerDiv {
+  display: inline-flex;
+  width: 100%;
+  padding: 0.9rem;
+  align-items: center;
+}
+
+.headerTitle {
+  white-space: nowrap;
+  width: inherit;
+}
+
+.svgIcon {
+  color: gray;
+  cursor: pointer;
+}
+
+.grid-icon {
+  color: #767676;
+  padding: 3px;
+  cursor: pointer;
+}
+
+.grid-icon:hover {
+  background-color: rgba(118, 118, 118, 0.24);
+  border-radius: 5px;
+}
+
+.grid_box {
+  width: 100%;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column
+}

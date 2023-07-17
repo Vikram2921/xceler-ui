@@ -1,0 +1,9 @@
+<ng-container *ngIf="visible">
+  <div *ngFor="let option of options"
+       class="option-button"
+       [ngClass]="{'selected-option-button':value == option.value,'option-button-disabled':disabled || isDisabled(option)}" (click)="selectOption(option)">
+    <fa-icon *ngIf="value == option.value && option.selectedIcon" [icon]="option.selectedIcon"></fa-icon>
+    <fa-icon *ngIf="value != option.value && option.defaultIcon" [icon]="option.defaultIcon"></fa-icon>
+    <p class="option-button-label">{{option.label}}</p>
+  </div>
+</ng-container>

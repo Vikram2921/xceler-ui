@@ -1,0 +1,44 @@
+.slider-toggle-button {
+  display: flex;
+  align-items: center;
+  width: 8rem;
+  height: 2.5rem;
+  border-radius: 20px;
+  background-color: gray;
+  position: relative;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.slider-toggle-button.active {
+  background-color: green;
+}
+
+.slider {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: white;
+  position: absolute;
+  left: 5px;
+  transition: transform 0.3s ease-in-out;
+}
+
+.slider-toggle-button.active .slider {
+  transform: translateX(290%);
+}
+
+.button-text {
+  color: black;
+  position: absolute;
+  right: 0;
+  user-select: none;
+  left: 0;
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
+
+.disabled {
+  background-color: rgba(128, 128, 128, 0.22);
+  cursor: default;
+}

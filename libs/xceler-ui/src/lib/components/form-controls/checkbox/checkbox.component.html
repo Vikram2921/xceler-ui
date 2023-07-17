@@ -1,0 +1,10 @@
+<div class="checkbox-container" (click)="toggle()">
+  <label class="checkbox-box" >
+    <input type="checkbox" [checked]="value">
+    <span class="checkmark" (click)="toggle()"></span>
+  </label>
+  <p class="checkbox-header" *ngIf="header !== null && header !== undefined && header.length > 0">{{header}}</p>
+</div>
+
+
+

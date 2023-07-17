@@ -1,0 +1,26 @@
+.toolbar {
+  display: inline-flex;
+  width: 100%;
+  height: 2.5rem;
+  gap: 1rem;
+  background: #fafafa;
+  border: solid 1px #efefef;
+}
+
+.left {
+  width: 100%;
+  align-self: center;
+  margin-left: 0.7rem;
+  display: inline-flex;
+  gap: 0.5rem;
+}
+
+.right {
+  direction: rtl;
+  overflow-x: auto;
+  align-self: center;
+  display: inline-flex;
+  gap: 0.5rem;
+  width: 100%;
+  margin-right: 0.7rem;
+}

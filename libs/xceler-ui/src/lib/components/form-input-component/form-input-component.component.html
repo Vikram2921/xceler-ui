@@ -1,0 +1,37 @@
+<div class="input_form scrollbar">
+  <div class="input_form_container scrollbar">
+      <ng-container *ngIf="activity.screenJson.sections !== null && activity.screenJson.sections !== undefined && activity.screenJson.sections.length>0;else with_out_section">
+        <ng-container [ngTemplateOutlet]="with_section"></ng-container>
+      </ng-container>
+  </div>
+  <div class="validation_box">
+    <validation-box [formGroup]="formControlService.getFormGroup()" [validationSections]="getValidationSection()" [focusedField]="currentFocusField"></validation-box>
+  </div>
+</div>
+
+<ng-template #with_section>
+  <div style="display: flex;flex-direction: column;gap: 10px;" [formGroup]="formControlService.getFormGroup()">
+    <div *ngFor="let section of activity.screenJson.sections" class="section">
+      <p class="section_name">{{section.sectionName}}</p>
+      <div class="input_ui">
+        <div *ngFor="let col of getFormVisibleFields(section.columns)" class="col col-{{(col.colSpan && !isNaN(col.colSpan))?(col.colSpan * 4):4}}">
+          <aio-controls
+                  formControlName="{{col.field}}"
+                  (onClickButton)="onClickButton($event)"
+                  [field]="col.field" [header]="col.title" [controlType]="col.type" [disabled]="col.disabled"
+                  [listOptions]="col.listStore?StoreService.getListValues(activity.screenJson.title,col.listStore):col.list?col.list:[]" (onFocusField)="onFocusChange($event)"></aio-controls>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>
+<ng-template #with_out_section>
+  <div class="input_ui" [formGroup]="formControlService.getFormGroup()">
+    <div *ngFor="let col of getFormVisibleFields(activity.screenJson.columns)" class="col col-{{(col.colSpan && !isNaN(col.colSpan))?(col.colSpan * 4):4}}">
+      <aio-controls formControlName="{{col.field}}" [field]="col.field"
+                    (onClickButton)="onClickButton($event)"
+                    [header]="col.title" [controlType]="col.type" [disabled]="col.disabled"
+                    [listOptions]="col.listStore?StoreService.getListValues(activity.screenJson.title,col.listStore):col.list?col.list:[]" (onFocusField)="onFocusChange($event)"></aio-controls>
+    </div>
+  </div>
+</ng-template>

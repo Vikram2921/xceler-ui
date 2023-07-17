@@ -1,0 +1,31 @@
+<div class="datepicker" (mouseleave)="showCalendar = false">
+  <div  style="display: inline-flex;width: 100%" (click)="!disabled?showCalendar = true:''">
+    <input [disabled]="true" [placeholder]="placeholder" [ngClass]="disabled?'dp_disabled':''" class="datepicker_input" type="text" [(ngModel)]="text">
+    <div class="calender_icon" [style.cursor]="disabled?'default':'pointer'" (click)="!disabled?toggleCalendar():''">
+      <fa-icon icon="calendar"></fa-icon>
+    </div>
+  </div>
+  <div class="calendar" *ngIf="showCalendar">
+    <div class="calendar-header">
+      <fa-icon class="datepicker_header_item" (click)="previousMonth()" icon="arrow-circle-left"></fa-icon>
+      <span class="datepicker_header_item">{{ getCurrentMonth() }}</span>
+      <span class="datepicker_header_item">{{ getCurrentYear() }}</span>
+      <fa-icon  class="datepicker_header_item" (click)="nextMonth()" icon="arrow-circle-right"></fa-icon>
+    </div>
+    <div class="calendar-body">
+      <div style="border: 1px solid rgba(0,0,0,0.24);padding: 1rem;height: 250px;">
+        <div class="week-days">
+          <span *ngFor="let day of weekDays">{{ day }}</span>
+        </div>
+        <div class="days">
+          <span *ngFor="let day of visibleDays"
+              [class.selected]="datePipe.transform(day.date,format) === datePipe.transform(value,format)"
+              [class.disabled]="day.date.getMonth() != currentMonth.getMonth()"
+              (click)="day.date.getMonth() == currentMonth.getMonth()?selectDate(day.date):''">
+          {{ day.date.getDate() }}
+        </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

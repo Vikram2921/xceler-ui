@@ -1,0 +1,68 @@
+<div *ngIf="showGrid"
+     class="grid_box"
+     [style.height]="gridConfig.height">
+  <div class="table-container scrollbar">
+    <table [cellSpacing]="0" [cellPadding]="0">
+      <thead>
+      <tr>
+        <th class="checkbox-col z-2" *ngIf="gridConfig.checkbox">
+          <checkbox (onCheckedChange)="toggleAll()" [checked]="activity.selectedRows.length == rows.length"></checkbox>
+        </th>
+        <th class="action z-2" *ngIf="gridConfig.actions">
+          <div class="headerDiv divider">
+            <p class="headerTitle">Actions</p>
+          </div>
+        </th>
+        <th *ngFor="let col of gridColumns;index as i">
+          <div class="headerDiv" [ngClass]="i !== columns.length - 1?'divider':''">
+            <p class="headerTitle">{{col.title}}</p>
+          </div>
+        </th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let row of rows;index as index">
+        <td class="checkbox-col z-1" *ngIf="gridConfig.checkbox">
+          <checkbox (onCheckedChange)="toggleSingle(row)" [checked]="activity.selectedRows.includes(row)"></checkbox>
+        </td>
+        <td class="action z-1" *ngIf="gridConfig.actions">
+          <div style="display: inline-flex;gap: 0.5rem">
+            <fa-icon icon="pencil-alt" class="grid-icon" *ngIf="screenModel.gridConfiguration.canEdit && !editingRows.includes(index)" (click)="onClickButton('Edit',index)"></fa-icon>
+            <fa-icon icon="save" class="grid-icon" *ngIf="screenModel.gridConfiguration.canEdit && editingRows.includes(index)" (click)="onClickButton('Save',index)"></fa-icon>
+            <fa-icon icon="redo" class="grid-icon" *ngIf="screenModel.gridConfiguration.canEdit && editingRows.includes(index)" (click)="onClickButton('Undo',index)"></fa-icon>
+            <fa-icon icon="copy" class="grid-icon" *ngIf="screenModel.gridConfiguration.canCopy  && !editingRows.includes(index)" (click)="onClickButton('Copy',index)"></fa-icon>
+            <fa-icon icon="trash" class="grid-icon" *ngIf="screenModel.gridConfiguration.canDelete" (click)="onClickButton('Delete',index)"></fa-icon>
+          </div>
+        </td>
+        <td *ngFor="let col of gridColumns">
+          <ng-container [ngTemplateOutlet]="editingRows.includes(index)?input:output" [ngTemplateOutletContext]="{row:row,col:col}"></ng-container>
+          <ng-template #input let-row="row" let-col="col">
+            <aio-controls [controlType]="col.type" [field]="col.field"
+                          [disabled]="col.disabled"
+                          [controlDisabledView]="col.disableControlView"
+                          [pipe]="col.pipe" [pipeOptions]="col.pipeOptions"
+                          [value]="row[col.field]" (onChangeValue)="onChangeValue.emit($event)"
+                          [listOptions]="(col.list || col.listStore)?StoreService.getListValues(activity.screenJson.title,col.listStore,col.list):[]"></aio-controls>
+          </ng-template>
+          <ng-template #output let-row="row" let-col="col">
+            <ng-container [ngSwitch]="col.pipe">
+              <ng-container *ngSwitchCase="'dateFormat'">{{row[col.field] | date : col.pipeOptions.format}}</ng-container>
+              <ng-container *ngSwitchDefault>
+                {{row[col.field]}}
+              </ng-container>
+            </ng-container>
+          </ng-template>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  <paginator *ngIf="page" [totalItems]="page.totalElements"
+             [currentPageRecords]="page.numberOfElements" [selectedRecords]="activity.selectedRows.length"
+             [totalPages]="page.totalPages" [selectedPage]="page.number" (onPageChange)="onChangePage($event)"></paginator>
+</div>
+
+<ng-template #noDataView>
+
+</ng-template>
+

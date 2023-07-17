@@ -1,0 +1,4 @@
+<div class="icon-button" [ngClass]="disabled?'icon-button-disabled':'icon-button-enabled'" (click)="onClickButton()">
+  <fa-icon [animation]="animation" *ngIf="icon !== null && icon !== undefined" [icon]="icon" size="1x"></fa-icon>
+  <ng-content></ng-content>
+</div>

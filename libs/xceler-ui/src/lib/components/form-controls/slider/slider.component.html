@@ -1,0 +1,7 @@
+<div class="slider-container">
+  <span *ngIf="direction==='rtl'" [style.left]="0" class="slider-value" style="margin-right: 2px">{{ maxValue }}</span>
+  <input style="width: 100%" type="range" min="{{min}}" max="{{max}}"
+         [(ngModel)]="value" dir="{{direction}}">
+  <span [style.left]="direction=='rtl'?'':'10px'" [style.right]="direction=='rtl'?'10px':''" class="value_span">{{Resolver.getModifiedUrl(hoverFormat,{value:value})}}</span>
+  <span  *ngIf="direction==='ltr'" [style.right]="0" class="slider-value">{{ maxValue }}</span>
+</div>

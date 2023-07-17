@@ -1,0 +1,21 @@
+<div class="paginator" *ngIf="totalPages > 1">
+  <div class="left" style="display: inline-flex;gap: 0.2rem">
+    <p class="info">Pages :{{selectedPage + 1}}/{{totalPages}}</p>
+    <p class="info" *ngIf="selectedRecords > 0">Selected :{{selectedRecords}}</p>
+  </div>
+  <div class="center">
+    <fa-icon class="shift_button" size="xs"  icon="backward-fast" [ngClass]="selectedPage === 0?'disabled-page':''" (click)="jumpTo(0)"></fa-icon>
+    <fa-icon class="shift_button"  size="xs" icon="backward" [ngClass]="selectedPage === 0?'disabled-page':''" (click)="jumpTo(selectedPage - 1)"></fa-icon>
+    <div
+      *ngFor="let page of pageArray.slice((selectedPage >= maxPageToShow)?((totalPages - selectedPage < (maxPageToShow - 1)?totalPages - maxPageToShow:selectedPage-(maxPageToShow - 1))):0,(selectedPage >= maxPageToShow)?((totalPages - selectedPage < (maxPageToShow - 1)?totalPages:selectedPage+1)):maxPageToShow);"
+      class="shift_button"
+      [ngClass]="selectedPage === page?'selected':''" (click)="jumpTo(page)">
+      <p>{{(page + 1)}}</p>
+    </div>
+    <fa-icon class="shift_button" size="xs"  icon="forward" [ngClass]="selectedPage === (totalPages -1)?'disabled-page':''" (click)="jumpTo(selectedPage + 1)"></fa-icon>
+    <fa-icon class="shift_button" size="xs"  icon="forward-fast" [ngClass]="selectedPage === (totalPages - 1)?'disabled-page':''" (click)="jumpTo(totalPages - 1 )"></fa-icon>
+  </div>
+  <div class="right">
+    <p class="info">Records :{{currentPageRecords}}/{{totalItems}}</p>
+  </div>
+</div>

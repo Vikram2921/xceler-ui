@@ -1,0 +1,21 @@
+.icon-button {
+  color: #5a5a5a;
+  font-size: 14px;
+  padding: 6px 10px;
+  align-items: center;
+  display: inline-flex;
+  gap: 5px;
+  font-family: 'Lato', sans-serif;
+  cursor: pointer;
+  user-select: none;
+}
+
+.icon-button-enabled:hover {
+  color: #000000;
+  background: rgb(212,212,212);
+}
+
+.icon-button-disabled {
+  color: #cccccc;
+  cursor: not-allowed;
+}

@@ -1,0 +1,29 @@
+<div class="side_menu" [style.position]="pinned?'fixed':'absolute'" (mouseleave)="hovered = false"
+     [style.width]="pinned || hovered? pinnedWidth:unpinnedWidth">
+  <div class="top" (click)="togglePin()">
+    <div *ngIf="!hovered && !pinned" (mouseenter)="hovered = true" style="width: inherit;padding: 0.45rem;text-align: center;">
+      <fa-icon  icon="expand-alt" size="sm"></fa-icon>
+    </div>
+    <div *ngIf="pinned || hovered"
+         style="width: inherit;padding: 0.45rem;text-align: center;display: inline-flex;gap: 10px">
+      <fa-icon icon="minimize" size="sm"></fa-icon>
+      <p  style="width: inherit;text-align: left;">Collapse</p>
+    </div>
+    <div *ngIf="hovered || pinned" class="pin_box">
+      <fa-icon [style.rotate]="pinned?'':'45deg'" icon="thumb-tack" size="sm"></fa-icon>
+      <p>{{pinned?'Pinned':'Pin'}}</p>
+    </div>
+  </div>
+  <div class="menu scrollbar">
+    <div *ngFor="let item of menuJson" class="menu_item" (click)="onClickItem(item)" (mouseenter)="!pinned && !hovered?showChilds(item,$event):''">
+      <img style="margin-left: 0.5rem" alt="{{item.iconLabel}}" src='./assets/icons/{{item.iconPath}}'>
+      <p style="width: inherit" *ngIf="hovered || pinned">{{item.iconLabel}}</p>
+    </div>
+  </div>
+</div>
+<context-popup>
+  <div *ngFor="let child of childs" class="menu_item" style="padding: 10px;gap: 0.2rem" (click)="onClickItem(child)">
+      <img height="25" alt="{{child.childLabel}}" src='./assets/icons/{{child.childIconPath}}'>
+      <p style="font-weight: 600;font-size: 14px;margin-left: 10px">{{child.childLabel}}</p>
+  </div>
+</context-popup>

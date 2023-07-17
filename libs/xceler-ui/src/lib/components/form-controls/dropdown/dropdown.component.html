@@ -1,0 +1,36 @@
+<div class="dropdown-box" (mouseleave)="showList = false">
+  <div #header class="dropdown-header" [ngClass]="disabled?'disabled':''"  (click)="!disabled?toggleList():''">
+    <p *ngIf="!multiple;else multiple_view" class="dropdown-label">{{selectedOption !== null && selectedOption !== undefined?selectedOption?selectedOption.label:'':listOptions[0].label}}</p>
+    <svg xmlns="http://www.w3.org/2000/svg" width="10.033" height="5" style="align-self: center;margin-left: 10px"><path d="M5.016 0 0 .003 2.506 2.5 5.016 5l2.509-2.5L10.033.003 5.016 0z"/></svg>
+    <ng-template #multiple_view>
+      <div class="multiple-header">
+        <div style="width: inherit;display: inline-flex;gap: 0.3rem" *ngIf="selectedLabels.length > 0">
+          <p class="multiple-label" *ngFor="let selectedLabel of selectedLabels.slice(0,ellipseAfter)">{{selectedLabel}}</p>
+          {{selectedLabels.length > ellipseAfter?'....':''}}
+        </div>
+        <div style="width: inherit;display: inline-flex;gap: 0.3rem" *ngIf="selectedLabels.length == 0">
+          <p class="multiple-label" style="background: none">Not Selected Anything</p>
+        </div>
+        <p class="count-box">{{selectedLabels.length}}</p>
+      </div>
+    </ng-template>
+  </div>
+  <ng-container *ngIf="showList">
+    <div (insideViewport)="adjustDropdownPosition($event,header)" class="content-box" >
+      <div *ngIf="searchable || multiple" class="search-container">
+        <checkbox *ngIf="multiple" [checked]="selectedValues.length == listOptions.length" (onCheckedChange)="selectAll()"></checkbox>
+        <text-field style="width: inherit" [(ngModel)]="searchText"></text-field>
+        <p class="cross" (click)="searchText = ''">&#10006;</p>
+      </div>
+      <div class="dropdown-content scrollbar">
+        <div *ngFor="let item of listOptions|filterList: searchText"
+             class="dropdown-option"
+             [ngClass]="{'selected-option':selectedValues.includes(item.value)}"
+             (click)="onSelect(item)">
+          <checkbox *ngIf="multiple" [checked]="selectedValues.includes(item.value)" (onCheckedChange)="onSelect(item)"></checkbox>
+          <p>{{item.label}}</p>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+</div>

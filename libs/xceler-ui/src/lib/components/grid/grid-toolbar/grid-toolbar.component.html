@@ -1,0 +1,20 @@
+<div class="toolbar">
+  <div class="left">
+    <ng-container [ngTemplateOutlet]="button" [ngTemplateOutletContext]="{buttons:leftButtons}"></ng-container>
+  </div>
+  <div class="right hidden-scrollbar">
+    <ng-container [ngTemplateOutlet]="button" [ngTemplateOutletContext]="{buttons:rightButtons}"></ng-container>
+  </div>
+</div>
+
+<ng-template #button let-buttons="buttons">
+  <ng-container *ngFor="let button of buttons">
+    <ng-container *ngIf="button.animationProp;else withoutAnimation">
+      <icon-button [animation]="button.animationProp" [disabled]="button.disabled" [icon]="button.icon" (onClick)="onClick(button)">{{button.name}}</icon-button>
+    </ng-container>
+    <ng-template #withoutAnimation>
+      <icon-button [disabled]="button.disabled" [icon]="button.icon" (onClick)="onClick(button)">{{button.name}}</icon-button>
+    </ng-template>
+  </ng-container>
+
+</ng-template>

@@ -1,0 +1,16 @@
+<ng-container  *ngIf="loaded">
+  <div class="jtu-grid"
+       [style.grid-template-columns]="getRepeat('columns')"
+       [style.grid-template-rows]="getRepeat('rows')"
+       [style.grid-template-areas]="createAreas()">
+    <div *ngFor="let item of profile.items"
+         [ngClass]="showBorder?'jtu-grid-item':''"
+         [style.padding]="(item.padding !== undefined)?item.padding.join(''):''"
+         [style.grid-area]="item.itemId">
+      <ng-template *ngIf="item.componentId"
+                   [loadComponent]="ComponentRegister.getComponent(item.componentId)"
+                   [componentId]="item.componentId" [props]="options" [initiate]="false"></ng-template>
+    </div>
+  </div>
+</ng-container>
+

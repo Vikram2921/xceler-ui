@@ -1,0 +1,83 @@
+.input_form {
+  display: inline-flex;
+  box-sizing: border-box;
+  width: 100%;
+  overflow: hidden;
+  height: 100%;
+}
+
+.input_ui {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 1.5rem;
+  overflow: hidden;
+  width: inherit;
+}
+
+.input_form_container {
+  display: flex;
+  padding: 0.4rem;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  flex-direction: column;
+}
+
+.section {
+  background: rgba(237, 237, 237, 0.37);
+}
+
+.validation_box {
+  width: 30rem;
+  margin: 0 0.5rem;
+  padding: 1rem;
+  border: 1px solid #ededed;
+  overflow: auto;
+}
+
+.col {
+  padding: 1rem;
+}
+
+.col-1 {
+  flex: 0 0 8.333333333333332%;
+}
+.col-2 {
+  flex: 0 0 16.666666666666664%;
+}
+.col-3 {
+  flex: 0 0 25%;
+}
+.col-4 {
+  flex: 0 0 33.33333333333333%;
+}
+.col-5 {
+  flex: 0 0 41.66666666666667%;
+}
+.col-6 {
+  flex: 0 0 50%;
+}
+.col-7 {
+  flex: 0 0 58.333333333333336%;
+}
+.col-8 {
+  flex: 0 0 66.66666666666666%;
+}
+.col-9 {
+  flex: 0 0 75%;
+}
+.col-10 {
+  flex: 0 0 83.33333333333334%;
+}
+.col-11 {
+  flex: 0 0 91.66666666666666%;
+}
+.col-12 {
+  flex: 0 0 100%;
+}
+
+.section_name {
+  padding: 1rem;
+  font-size:14px;
+  border-bottom: 1px solid rgba(108,108,108,0.31)
+}

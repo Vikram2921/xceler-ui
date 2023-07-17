@@ -1,0 +1,4 @@
+<div class="slider-toggle-button" [ngClass]="{ 'active': value,'disabled':disabled }" (click)="!disabled?toggleButton():''">
+  <div class="slider" ></div>
+  <span [style.margin-left]="!value?'':'1rem'" [style.text-align]="!value?'right':'left'" [style.color]="value?'white':'black'" class="button-text">{{ value ? trueText : falseText }}</span>
+</div>

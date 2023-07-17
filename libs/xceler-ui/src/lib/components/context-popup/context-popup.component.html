@@ -1,0 +1,8 @@
+<div
+  *ngIf="show"
+  (mouseleave)="show = false"
+  [style.top]="top+'px'"
+  [style.left]="left+'px'"
+  class="context_popup">
+    <ng-content></ng-content>
+</div>

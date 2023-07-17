@@ -1,0 +1,116 @@
+.toast-container {
+  user-select: none;
+  z-index: 9999999;
+  position: absolute;
+}
+.c-container {
+  position: fixed;
+  z-index: 1;
+  padding-top: 100px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgb(0 0 0 / 16%);
+}
+.c-content {
+  background: #FFFFFF;
+  box-shadow: 3px 3px 20px rgba(0, 0, 0, 0.47451);
+  margin: auto;
+  position: absolute;
+  float: left;
+  left: 40%;
+  top: 40%;
+  width: auto;
+  border-radius: 6px;
+}
+.c-messageDiv{
+  border-bottom: 1px solid #cfcfcf;
+  padding: 1rem;
+}
+
+.cancel-button.right{
+  float: right;
+  padding: 0.5rem;
+  display: inline-flex;
+  justify-content: center;
+}
+.submit-button{
+  background: #FF8200;
+  border-radius: 4px;
+  color: #FFFFFF;
+  border: none;
+  font-weight: 600;
+  font-size: 14px;
+  margin: 0 1rem;
+  padding: 0.5rem 1rem;
+  cursor:pointer;
+  min-height: 2rem;
+}
+
+.close-icon {
+  cursor: pointer;
+  height: 16px;
+}
+
+.toast-message-box {
+  background-color: white;
+  margin-top: 10px;
+  box-shadow: 0 0 6px 0 rgb(0 0 0 / 16%);
+}
+
+.message_heading {
+  margin: 0;
+  padding: 0;
+  font-weight: bolder;
+  font-size: 16px;
+  font-family: 'Lato', sans-serif;
+}
+
+.message_value {
+  margin: 0;
+  padding: 0;
+  font-weight: normal;
+  font-size: 14px;
+  font-family: 'Lato', sans-serif;
+}
+
+.message-div{
+  display: flex;
+  padding: 0.75rem;
+}
+
+.message{
+  display: flex;
+  margin-left: 0.75rem;
+  flex-direction: column;
+  flex-grow: 1;
+  justify-content: center;
+  align-self: center;
+}
+
+.box-shadow{
+  box-shadow: rgba(0, 0, 0, 0.05) 0 6px 24px 0, rgba(0, 0, 0, 0.08) 0 0 0 1px;
+}
+
+
+.left {
+  left: 20px;
+  position:fixed;
+  top: 6%;
+}
+
+.right {
+  right: 20px;
+  position:fixed;
+  top: 6%;
+}
+
+
+.center {
+  position:fixed;
+  top: 80%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+}

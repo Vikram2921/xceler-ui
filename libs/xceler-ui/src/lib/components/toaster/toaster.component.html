@@ -1,0 +1,56 @@
+<div class="toast-container">
+  <div  [ngClass]="ToastService.getPosition()" [style.width]="width">
+    <div class="toast-message-box slide-in box-shadow"
+         (onTimeOut)="deleteMessage(msg)" *ngFor="let msg of getAllMessages()" @slideInOut [schedule]="msg.autoHide" [toastScheduler]="msg.delay">
+      <div class="c-message-div" *ngIf="msg.type === 'confirm' || msg.type === 'loading'; else others" >
+        <div class="c-container">
+          <div class="c-content" style="text-align: center;">
+            <div>
+              <div *ngIf="msg.type ==='confirm';else loading" style="background-color: #CD3A3A; padding: 10px">
+                <svg width="17" height="14" viewBox="0 0 17 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M9.01829 0.518991C8.74565 0.0665864 7.89781 0.0665864 7.62518 0.518991L0.533546 12.2787C0.469709 12.3841 0.438061 12.5023 0.441686 12.6216C0.445311 12.7409 0.484086 12.8574 0.554233 12.9597C0.62438 13.0619 0.723505 13.1465 0.841951 13.2051C0.960398 13.2638 1.09412 13.2945 1.2301 13.2942H15.4134C15.5492 13.2945 15.6829 13.2638 15.8012 13.2052C15.9196 13.1466 16.0187 13.0621 16.0887 12.9599C16.1588 12.8577 16.1975 12.7413 16.2011 12.622C16.2047 12.5028 16.173 12.3847 16.1091 12.2794L9.01829 0.518991ZM9.10969 11.219H7.53377V9.83548H9.10969V11.219ZM7.53377 8.45198V4.99323H9.10969L9.11048 8.45198H7.53377Z" fill="#D20000"/>
+                </svg>
+                <span style="color: #15104E">
+                  {{msg.heading}}
+                </span>
+              </div>
+              <ng-template #loading>
+                <div>
+                  <img  ngSrc="{{msg.props['path']}}" width="{{msg.props['width']}}" height="{{msg.props['height']}}" alt="loading">
+                  <span style="color: #15104E">{{msg.heading}}</span>
+                </div>
+              </ng-template>
+              <div>
+                <h4 *ngIf="msg.message && msg.message.length > 0" class="c-messageDiv" >{{msg.message}}</h4>
+              </div>
+              <div *ngIf="msg.type === 'confirm'" style="padding-bottom: 20px; padding-top: 20px">
+                <button *ngFor="let button of msg.props['buttons']" class="cancel-button" (click)="onClickButton(msg,button)" >{{button}}</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <ng-template #others>
+        <div style="min-height: 6px" [style.background]="getType(msg.type).color"></div>
+        <div *ngIf="msg.type !== 'html'" class="message-div">
+          <img *ngIf="getType(msg.type).icon" class="mt-1" ngSrc="{{getType(msg.type).icon}}"
+               style="font-size: 20px;height: 20px" alt="icon">
+          <div class="message">
+            <p *ngIf="msg.heading !== null && msg.heading !== undefined && msg.heading.length > 0" class="message_heading">{{msg.heading}}</p>
+            <p *ngIf="msg.message !== null && msg.message !== undefined && msg.message.length > 0" class="message_value">{{msg.message}}</p>
+          </div>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" class="close-icon" (click)="deleteMessage(msg)">
+            <path d="M310.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L160 210.7 54.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L114.7 256 9.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L160 301.3 265.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L205.3 256 310.6 150.6z"/>
+          </svg>
+        </div>
+        <div class="message-div" *ngIf="msg.type === 'html'" >
+          <div class="flex-grow" [innerHTML]="msg.message | sanitizeHtml"></div>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" class="close-icon" (click)="deleteMessage(msg)">
+            <path d="M310.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L160 210.7 54.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L114.7 256 9.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L160 301.3 265.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L205.3 256 310.6 150.6z"/>
+          </svg>
+        </div>
+      </ng-template>
+
+    </div>
+  </div>
+</div>

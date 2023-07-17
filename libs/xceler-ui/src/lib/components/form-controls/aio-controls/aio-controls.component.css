@@ -1,0 +1,35 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.aio-control-container {
+  display: flex;
+  gap: 0.6rem;
+  flex-direction: column;
+  width: 100%;
+  padding: 1px;
+}
+
+.aio-control-container:focus {
+  outline: none;
+}
+
+.aio-control-header {
+  font-size: 14px;
+  font-family: 'Lato', sans-serif
+}
+
+.aio_button {
+  background: white;
+  border: 2px solid #ededed;
+  cursor: pointer;
+  user-select: none;
+  width: 100%;
+  padding: 0.6rem;
+}
+
+.aio_button:hover {
+  border: 2px solid rgba(255, 165, 0, 0.58);
+}
