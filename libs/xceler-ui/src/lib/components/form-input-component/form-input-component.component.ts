@@ -27,7 +27,7 @@ export class FormInputComponentComponent extends HostActivity{
     super();
   }
   override init(props: { [p: string]: any }) {
-    this.activity = ScreenRegister.getScreen(props['options']);
+    this.activity = ScreenRegister.getScreen(props['options'].screen);
     this.rowData = props['rowData'];
     this.editMode = (this.rowData !== null && this.rowData !== undefined);
     this.buildFormGroup();

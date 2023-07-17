@@ -36,7 +36,8 @@ export const ProfileFunctions:{[key:string]:Function} = {
             headerProps.title = activity.selectedRows[0][idField.field];
           }
           options['rowData'] = activity.selectedRows[0];
-
+        } else {
+          options['rowData'] = null;
         }
         PopupService.addPopup(next.buttonName,FormInputComponentComponent,options,headerProps,undefined,new PopupProps('right',true,true,'75%'));
         activity.selectedRows = [];
@@ -93,9 +94,6 @@ export const ProfileFunctions:{[key:string]:Function} = {
 
     let gridToolbarFunction:Function = (gridToolbar:GridToolbarComponent) => {
       gridToolbar.setLeftButton(leftButton);
-      gridToolbar.onClickButton.subscribe((next:any) => {
-
-      })
     }
     let tabsFunction:Function = (opButton:OptionButtonComponent) => {
       opButton.options =  activity.screenJson.tabs.map(tab => new ListOption(tab.label,tab.label));
