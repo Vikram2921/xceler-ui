@@ -3,8 +3,8 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "ctrm-web": "npx nx serve ctrm-web --port=4200",
-    "business-master": "npx nx serve bussiness-master --port=4201"
+    "ctrm-web": "npx nx serve ctrm-web --port=4100",
+    "business-master": "npx nx serve bussiness-master --port=4101"
   },
   "private": true,
   "dependencies": {

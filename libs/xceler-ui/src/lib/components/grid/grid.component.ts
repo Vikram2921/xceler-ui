@@ -1,13 +1,13 @@
 import {ChangeDetectorRef, Component, EventEmitter, Output} from '@angular/core';
-import {Activity} from "../interfaces/activity";
-import {ScreenModel} from "../models/screen-model";
-import {ColumnModel} from "../models/column-model";
-import {ApiService} from "../services/api-service.service";
-import {StorageService} from "../services/storage.service";
+import {Activity} from "../../interfaces/activity";
+import {ScreenModel} from "../../models/screen-model";
+import {ColumnModel} from "../../models/column-model";
+import {ApiService} from "../../services/api-service.service";
+import {StorageService} from "../../services/storage.service";
 import {ToastService} from "../toaster/service/toast.service";
-import {HostActivity} from "../models/host-activity";
-import {PageObject} from "../interfaces/grid";
-import {StoreService} from "../services/store.service";
+import {HostActivity} from "../../models/host-activity";
+import {PageObject} from "../../interfaces/grid";
+import {StoreService} from "../../services/store.service";
 
 export class GridConfig {
   checkbox!:boolean;

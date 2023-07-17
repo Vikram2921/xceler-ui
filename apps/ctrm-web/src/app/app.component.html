@@ -1,1 +1,13 @@
-<xui-advance-filter></xui-advance-filter>
+<div class="main-box">
+  <xui-app-navbar></xui-app-navbar>
+  <div style="display: flex;width: 100%;height: 100%;gap: 0.1rem">
+    <xui-side-menu jsonPath="./assets/json/sidemenu.json"
+               (onChangeItem)="onItemChange($event)"
+               [pinnedWidth]="pinWidth" [unpinnedWidth]="unpinWidth" (onPinned)="pinned = $event"></xui-side-menu>
+    <div *ngIf="loaded"  [style.margin-left]="pinned?pinWidth:unpinWidth" style="width: inherit;">
+      <xui-json-to-ui  style="width: inherit;height: 100%;"></xui-json-to-ui>
+    </div>
+  </div>
+</div>
+<xui-toaster></xui-toaster>
+<xui-popup></xui-popup>

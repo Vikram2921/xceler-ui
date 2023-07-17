@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Output} from '@angular/core';
-import {HostActivity} from "../../models/host-activity";
+import {HostActivity} from "../../../models/host-activity";
 import {ButtonModel} from "../../buttons/icon-button/ButtonModel";
 @Component({
   selector: 'xui-grid-toolbar',

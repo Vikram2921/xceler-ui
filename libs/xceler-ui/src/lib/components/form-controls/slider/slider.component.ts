@@ -1,5 +1,5 @@
 import {ChangeDetectorRef, Component, EventEmitter, forwardRef, Input, OnInit, Output} from '@angular/core';
-import {Resolver} from "../../models/resolver";
+import {Resolver} from "../../../models/resolver";
 import {BaseFormControl} from "../core/base-form-control";
 import {NG_VALUE_ACCESSOR} from "@angular/forms";
 

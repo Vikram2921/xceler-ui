@@ -8,7 +8,7 @@ import {
   ViewChild
 } from '@angular/core';
 import {BaseComponent} from "../form-controls/core/base-component";
-import {ApiService} from "../services/api-service.service";
+import {ApiService} from "../../services/api-service.service";
 import {ContextPopupComponent} from "../context-popup/context-popup.component";
 
 @Component({

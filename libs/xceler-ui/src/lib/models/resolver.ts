@@ -1,13 +1,13 @@
 import {ListOption} from "@xceler-ui/xceler-ui";
 
 export class Resolver {
-  public static getModifiedUrl(url:string,environment:any,customInputs?:any,page?:number) {
+  public static getModifiedUrl(url:string,environment?:{[key:string]:any},customInputs?:{[key:string]:any},page?:number) {
     let obj:any = Object.assign({
       "tenantId": localStorage.getItem("tenantId"),
       "username": localStorage.getItem("userName"),
       "size":20,
       "page":page
-    },environment);
+    },environment??{});
     if(customInputs) {
         obj = Object.assign(obj,customInputs);
     }

@@ -1,10 +1,12 @@
 import {ChangeDetectorRef, Component, Input} from '@angular/core';
-import { ComponentRegister } from "../registers/component-register.service";
+import { ComponentRegister } from "../../registers/component-register.service";
 import {Profile, ProfileItem} from "./models/profile";
-import {FunctionRegister} from "../registers/function-register.service";
+import {FunctionRegister} from "../../registers/function-register.service";
 import {BaseComponent} from "../form-controls/core/base-component";
 import {PopupService} from "../popup/service/popup-service.service";
-import {ApiService} from "../services/api-service.service";
+import {ApiService} from "../../services/api-service.service";
+import {ProfileRegister} from "../../profiles/ProfileRegister";
+import {Profiles} from "../../enums/profiles";
 
 @Component({
   selector: 'xui-json-to-ui',
@@ -17,19 +19,19 @@ export class JSONToUIComponent extends BaseComponent{
   @Input() showBorder:boolean = false;
   options:any = {}
   loaded:boolean = false;
-  currentProfile:string = '';
+  currentProfile:Profiles | string = '';
 
   constructor(private cd:ChangeDetectorRef,private apiService:ApiService) {
     super();
   }
 
-  loadProfile(profile:string,options:any) {
+  loadProfile(profile:Profiles,options:any) {
     PopupService.clearAll();
     if(this.currentProfile == profile) {
       this.updateProfileOptions(options);
     } else {
       this.currentProfile = profile;
-      this.profile = ComponentRegister.getProfile(profile);
+      this.profile = ProfileRegister.getProfile(profile);
       this.setUpOptions(options);
       this.createAreas();
       this.loaded = true;
@@ -43,7 +45,7 @@ export class JSONToUIComponent extends BaseComponent{
 
   private setUpOptions(options:any,update:boolean = false)  {
     if(this.profile.setupFunction !== null && this.profile.setupFunction !== undefined) {
-      FunctionRegister.callFunction("profiles",this.profile.setupFunction,{options:options,update:update,apiService:this.apiService,environment:{endpoint:'https://api-becrux-dev.ctrm-xceler.com'}});
+      FunctionRegister.callFunction("profiles",this.profile.setupFunction,{options:options,update:update});
     }
     this.options = options;
   }

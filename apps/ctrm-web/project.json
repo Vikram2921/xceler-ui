@@ -16,7 +16,7 @@
         "polyfills": ["zone.js"],
         "tsConfig": "apps/ctrm-web/tsconfig.app.json",
         "assets": ["apps/ctrm-web/src/favicon.ico", "apps/ctrm-web/src/assets"],
-        "styles": ["apps/ctrm-web/src/styles.css"],
+        "styles": ["apps/ctrm-web/src/styles.css","libs/xceler-ui/src/lib/styles/styles.css"],
         "scripts": []
       },
       "configurations": {

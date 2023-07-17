@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {ListOption} from "../form-controls/core/list-option";
+import {ListOption} from "../components/form-controls/core/list-option";
 
 export class Store {
   listValues: {[key: string]: ListOption[]} = {};

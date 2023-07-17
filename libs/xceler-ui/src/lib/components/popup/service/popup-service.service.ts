@@ -1,5 +1,5 @@
 import {Injectable, Type} from '@angular/core';
-import {HostActivity} from "../../models/host-activity";
+import {HostActivity} from "../../../models/host-activity";
 import {BehaviorSubject} from "rxjs";
 
 @Injectable({

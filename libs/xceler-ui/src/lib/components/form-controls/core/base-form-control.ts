@@ -1,6 +1,6 @@
 import {ControlValueAccessor} from "@angular/forms";
 import {Component, Input} from "@angular/core";
-import {HostActivity} from "../../models/host-activity";
+import {HostActivity} from "../../../models/host-activity";
 
 @Component({
   selector: 'xui-base-control',

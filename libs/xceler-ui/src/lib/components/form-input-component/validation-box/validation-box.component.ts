@@ -1,6 +1,6 @@
 import {Component, Input, OnChanges, SimpleChanges} from '@angular/core';
 import {AbstractControl, FormGroup, ValidationErrors} from "@angular/forms";
-import {FormControlService} from "../../../components/services/form-control.service";
+import {FormControlService} from "../../../services/form-control.service";
 
 export class ValidationField {
     field!: string;

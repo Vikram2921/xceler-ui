@@ -1,13 +1,13 @@
 import {Component} from '@angular/core';
-import {HostActivity} from "../models/host-activity";
-import {ScreenRegister} from "../registers/screen-register.service";
-import {Activity} from "../interfaces/activity";
-import {ColumnModel} from "../models/column-model";
-import {FormControlService} from "../services/form-control.service";
+import {HostActivity} from "../../models/host-activity";
+import {ScreenRegister} from "../../registers/screen-register.service";
+import {Activity} from "../../interfaces/activity";
+import {ColumnModel} from "../../models/column-model";
+import {FormControlService} from "../../services/form-control.service";
 import {ValidationField} from "./validation-box/validation-box.component";
-import {StoreService} from "../services/store.service";
-import {FunctionRegister} from "../registers/function-register.service";
-import {FunctionParams} from "../models/function-params";
+import {StoreService} from "../../services/store.service";
+import {FunctionRegister} from "../../registers/function-register.service";
+import {FunctionParams} from "../../models/function-params";
 
 @Component({
   selector: 'xui-form-input-component',
