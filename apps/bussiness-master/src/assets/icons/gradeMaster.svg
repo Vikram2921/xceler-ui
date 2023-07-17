@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24" height="24" viewBox="0 0 24 24">
+  <defs>
+    <clipPath id="clip-Grade_Master">
+      <rect width="24" height="24"/>
+    </clipPath>
+  </defs>
+  <g id="Grade_Master" data-name="Grade Master" clip-path="url(#clip-Grade_Master)">
+    <rect width="24" height="24" fill="#fff"/>
+    <g id="Group_183" data-name="Group 183">
+      <g id="Group_182" data-name="Group 182" transform="translate(1 13.055)">
+        <path id="Icon_feather-star" data-name="Icon feather-star" d="M7.973,3,9.509,6.273l3.436.528L10.459,9.348l.587,3.6-3.073-1.7L4.9,12.945l.587-3.6L3,6.8l3.436-.528Z" transform="translate(-3 -3)" fill="none" stroke="#15004f" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <path id="Icon_feather-star-2" data-name="Icon feather-star" d="M7.973,3,9.509,6.273l3.436.528L10.459,9.348l.587,3.6-3.073-1.7L4.9,12.945l.587-3.6L3,6.8l3.436-.528Z" transform="translate(9.155 -3)" fill="none" stroke="#15004f" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Ellipse_5" data-name="Ellipse 5" transform="translate(6.95 1)" fill="#fff" stroke="#31abee" stroke-width="1">
+        <circle cx="5" cy="5" r="5" stroke="none"/>
+        <circle cx="5" cy="5" r="4.5" fill="none"/>
+      </g>
+      <path id="Path_304" data-name="Path 304" d="M111.961,18.938l1.691,1.616,2.309-2.667" transform="translate(-101.514 -13.369)" fill="none" stroke="#35aaee" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      <path id="Path_305" data-name="Path 305" d="M0,0H4V4.505L1.847,3.342,0,4.505Z" transform="translate(9.95 10.052)" fill="#35aaee"/>
+    </g>
+  </g>
+</svg>

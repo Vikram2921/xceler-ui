@@ -23,7 +23,7 @@
 </div>
 <xui-context-popup>
   <div *ngFor="let child of childs" class="menu_item" style="padding: 10px;gap: 0.2rem" (click)="onClickItem(child)">
-      <img height="25" alt="{{child.childLabel}}" src='./assets/icons/{{child.childIconPath}}'>
+      <img style="mix-blend-mode: multiply" height="25" alt="{{child.childLabel}}" src='./assets/icons/{{child.childIconPath}}'>
       <p style="font-weight: 600;font-size: 14px;margin-left: 10px">{{child.childLabel}}</p>
   </div>
 </xui-context-popup>

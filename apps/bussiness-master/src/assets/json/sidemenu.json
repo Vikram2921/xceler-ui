@@ -1,55 +1,51 @@
 [
   {
-    "iconId": "physicalTrade", "iconLabel": "Trade Capture", "defaultActive": "", "iconPath": "PhysicalTrade.svg", "activeIconPath": "Active_PhysicalTrade.svg", "masterRouterlink": "/deal-slip/BUY",
+    "iconId": "CompanyAndCounterparty", "iconLabel": "Company & Counterparty","iconPath": "PhysicalTrade.svg",
     "childs": [
-      { "childIconId": "Location", "childIconPath": "trade.svg", "childLabel": "Location Master", "childRouterLink": "/trade", "projectSwitch": false,"profile": "location", "activeChildIconPath": "","queryParams":{"tabId": "Draft"}},
-      { "childIconId": "Incoterm", "childIconPath": "trade.svg", "childLabel": "Incoterm", "childRouterLink": "/paperTrade", "projectSwitch": false,"profile": "incoterm", "activeChildIconPath": "","queryParams":{"tabId": "Draft"}},
-      { "childIconId": "interCompanyTrade", "childIconPath": "trade.svg", "childLabel": "InterCompany Trade", "childRouterLink": "/interCompanyTrade", "projectSwitch": false, "activeChildIconPath": "","queryParams":{"tabId": "Draft"}},
-      { "childIconId": "purchaseDeal", "childIconPath": "dealslip.svg", "childLabel": "Purchase Contract Deal", "childRouterLink": "/deal-slip/BUY", "projectSwitch": false, "activeChildIconPath": "","queryParams":{"tabId": "pending"}},
-      { "childIconId": "sellDeal", "childIconPath": "dealslip.svg", "childLabel": "Sell Contract Deal", "childRouterLink": "/deal-slip/SELL", "projectSwitch": false, "activeChildIconPath": "","queryParams":{"tabId": "pending"}},
-      { "childIconId": "internalProfitCenter", "childIconPath": "dealslip.svg", "childLabel": "Inter-Profitcenter Trade", "childRouterLink": "internal-dealticker", "projectSwitch": false, "activeChildIconPath": ""}
+      { "childIconId": "Company", "childIconPath": "company.svg", "childLabel": "Company","profile": "company"},
+      { "childIconId": "ProfitCenter", "childIconPath": "trade.svg", "childLabel": "Profit Center", "profile": "incoterm"},
+      { "childIconId": "calendarMaster", "childIconPath": "trade.svg", "childLabel": "Calendar Master", "profile": "calendar"},
+      { "childIconId": "LocationMaster", "childIconPath": "dealslip.svg", "childLabel": "Location Master", "profile": "location"},
+      { "childIconId": "Counterparty", "childIconPath": "dealslip.svg", "childLabel": "Counterparty", "profile": "counterparty"},
+      { "childIconId": "Bank", "childIconPath": "dealslip.svg", "childLabel": "Bank", "profile": "bank"}
     ]
   },
   {
-    "iconId": "Reportings", "iconLabel": "Trade Operations", "defaultActive": "", "iconPath": "physical trade operation.svg", "activeIconPath": "physical trade operations.svg", "masterRouterlink": "",
+    "iconId": "Logistic", "iconLabel": "Logistic", "iconPath": "physical trade operation.svg",
     "childs": [
-      { "childIconId": "operationDashboard", "childIconPath": "obligationDashboard.svg", "childLabel": "Operation Dashboard", "childRouterLink": "/operationsDashboard", "projectSwitch": true, "activeChildIconPath": ""},
-      { "childIconId": "tradePlanning", "childIconPath": "vesselplan.svg", "childLabel": "Vessel Planning", "childRouterLink": "./vessel-planning", "projectSwitch": false, "activeChildIconPath": ""},
-      { "childIconId": "priceFixation", "childIconPath": "pricing.svg", "childLabel": "Price Fixation", "childRouterLink": "/priceFixing", "projectSwitch": true, "activeChildIconPath": ""},
-      { "childIconId": "priceAllocation", "childIconPath": "vesselplan.svg", "childLabel": "Price Allocation", "childRouterLink": "/priceAllocation", "projectSwitch": true, "activeChildIconPath": ""},
-      { "childIconId": "transportActualization", "childIconPath": "mtmindexmapping.svg", "childLabel": "Transport Actualization", "childRouterLink": "/transportActualization", "projectSwitch": true, "activeChildIconPath": ""},
-      { "childIconId": "transportManagement", "childIconPath": "trade.svg", "childLabel": "Transport Management", "childRouterLink": "/transportBooking", "projectSwitch": true, "activeChildIconPath": ""}
+      { "childIconId": "ProcessingStrategy", "childIconPath": "obligationDashboard.svg", "childLabel": "Processing Strategy"},
+      { "childIconId": "StorageLocation", "childIconPath": "vesselplan.svg", "childLabel": "Storage Location"},
+      { "childIconId": "VesselMaster", "childIconPath": "pricing.svg", "childLabel": "Vessel Master"}
+     ]
+  },
+  {
+    "iconId": "CommoditySettings", "iconLabel": "Commodity Settings","iconPath": "Reporting.svg",
+    "childs": [
+      { "childIconId": "Commodity", "childIconPath": "cpLimits.svg", "childLabel": "Commodity"},
+      { "childIconId": "UnitOfMeasurement", "childIconPath": "marketLimits.svg", "childLabel": "Unit of Measurement"},
+      { "childIconId": "Incoterm", "childIconPath": "incoterm.svg", "childLabel": "Incoterm", "profile": "incoterm"},
+      { "childIconId": "BrandMaster", "childIconPath": "marketLimits.svg", "childLabel": "Brand Master"},
+      { "childIconId": "GradeMaster", "childIconPath": "marketLimits.svg", "childLabel": "Grade Master"},
+      { "childIconId": "CropSeason", "childIconPath": "marketLimits.svg", "childLabel": "Crop Season"}
     ]
   },
   {
-    "iconId": "reportingEOD", "iconLabel": "Reporting/EOD", "defaultActive": "", "iconPath": "Reporting.svg", "activeIconPath": "Reportings.svg", "masterRouterlink": "",
+    "iconId": "PricingAndCostSetting", "iconLabel": "Pricing & Cost Settings", "iconPath": "Analytics.svg",
     "childs": [
-      { "childIconId": "riskDashboard", "childIconPath": "cpLimits.svg", "childLabel": "Risk Dashboard", "childRouterLink": "/positionExposure", "projectSwitch": true, "activeChildIconPath": ""},
-      { "childIconId": "eod", "childIconPath": "marketLimits.svg", "childLabel": "EOD Dashboard", "childRouterLink": "/eod", "projectSwitch": true, "activeChildIconPath": ""}
+      { "childIconId": "PaymentTerm", "childIconPath": "cpLimits.svg", "childLabel": "Payment Term"},
+      { "childIconId": "PriceIndex", "childIconPath": "marketLimits.svg", "childLabel": "Price Index"},
+      { "childIconId": "ExternalPackaging", "childIconPath": "mtmindexmapping.svg", "childLabel": "External Packaging"},
+      { "childIconId": "InternalPackaging", "childIconPath": "mtmindexmapping.svg", "childLabel": "Internal Packaging"}
     ]
   },
   {
-    "iconId": "riskanalytics", "iconLabel": "Risk Analytics", "defaultActive": "", "iconPath": "Analytics.svg", "activeIconPath": "Analyticss.svg", "masterRouterlink": "",
+    "iconId": "AccountsAndFinance", "iconLabel": "Accounting","iconPath": "Accounting.svg",
     "childs": [
-      { "childIconId": "counterPartyLimits", "childIconPath": "cpLimits.svg", "childLabel": "CounterParty limits", "childRouterLink": "/cpLimits", "projectSwitch": true, "activeChildIconPath": ""},
-      { "childIconId": "marketLimits", "childIconPath": "marketLimits.svg", "childLabel": "Market Limits", "childRouterLink": "/marketLimits", "projectSwitch": true, "activeChildIconPath": ""},
-      { "childIconId": "mtmIndex", "childIconPath": "mtmindexmapping.svg", "childLabel": "MTM Index", "childRouterLink": "/mtm", "projectSwitch": true, "activeChildIconPath": ""}
+      { "childIconId": "ChartOfAccounts", "childIconPath": "vesselplan.svg", "childLabel": "Chart Of Accounts"}
     ]
   },
-  {
-    "iconId": "accounting", "iconLabel": "Accounting", "defaultActive": "", "iconPath": "Accounting.svg", "activeIconPath": "Accountings.svg", "masterRouterlink": "",
-    "childs": [
-      { "childIconId": "Settlement", "childIconPath": "vesselplan.svg", "childLabel": "Settlement (Trade & Cost)", "childRouterLink": "/settlement", "projectSwitch": true, "activeChildIconPath": ""},
-      { "childIconId": "cost", "childIconPath": "pricing.svg", "childLabel": "Cost", "childRouterLink": "/cost", "projectSwitch": true, "activeChildIconPath": ""},
-      { "childIconId": "charges", "childIconPath": "pricing.svg", "childLabel": "Charges", "childRouterLink": "/cost", "projectSwitch": true, "activeChildIconPath": ""},
-      { "childIconId": "invoices", "childIconPath": "dealslip.svg", "childLabel": "Invoices", "childRouterLink": "/invoices", "projectSwitch": true, "activeChildIconPath": ""}
-    ]
-  },
-  {"iconId":"reportingEOD","iconLabel":"Inventory Management","defaultActive":"","iconPath":"MainInventory.svg","activeIconPath":"Active_Transactions.svg","masterRouterlink":"./build-inventory",
+  {"iconId":"Contract","iconLabel":"Contract","iconPath":"MainInventory.svg",
     "childs":[
-      {"childIconId":"buildInventory","childIconPath":"Build-Inventory.svg","childLabel":"Build-Inventory","childRouterLink":"/ui-inventory/#/build-inventory?project=ctrm","projectSwitch":true,"activeChildIconPath": "","appendHash":false},
-      {"childIconId":"transferStock","childIconPath":"Inventory.svg","childLabel":"Transfer Stock","childRouterLink":"/ui-inventory/#/transfer-stock?project=ctrm","projectSwitch":true,"activeChildIconPath": "","appendHash":false},
-      {"childIconId":"drawStock","childIconPath":"Draw-Stocks.svg","childLabel":"Draw Stock","childRouterLink":"/ui-inventory/#/draw-stock?project=ctrm","projectSwitch":true,"activeChildIconPath": "","appendHash":false},
-      {"childIconId":"inventorySummary","childIconPath":"Build-Inventory.svg","childLabel":"Inventory Summary","childRouterLink":"/ui-inventory/#/inventory-summary?tabId=stockMovements&project=ctrm","projectSwitch":true,"activeChildIconPath": "","appendHash":false}
+      {"childIconId":"ClauseMaster","childIconPath":"Build-Inventory.svg","childLabel":"Clause Master"}
     ]}
 ]

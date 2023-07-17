@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24" height="24" viewBox="0 0 24 24">
+  <defs>
+    <clipPath id="clip-Commodity">
+      <rect width="24" height="24"/>
+    </clipPath>
+  </defs>
+  <g id="Commodity" clip-path="url(#clip-Commodity)">
+    <rect width="24" height="24" fill="#fff"/>
+    <g id="Group_174" data-name="Group 174">
+      <g id="commodity-2" data-name="commodity">
+        <path id="Path_291" data-name="Path 291" d="M11.645,26.065A1.066,1.066,0,0,0,10.581,25H2.065a1.062,1.062,0,0,0-.355,2.064v3.679a1.058,1.058,0,0,0,0,2V36.42a1.062,1.062,0,0,0,.355,2.063h8.516a1.062,1.062,0,0,0,.355-2.064V32.741a1.058,1.058,0,0,0,0-2V27.064a1.063,1.063,0,0,0,.71-1ZM2.419,30.677V27.129h7.806v3.548ZM2.065,25.71h8.516a.355.355,0,1,1,0,.71H2.065a.355.355,0,1,1,0-.71Zm.355,10.645V32.806h7.806v3.548Zm8.161,1.419H2.065a.355.355,0,0,1,0-.71h8.516a.355.355,0,0,1,0,.71Zm0-5.677H2.065a.355.355,0,1,1,0-.71h8.516a.355.355,0,1,1,0,.71Z" transform="translate(0 -15.484)" fill="#14054e"/>
+        <path id="Path_292" data-name="Path 292" d="M43.645,31.742a1.063,1.063,0,0,0-.71-1V27.064A1.062,1.062,0,0,0,42.581,25H34.065a1.062,1.062,0,0,0-.355,2.064v3.679a1.058,1.058,0,0,0,0,2v3.679a1.062,1.062,0,0,0,.355,2.064h8.516a1.062,1.062,0,0,0,.355-2.064v-3.68A1.063,1.063,0,0,0,43.645,31.742Zm-9.226,4.613V32.806h7.806v3.548Zm7.806-9.226v3.548H34.419V27.129ZM34.065,25.71h8.516a.355.355,0,1,1,0,.71H34.065a.355.355,0,0,1,0-.71Zm0,5.677h8.516a.355.355,0,1,1,0,.71H34.065a.355.355,0,0,1,0-.71Zm8.516,6.387H34.065a.355.355,0,0,1,0-.71h8.516a.355.355,0,1,1,0,.71Z" transform="translate(-20.645 -15.484)" fill="#14054e"/>
+      </g>
+      <circle id="Ellipse_1" data-name="Ellipse 1" cx="1.5" cy="1.5" r="1.5" transform="translate(10 1)" fill="#29adee"/>
+      <circle id="Ellipse_2" data-name="Ellipse 2" cx="1.5" cy="1.5" r="1.5" transform="translate(10 5)" fill="#29adee"/>
+      <circle id="Ellipse_3" data-name="Ellipse 3" cx="1.5" cy="1.5" r="1.5" transform="translate(4 5)" fill="#29adee"/>
+      <circle id="Ellipse_4" data-name="Ellipse 4" cx="1.5" cy="1.5" r="1.5" transform="translate(16 5)" fill="#29adee"/>
+    </g>
+  </g>
+</svg>

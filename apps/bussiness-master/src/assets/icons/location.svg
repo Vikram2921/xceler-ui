@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24" height="24" viewBox="0 0 24 24">
+  <defs>
+    <clipPath id="clip-path">
+      <path id="Path_270" data-name="Path 270" d="M7.118-22a7.118,7.118,0,0,1,7.118,7.118q0,3.931-7.118,14.882L6.273-1.315Q0-11.192,0-14.882A7.118,7.118,0,0,1,7.118-22Zm0,1A6.118,6.118,0,0,0,1-14.882C1-12.771,2.869-8.645,6.6-2.666l.513.815.251-.395.521-.835c3.48-5.622,5.262-9.553,5.343-11.655l0-.147A6.118,6.118,0,0,0,7.118-21Z" transform="translate(0 22)" fill="none"/>
+    </clipPath>
+    <clipPath id="clip-path-2">
+      <path id="Path_269" data-name="Path 269" d="M-5,1H19V-23H-5Z" transform="translate(5 23)" fill="none"/>
+    </clipPath>
+    <clipPath id="clip-path-3">
+      <path id="Path_273" data-name="Path 273" d="M7-18.5A3.5,3.5,0,0,0,3.5-15,3.5,3.5,0,0,0,7-11.5,3.5,3.5,0,0,0,10.5-15,3.5,3.5,0,0,0,7-18.5Zm0,1A2.5,2.5,0,0,1,9.5-15,2.5,2.5,0,0,1,7-12.5,2.5,2.5,0,0,1,4.5-15,2.5,2.5,0,0,1,7-17.5Z" transform="translate(-3.5 18.5)" fill="none"/>
+    </clipPath>
+    <clipPath id="clip-Location">
+      <rect width="24" height="24"/>
+    </clipPath>
+  </defs>
+  <g id="Location" clip-path="url(#clip-Location)">
+    <rect width="24" height="24" fill="#fff"/>
+    <g id="Group_102" data-name="Group 102" transform="translate(5 1)">
+      <g id="Group_107" data-name="Group 107">
+        <g id="Group_104" data-name="Group 104" clip-path="url(#clip-path)">
+          <g id="Group_103" data-name="Group 103" transform="translate(-5 -1)" clip-path="url(#clip-path-2)">
+            <path id="Path_268" data-name="Path 268" d="M-5-27H19.235V5H-5Z" transform="translate(5 23)" fill="#14094e"/>
+          </g>
+        </g>
+        <g id="Group_106" data-name="Group 106" transform="translate(3.5 3.5)" clip-path="url(#clip-path-3)">
+          <g id="Group_105" data-name="Group 105" transform="translate(-8.5 -4.5)" clip-path="url(#clip-path-2)">
+            <path id="Path_271" data-name="Path 271" d="M-1.5-23.5h17v17h-17Z" transform="translate(5 23)" fill="#2ebdf3"/>
+          </g>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

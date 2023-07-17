@@ -1,5 +1,6 @@
 {
   "title": "Incoterm",
+  "iconPath": "./assets/icons/incoterm.svg",
   "urls": {
     "saveUrl": "{endpoint}/api-bm/api/incoterm/v1/save",
     "fetchUrl": "{endpoint}/api-bm/api/incoterm/v1/getall?tenantId={tenantId}&page=0&size=20",
