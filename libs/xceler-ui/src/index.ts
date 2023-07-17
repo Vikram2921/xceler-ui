@@ -17,7 +17,7 @@ export * from './lib/components/side-menu/side-menu.component';
 export * from './lib/components/toaster/toaster.component';
 export * from './lib/components/toaster/service/toast.service';
 export * from './lib/components/screen-info/screen-info.component';
-
+export * from './lib/components/RecordInfo/record-info.component';
 
 /** ================= Form Control  ===================== **/
 export * from './lib/components/form-controls/aio-controls/aio-controls.component';
@@ -70,7 +70,6 @@ export * from './lib/services/api-service.service';
 export * from './lib/services/storage.service';
 export * from './lib/services/store.service';
 export * from './lib/services/form-control.service';
-
 
 /** =================  Constants =================  **/
 export * from './lib/enums/profiles';

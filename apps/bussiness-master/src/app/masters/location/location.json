@@ -1,0 +1,1813 @@
+{
+  "title": "Location",
+  "urls": {
+    "saveUrl": "{endpoint}/api-bm/api/location/v1/save",
+    "fetchUrl": "{endpoint}/api-bm/api/location/v1/getall?tenantId={tenantId}&page={page}&size=20",
+    "hrefUrl": "{endpoint}/api-bm/api/location/v1/getbyuuid?tenantId={tenantId}&uuid={uuid}",
+    "updateUrl": "{endpoint}/api-bm/api/location/v1/update",
+    "importUrl": "{endpoint}/api-bm/api/location/v1/import"
+  },
+  "tabs": [{"label": "Draft","selected": true},{"label": "Confirmed"},{"label": "Void"}],
+  "columns": [
+    {
+      "title": "Location Code",
+      "field": "code",
+      "type": "text_field",
+      "defaultValue": "",
+      "visibilityArea": "B",
+      "onChangeValue": false,
+      "unique": true,
+      "validators": [
+        "required"
+      ],
+      "pipe": "",
+      "pipeOptions": null
+    },
+    {
+      "title": "Location Name",
+      "field": "name",
+      "type": "text_field",
+      "defaultValue": "",
+      "visibilityArea": "B",
+      "onChangeValue": true,
+      "unique": false,
+      "validators": [
+        "required"
+      ],
+      "pipe": "",
+      "pipeOptions": null
+    },
+    {
+      "title": "Location Description",
+      "field": "description",
+      "type": "textarea",
+      "defaultValue": "",
+      "visibilityArea": "B",
+      "onChangeValue": false,
+      "unique": false,
+      "validators": [],
+      "pipe": "",
+      "pipeOptions": null
+    },
+    {
+      "title": "Parent Location",
+      "field": "parent",
+      "type": "dropdown",
+      "defaultValue": "none",
+      "visibilityArea": "B",
+      "onChangeValue": false,
+      "unique": false,
+      "list": [
+        {
+          "label": "None",
+          "value": "none"
+        }
+      ],
+      "validators": [
+        "required"
+      ],
+      "pipe": "",
+      "pipeOptions": null
+    },
+    {
+      "title": "Location Type",
+      "field": "locationType",
+      "type": "dropdown",
+      "defaultValue": "",
+      "visibilityArea": "B",
+      "onChangeValue": false,
+      "unique": false,
+      "list": [
+        {
+          "label": "Select",
+          "value": ""
+        },
+        {
+          "label": "City",
+          "value": "City"
+        },
+        {
+          "label": "Country",
+          "value": "Country"
+        },
+        {
+          "label": "Factory",
+          "value": "Factory"
+        },
+        {
+          "label": "Marketing",
+          "value": "Marketing"
+        },
+        {
+          "label": "Other",
+          "value": "Other"
+        },
+        {
+          "label": "Port",
+          "value": "Port"
+        },
+        {
+          "label": "Region",
+          "value": "Region"
+        },
+        {
+          "label": "State",
+          "value": "State"
+        },
+        {
+          "label": "Storage Facility",
+          "value": "Storage Facility"
+        },
+        {
+          "label": "Terminal",
+          "value": "Terminal"
+        },
+        {
+          "label": "Trading",
+          "value": "Trading"
+        }
+      ],
+      "validators": [
+        "required"
+      ],
+      "pipe": "",
+      "pipeOptions": null
+    },
+    {
+      "title": "Time Zone",
+      "field": "timeZone",
+      "type": "dropdown",
+      "defaultValue": "Chennai, India (UTC +05:05)",
+      "visibilityArea": "B",
+      "onChangeValue": false,
+      "unique": false,
+      "list": [
+        {
+          "label": "Select",
+          "value": ""
+        },
+        {
+          "label": "Abbotsford, Canada (UTC -08:00)",
+          "value": "Abbotsford, Canada (UTC -08:00)"
+        },
+        {
+          "label": "Abidjan, Ivory Coast (UTC 00:00)",
+          "value": "Abidjan, Ivory Coast (UTC 00:00)"
+        },
+        {
+          "label": "Abu Dhabi, United Arab Emirates (UTC +04:00)",
+          "value": "Abu Dhabi, United Arab Emirates (UTC +04:00)"
+        },
+        {
+          "label": "Abuja, Nigeria (UTC +01:00)",
+          "value": "Abuja, Nigeria (UTC +01:00)"
+        },
+        {
+          "label": "Accra, Ghana (UTC 00:00)",
+          "value": "Accra, Ghana (UTC 00:00)"
+        },
+        {
+          "label": "Addis Ababa, Ethiopia (UTC +03:00)",
+          "value": "Addis Ababa, Ethiopia (UTC +03:00)"
+        },
+        {
+          "label": "Adelaide, Australia (UTC +09:05)",
+          "value": "Adelaide, Australia (UTC +09:05)"
+        },
+        {
+          "label": "Aden, Yemen (UTC +03:00)",
+          "value": "Aden, Yemen (UTC +03:00)"
+        },
+        {
+          "label": "Albuquerque, New Mexico (UTC -07:00)",
+          "value": "Albuquerque, New Mexico (UTC -07:00)"
+        },
+        {
+          "label": "Alexandria, Egypt (UTC +02:00)",
+          "value": "Alexandria, Egypt (UTC +02:00)"
+        },
+        {
+          "label": "Algiers, Algeria (UTC +01:00)",
+          "value": "Algiers, Algeria (UTC +01:00)"
+        },
+        {
+          "label": "Almaty, Kazakhstan (UTC +06:00)",
+          "value": "Almaty, Kazakhstan (UTC +06:00)"
+        },
+        {
+          "label": "Amman, Jordan (UTC +02:00)",
+          "value": "Amman, Jordan (UTC +02:00)"
+        },
+        {
+          "label": "Amsterdam, Netherlands (UTC +01:00)",
+          "value": "Amsterdam, Netherlands (UTC +01:00)"
+        },
+        {
+          "label": "Anadyr, Russia (UTC +11:00)",
+          "value": "Anadyr, Russia (UTC +11:00)"
+        },
+        {
+          "label": "Anchorage, Alaska (UTC -09:00)",
+          "value": "Anchorage, Alaska (UTC -09:00)"
+        },
+        {
+          "label": "Andorra la Vella, Andorra (UTC +01:00)",
+          "value": "Andorra la Vella, Andorra (UTC +01:00)"
+        },
+        {
+          "label": "Ankara, Turkey (UTC +02:00)",
+          "value": "Ankara, Turkey (UTC +02:00)"
+        },
+        {
+          "label": "Antananarivo, Madagascar (UTC +03:00)",
+          "value": "Antananarivo, Madagascar (UTC +03:00)"
+        },
+        {
+          "label": "Apia, Samoa (UTC -11:00)",
+          "value": "Apia, Samoa (UTC -11:00)"
+        },
+        {
+          "label": "Arlington, Texas (UTC -06:00)",
+          "value": "Arlington, Texas (UTC -06:00)"
+        },
+        {
+          "label": "Ashkhabad, Turkmenistan (UTC +05:00)",
+          "value": "Ashkhabad, Turkmenistan (UTC +05:00)"
+        },
+        {
+          "label": "Asmara, Eritrea (UTC +03:00)",
+          "value": "Asmara, Eritrea (UTC +03:00)"
+        },
+        {
+          "label": "Astana, Kazakhstan (UTC +06:00)",
+          "value": "Astana, Kazakhstan (UTC +06:00)"
+        },
+        {
+          "label": "Asuncion, Paraguay (UTC -04:00)",
+          "value": "Asuncion, Paraguay (UTC -04:00)"
+        },
+        {
+          "label": "Athens, Greece (UTC +02:00)",
+          "value": "Athens, Greece (UTC +02:00)"
+        },
+        {
+          "label": "Atlanta, Georgia (UTC -05:00)",
+          "value": "Atlanta, Georgia (UTC -05:00)"
+        },
+        {
+          "label": "Auckland, New Zealand (UTC +12:00)",
+          "value": "Auckland, New Zealand (UTC +12:00)"
+        },
+        {
+          "label": "Austin, Texas (UTC -06:00)",
+          "value": "Austin, Texas (UTC -06:00)"
+        },
+        {
+          "label": "Baghdad, Iraq (UTC +03:00)",
+          "value": "Baghdad, Iraq (UTC +03:00)"
+        },
+        {
+          "label": "Baku, Azerbaijan (UTC +04:00)",
+          "value": "Baku, Azerbaijan (UTC +04:00)"
+        },
+        {
+          "label": "Baltimore, Maryland (UTC -05:00)",
+          "value": "Baltimore, Maryland (UTC -05:00)"
+        },
+        {
+          "label": "Bamako, Mali (UTC 00:00)",
+          "value": "Bamako, Mali (UTC 00:00)"
+        },
+        {
+          "label": "Bandar Seri Begawan, Brunei (UTC +08:00)",
+          "value": "Bandar Seri Begawan, Brunei (UTC +08:00)"
+        },
+        {
+          "label": "Bangalore, India (UTC +05:05)",
+          "value": "Bangalore, India (UTC +05:05)"
+        },
+        {
+          "label": "Bangkok, Thailand (UTC +07:00)",
+          "value": "Bangkok, Thailand (UTC +07:00)"
+        },
+        {
+          "label": "Bangui, Central African Rep. (UTC +01:00)",
+          "value": "Bangui, Central African Rep. (UTC +01:00)"
+        },
+        {
+          "label": "Banjul, Gambia (UTC 00:00)",
+          "value": "Banjul, Gambia (UTC 00:00)"
+        },
+        {
+          "label": "Barcelona, Spain (UTC +01:00)",
+          "value": "Barcelona, Spain (UTC +01:00)"
+        },
+        {
+          "label": "Basra, Iraq (UTC +03:00)",
+          "value": "Basra, Iraq (UTC +03:00)"
+        },
+        {
+          "label": "Basse-Terre, Guadeloupe (UTC -04:00)",
+          "value": "Basse-Terre, Guadeloupe (UTC -04:00)"
+        },
+        {
+          "label": "Basseterre, St. Kitts and Nevis (UTC -04:00)",
+          "value": "Basseterre, St. Kitts and Nevis (UTC -04:00)"
+        },
+        {
+          "label": "Beijing, China (UTC +08:00)",
+          "value": "Beijing, China (UTC +08:00)"
+        },
+        {
+          "label": "Beirut, Lebanon (UTC +02:00)",
+          "value": "Beirut, Lebanon (UTC +02:00)"
+        },
+        {
+          "label": "Belfast, N. Ireland (UTC 00:00)",
+          "value": "Belfast, N. Ireland (UTC 00:00)"
+        },
+        {
+          "label": "Belgrade, Serbia Montenegro (UTC +01:00)",
+          "value": "Belgrade, Serbia Montenegro (UTC +01:00)"
+        },
+        {
+          "label": "Belmopan, Belize (UTC -06:00)",
+          "value": "Belmopan, Belize (UTC -06:00)"
+        },
+        {
+          "label": "Belo Horizonte, Brazil (UTC -03:00)",
+          "value": "Belo Horizonte, Brazil (UTC -03:00)"
+        },
+        {
+          "label": "Berlin, Germany (UTC +01:00)",
+          "value": "Berlin, Germany (UTC +01:00)"
+        },
+        {
+          "label": "Berne, Switzerland (UTC +01:00)",
+          "value": "Berne, Switzerland (UTC +01:00)"
+        },
+        {
+          "label": "Birmingham, Alabama, USA (UTC -06:00)",
+          "value": "Birmingham, Alabama, USA (UTC -06:00)"
+        },
+        {
+          "label": "Birmingham, United Kingdom (UTC 00:00)",
+          "value": "Birmingham, United Kingdom (UTC 00:00)"
+        },
+        {
+          "label": "Bishkek, Kyrgyzstan (UTC +06:00)",
+          "value": "Bishkek, Kyrgyzstan (UTC +06:00)"
+        },
+        {
+          "label": "Bissau, Guinea-Bissau (UTC 00:00)",
+          "value": "Bissau, Guinea-Bissau (UTC 00:00)"
+        },
+        {
+          "label": "Bogota, Colombia (UTC -05:00)",
+          "value": "Bogota, Colombia (UTC -05:00)"
+        },
+        {
+          "label": "Bonn, Germany (UTC +01:00)",
+          "value": "Bonn, Germany (UTC +01:00)"
+        },
+        {
+          "label": "Boston, Massachusetts (UTC -05:00)",
+          "value": "Boston, Massachusetts (UTC -05:00)"
+        },
+        {
+          "label": "Boulder, Colorado (UTC -07:00)",
+          "value": "Boulder, Colorado (UTC -07:00)"
+        },
+        {
+          "label": "Bradford, England (UTC 00:00)",
+          "value": "Bradford, England (UTC 00:00)"
+        },
+        {
+          "label": "Brampton, Canada (UTC -05:00)",
+          "value": "Brampton, Canada (UTC -05:00)"
+        },
+        {
+          "label": "Brasilia, Brazil (UTC -03:00)",
+          "value": "Brasilia, Brazil (UTC -03:00)"
+        },
+        {
+          "label": "Bratislava, Slovakia (UTC +01:00)",
+          "value": "Bratislava, Slovakia (UTC +01:00)"
+        },
+        {
+          "label": "Brazzaville, Congo (UTC +01:00)",
+          "value": "Brazzaville, Congo (UTC +01:00)"
+        },
+        {
+          "label": "Bridgetown, Barbados (UTC -04:00)",
+          "value": "Bridgetown, Barbados (UTC -04:00)"
+        },
+        {
+          "label": "Brisbane, Australia (UTC +10:00)",
+          "value": "Brisbane, Australia (UTC +10:00)"
+        },
+        {
+          "label": "Bristol, England (UTC 00:00)",
+          "value": "Bristol, England (UTC 00:00)"
+        },
+        {
+          "label": "Brussels, Belgium (UTC +01:00)",
+          "value": "Brussels, Belgium (UTC +01:00)"
+        },
+        {
+          "label": "Bucharest, Romania (UTC +02:00)",
+          "value": "Bucharest, Romania (UTC +02:00)"
+        },
+        {
+          "label": "Budapest, Hungary (UTC +01:00)",
+          "value": "Budapest, Hungary (UTC +01:00)"
+        },
+        {
+          "label": "Buenos Aires, Argentina (UTC -03:00)",
+          "value": "Buenos Aires, Argentina (UTC -03:00)"
+        },
+        {
+          "label": "Bujumbura, Burundi (UTC +02:00)",
+          "value": "Bujumbura, Burundi (UTC +02:00)"
+        },
+        {
+          "label": "Busan, South Korea (UTC +09:00)",
+          "value": "Busan, South Korea (UTC +09:00)"
+        },
+        {
+          "label": "Cairo, Egypt (UTC +02:00)",
+          "value": "Cairo, Egypt (UTC +02:00)"
+        },
+        {
+          "label": "Calgary, Canada (UTC -07:00)",
+          "value": "Calgary, Canada (UTC -07:00)"
+        },
+        {
+          "label": "Canberra, Australia (UTC +10:00)",
+          "value": "Canberra, Australia (UTC +10:00)"
+        },
+        {
+          "label": "Cape Town, South Africa (UTC +02:00)",
+          "value": "Cape Town, South Africa (UTC +02:00)"
+        },
+        {
+          "label": "Caracas, Venezuela (UTC -04:05)",
+          "value": "Caracas, Venezuela (UTC -04:05)"
+        },
+        {
+          "label": "Cardiff, Wales (UTC 00:00)",
+          "value": "Cardiff, Wales (UTC 00:00)"
+        },
+        {
+          "label": "Casablanca, Morocco (UTC 00:00)",
+          "value": "Casablanca, Morocco (UTC 00:00)"
+        },
+        {
+          "label": "Castries, St. Lucia (UTC -04:00)",
+          "value": "Castries, St. Lucia (UTC -04:00)"
+        },
+        {
+          "label": "Charlotte, North Carolina (UTC -05:00)",
+          "value": "Charlotte, North Carolina (UTC -05:00)"
+        },
+        {
+          "label": "Chatham Islands, New Zealand (UTC +12:45)",
+          "value": "Chatham Islands, New Zealand (UTC +12:45)"
+        },
+        {
+          "label": "Chennai, India (UTC +05:05)",
+          "value": "Chennai, India (UTC +05:05)"
+        },
+        {
+          "label": "Chicago, Illinois (UTC -06:00)",
+          "value": "Chicago, Illinois (UTC -06:00)"
+        },
+        {
+          "label": "Chisinau, Moldova (UTC +02:00)",
+          "value": "Chisinau, Moldova (UTC +02:00)"
+        },
+        {
+          "label": "Christchurch, New Zealand (UTC +12:00)",
+          "value": "Christchurch, New Zealand (UTC +12:00)"
+        },
+        {
+          "label": "Cincinnati, Ohio, United States (UTC -05:00)",
+          "value": "Cincinnati, Ohio, United States (UTC -05:00)"
+        },
+        {
+          "label": "Cleveland, Ohio, United States (UTC -05:00)",
+          "value": "Cleveland, Ohio, United States (UTC -05:00)"
+        },
+        {
+          "label": "Cologne, Germany (UTC +01:00)",
+          "value": "Cologne, Germany (UTC +01:00)"
+        },
+        {
+          "label": "Colombo, Sri Lanka (UTC +05:05)",
+          "value": "Colombo, Sri Lanka (UTC +05:05)"
+        },
+        {
+          "label": "Columbus, Ohio, United States (UTC -05:00)",
+          "value": "Columbus, Ohio, United States (UTC -05:00)"
+        },
+        {
+          "label": "Conakry, Guinea (UTC 00:00)",
+          "value": "Conakry, Guinea (UTC 00:00)"
+        },
+        {
+          "label": "Copenhagen, Denmark (UTC +01:00)",
+          "value": "Copenhagen, Denmark (UTC +01:00)"
+        },
+        {
+          "label": "Curaçao, Netherlands Antilles (UTC -04:00)",
+          "value": "Curaçao, Netherlands Antilles (UTC -04:00)"
+        },
+        {
+          "label": "Dakar, Senegal (UTC 00:00)",
+          "value": "Dakar, Senegal (UTC 00:00)"
+        },
+        {
+          "label": "Dallas, Texas, United States (UTC -06:00)",
+          "value": "Dallas, Texas, United States (UTC -06:00)"
+        },
+        {
+          "label": "Damascus, Syria (UTC +02:00)",
+          "value": "Damascus, Syria (UTC +02:00)"
+        },
+        {
+          "label": "Dar es Salaam, Tanzania (UTC +03:00)",
+          "value": "Dar es Salaam, Tanzania (UTC +03:00)"
+        },
+        {
+          "label": "Darwin, Australia (UTC +09:05)",
+          "value": "Darwin, Australia (UTC +09:05)"
+        },
+        {
+          "label": "Denver, Colorado, United States (UTC -07:00)",
+          "value": "Denver, Colorado, United States (UTC -07:00)"
+        },
+        {
+          "label": "Detroit, Michigan, United States (UTC -05:00)",
+          "value": "Detroit, Michigan, United States (UTC -05:00)"
+        },
+        {
+          "label": "Dhaka, Bangladesh (UTC +06:00)",
+          "value": "Dhaka, Bangladesh (UTC +06:00)"
+        },
+        {
+          "label": "Djibouti, Djibouti (UTC +03:00)",
+          "value": "Djibouti, Djibouti (UTC +03:00)"
+        },
+        {
+          "label": "Doha, Qatar (UTC +03:00)",
+          "value": "Doha, Qatar (UTC +03:00)"
+        },
+        {
+          "label": "Dresden, Germany (UTC +01:00)",
+          "value": "Dresden, Germany (UTC +01:00)"
+        },
+        {
+          "label": "Dubai, United Arab Emirates (UTC +04:00)",
+          "value": "Dubai, United Arab Emirates (UTC +04:00)"
+        },
+        {
+          "label": "Dublin, Ireland (UTC +00:00)",
+          "value": "Dublin, Ireland (UTC +00:00)"
+        },
+        {
+          "label": "Dunedin, New Zealand (UTC +12:00)",
+          "value": "Dunedin, New Zealand (UTC +12:00)"
+        },
+        {
+          "label": "Dushanbe, Tajikistan (UTC +05:00)",
+          "value": "Dushanbe, Tajikistan (UTC +05:00)"
+        },
+        {
+          "label": "Edinburgh, Scotland (UTC +00:00)",
+          "value": "Edinburgh, Scotland (UTC +00:00)"
+        },
+        {
+          "label": "Edmonton, Canada (UTC -07:00)",
+          "value": "Edmonton, Canada (UTC -07:00)"
+        },
+        {
+          "label": "El Paso, Texas, United States (UTC -07:00)",
+          "value": "El Paso, Texas, United States (UTC -07:00)"
+        },
+        {
+          "label": "Firenze, Italy (UTC +01:00)",
+          "value": "Firenze, Italy (UTC +01:00)"
+        },
+        {
+          "label": "Fort Worth, Texas, United States (UTC -06:00)",
+          "value": "Fort Worth, Texas, United States (UTC -06:00)"
+        },
+        {
+          "label": "Frankfurt, Hesse, Germany (UTC +01:00)",
+          "value": "Frankfurt, Hesse, Germany (UTC +01:00)"
+        },
+        {
+          "label": "Fredericton, NB, Canada (UTC -04:00)",
+          "value": "Fredericton, NB, Canada (UTC -04:00)"
+        },
+        {
+          "label": "Freetown, Sierra Leone (UTC 00:00)",
+          "value": "Freetown, Sierra Leone (UTC 00:00)"
+        },
+        {
+          "label": "Fresno, California,United States (UTC -08:00)",
+          "value": "Fresno, California,United States (UTC -08:00)"
+        },
+        {
+          "label": "Fukuoka, Japan (UTC +09:00)",
+          "value": "Fukuoka, Japan (UTC +09:00)"
+        },
+        {
+          "label": "Gaborone, Botswana (UTC +02:00)",
+          "value": "Gaborone, Botswana (UTC +02:00)"
+        },
+        {
+          "label": "Geneva, Switzerland (UTC +01:00)",
+          "value": "Geneva, Switzerland (UTC +01:00)"
+        },
+        {
+          "label": "Georgetown, Ascension Is. (UTC +00:00)",
+          "value": "Georgetown, Ascension Is. (UTC +00:00)"
+        },
+        {
+          "label": "Georgetown, Cayman Is. (UTC -05:00)",
+          "value": "Georgetown, Cayman Is. (UTC -05:00)"
+        },
+        {
+          "label": "Georgetown, Guyana (UTC -04:00)",
+          "value": "Georgetown, Guyana (UTC -04:00)"
+        },
+        {
+          "label": "Gibraltar, Gibraltar (UTC +01:00)",
+          "value": "Gibraltar, Gibraltar (UTC +01:00)"
+        },
+        {
+          "label": "Glasgow, Scotland (UTC +00:00)",
+          "value": "Glasgow, Scotland (UTC +00:00)"
+        },
+        {
+          "label": "Gothenburg, Sweden (UTC +01:00)",
+          "value": "Gothenburg, Sweden (UTC +01:00)"
+        },
+        {
+          "label": "Guam, Mariana Is. (UTC +10:00)",
+          "value": "Guam, Mariana Is. (UTC +10:00)"
+        },
+        {
+          "label": "Guatemala City, Guatemala (UTC -06:00)",
+          "value": "Guatemala City, Guatemala (UTC -06:00)"
+        },
+        {
+          "label": "Guayaquil, Ecuador (UTC -05:00)",
+          "value": "Guayaquil, Ecuador (UTC -05:00)"
+        },
+        {
+          "label": "Halifax, Nova Scotia (UTC -04:00)",
+          "value": "Halifax, Nova Scotia (UTC -04:00)"
+        },
+        {
+          "label": "Hamburg, Germany (UTC +01:00)",
+          "value": "Hamburg, Germany (UTC +01:00)"
+        },
+        {
+          "label": "Hamilton, Bermuda (UTC -04:00)",
+          "value": "Hamilton, Bermuda (UTC -04:00)"
+        },
+        {
+          "label": "Hamilton, Canada (UTC -05:00)",
+          "value": "Hamilton, Canada (UTC -05:00)"
+        },
+        {
+          "label": "Hannover, Germany (UTC +01:00)",
+          "value": "Hannover, Germany (UTC +01:00)"
+        },
+        {
+          "label": "Hanoi, Vietnam (UTC +07:00)",
+          "value": "Hanoi, Vietnam (UTC +07:00)"
+        },
+        {
+          "label": "Harare, Zimbabwe (UTC +02:00)",
+          "value": "Harare, Zimbabwe (UTC +02:00)"
+        },
+        {
+          "label": "Hartford, Connecticut (UTC -05:00)",
+          "value": "Hartford, Connecticut (UTC -05:00)"
+        },
+        {
+          "label": "Havana, Cuba (UTC -05:00)",
+          "value": "Havana, Cuba (UTC -05:00)"
+        },
+        {
+          "label": "Heidelberg, Germany (UTC +01:00)",
+          "value": "Heidelberg, Germany (UTC +01:00)"
+        },
+        {
+          "label": "Helsinki, Finland (UTC +02:00)",
+          "value": "Helsinki, Finland (UTC +02:00)"
+        },
+        {
+          "label": "Hobart, Tasmania (UTC +10:00)",
+          "value": "Hobart, Tasmania (UTC +10:00)"
+        },
+        {
+          "label": "Hong Kong, China (UTC +08:00)",
+          "value": "Hong Kong, China (UTC +08:00)"
+        },
+        {
+          "label": "Honiara, Solomon Is. (UTC +11:00)",
+          "value": "Honiara, Solomon Is. (UTC +11:00)"
+        },
+        {
+          "label": "Honolulu, Hawaii (UTC -10:00)",
+          "value": "Honolulu, Hawaii (UTC -10:00)"
+        },
+        {
+          "label": "Houston, Texas, United States (UTC -06:00)",
+          "value": "Houston, Texas, United States (UTC -06:00)"
+        },
+        {
+          "label": "Ilulissat, Greenland (UTC -03:00)",
+          "value": "Ilulissat, Greenland (UTC -03:00)"
+        },
+        {
+          "label": "Indianapolis, United States (UTC -05:00)",
+          "value": "Indianapolis, United States (UTC -05:00)"
+        },
+        {
+          "label": "Islamabad, Pakistan (UTC +05:00)",
+          "value": "Islamabad, Pakistan (UTC +05:00)"
+        },
+        {
+          "label": "Istanbul, Turkey (UTC +02:00)",
+          "value": "Istanbul, Turkey (UTC +02:00)"
+        },
+        {
+          "label": "Jacksonville, Florida (UTC -05:00)",
+          "value": "Jacksonville, Florida (UTC -05:00)"
+        },
+        {
+          "label": "Jakarta, Indonesia (UTC +07:00)",
+          "value": "Jakarta, Indonesia (UTC +07:00)"
+        },
+        {
+          "label": "Jamestown, St. Helena (UTC +00:00)",
+          "value": "Jamestown, St. Helena (UTC +00:00)"
+        },
+        {
+          "label": "Jeddah, Saudi Arabia (UTC +03:00)",
+          "value": "Jeddah, Saudi Arabia (UTC +03:00)"
+        },
+        {
+          "label": "Jerusalem, Israel (UTC +02:00)",
+          "value": "Jerusalem, Israel (UTC +02:00)"
+        },
+        {
+          "label": "Johannesburg, South Africa (UTC +02:00)",
+          "value": "Johannesburg, South Africa (UTC +02:00)"
+        },
+        {
+          "label": "Kabul, Afghanistan (UTC +04:05)",
+          "value": "Kabul, Afghanistan (UTC +04:05)"
+        },
+        {
+          "label": "Kamchatka, Russia (UTC +11:00)",
+          "value": "Kamchatka, Russia (UTC +11:00)"
+        },
+        {
+          "label": "Kampala, Uganda (UTC +03:00)",
+          "value": "Kampala, Uganda (UTC +03:00)"
+        },
+        {
+          "label": "Kano Nigeria, Nigeria (UTC +01:00)",
+          "value": "Kano Nigeria, Nigeria (UTC +01:00)"
+        },
+        {
+          "label": "Kansas City, Missouri (UTC -06:00)",
+          "value": "Kansas City, Missouri (UTC -06:00)"
+        },
+        {
+          "label": "Karachi, Pakistan (UTC +05:00)",
+          "value": "Karachi, Pakistan (UTC +05:00)"
+        },
+        {
+          "label": "Kathmandu, Nepal (UTC +05:75)",
+          "value": "Kathmandu, Nepal (UTC +05:75)"
+        },
+        {
+          "label": "Kazan, Russia (UTC +03:00)",
+          "value": "Kazan, Russia (UTC +03:00)"
+        },
+        {
+          "label": "Khartoum, Sudan (UTC +03:00)",
+          "value": "Khartoum, Sudan (UTC +03:00)"
+        },
+        {
+          "label": "Kiev, Ukraine (UTC +02:00)",
+          "value": "Kiev, Ukraine (UTC +02:00)"
+        },
+        {
+          "label": "Kigali, Rwanda (UTC +02:00)",
+          "value": "Kigali, Rwanda (UTC +02:00)"
+        },
+        {
+          "label": "Kingston, Canada (UTC -05:00)",
+          "value": "Kingston, Canada (UTC -05:00)"
+        },
+        {
+          "label": "Kingston, Jamaica (UTC -05:00)",
+          "value": "Kingston, Jamaica (UTC -05:00)"
+        },
+        {
+          "label": "Kinshasa, Dem. Rep. Congo (UTC +01:00)",
+          "value": "Kinshasa, Dem. Rep. Congo (UTC +01:00)"
+        },
+        {
+          "label": "Kitchener, Canada (UTC -05:00)",
+          "value": "Kitchener, Canada (UTC -05:00)"
+        },
+        {
+          "label": "Kobe, Japan (UTC +09:00)",
+          "value": "Kobe, Japan (UTC +09:00)"
+        },
+        {
+          "label": "Kolkata, India (UTC +05:05)",
+          "value": "Kolkata, India (UTC +05:05)"
+        },
+        {
+          "label": "Kraków, Poland (UTC +01:00)",
+          "value": "Kraków, Poland (UTC +01:00)"
+        },
+        {
+          "label": "Kuala Lumpur, Malaysia (UTC +08:00)",
+          "value": "Kuala Lumpur, Malaysia (UTC +08:00)"
+        },
+        {
+          "label": "Kuwait City, Kuwait (UTC +03:00)",
+          "value": "Kuwait City, Kuwait (UTC +03:00)"
+        },
+        {
+          "label": "La Paz, Bolivia (UTC -04:00)",
+          "value": "La Paz, Bolivia (UTC -04:00)"
+        },
+        {
+          "label": "Lagos, Nigeria (UTC +01:00)",
+          "value": "Lagos, Nigeria (UTC +01:00)"
+        },
+        {
+          "label": "Las Vegas, Nevada (UTC -08:00)",
+          "value": "Las Vegas, Nevada (UTC -08:00)"
+        },
+        {
+          "label": "Leeds, England (UTC 00:00)",
+          "value": "Leeds, England (UTC 00:00)"
+        },
+        {
+          "label": "Libreville, Gabon (UTC +01:00)",
+          "value": "Libreville, Gabon (UTC +01:00)"
+        },
+        {
+          "label": "Lilongwe, Malawi (UTC +02:00)",
+          "value": "Lilongwe, Malawi (UTC +02:00)"
+        },
+        {
+          "label": "Lima, Peru (UTC -05:00)",
+          "value": "Lima, Peru (UTC -05:00)"
+        },
+        {
+          "label": "Lisbon, Portugal (UTC +00:00)",
+          "value": "Lisbon, Portugal (UTC +00:00)"
+        },
+        {
+          "label": "Ljubljana, Slovenia (UTC +01:00)",
+          "value": "Ljubljana, Slovenia (UTC +01:00)"
+        },
+        {
+          "label": "Lomé, Togo (UTC 00:00)",
+          "value": "Lomé, Togo (UTC 00:00)"
+        },
+        {
+          "label": "London, England (UTC +00:00)",
+          "value": "London, England (UTC +00:00)"
+        },
+        {
+          "label": "Los Angeles, California (UTC -08:00)",
+          "value": "Los Angeles, California (UTC -08:00)"
+        },
+        {
+          "label": "Louisville, Kentucky (UTC -05:00)",
+          "value": "Louisville, Kentucky (UTC -05:00)"
+        },
+        {
+          "label": "Luanda, Angola (UTC +01:00)",
+          "value": "Luanda, Angola (UTC +01:00)"
+        },
+        {
+          "label": "Lusaka, Zambia (UTC +02:00)",
+          "value": "Lusaka, Zambia (UTC +02:00)"
+        },
+        {
+          "label": "Luxembourg, Luxembourg (UTC +01:00)",
+          "value": "Luxembourg, Luxembourg (UTC +01:00)"
+        },
+        {
+          "label": "Lyon, France (UTC +01:00)",
+          "value": "Lyon, France (UTC +01:00)"
+        },
+        {
+          "label": "Madrid, Spain (UTC +01:00)",
+          "value": "Madrid, Spain (UTC +01:00)"
+        },
+        {
+          "label": "Malabo, Equatorial Guinea (UTC +01:00)",
+          "value": "Malabo, Equatorial Guinea (UTC +01:00)"
+        },
+        {
+          "label": "Malaga, Spain (UTC +01:00)",
+          "value": "Malaga, Spain (UTC +01:00)"
+        },
+        {
+          "label": "Malé, Maldives (UTC +05:00)",
+          "value": "Malé, Maldives (UTC +05:00)"
+        },
+        {
+          "label": "Managua, Nicaragua (UTC -06:00)",
+          "value": "Managua, Nicaragua (UTC -06:00)"
+        },
+        {
+          "label": "Manama, Bahrain (UTC +03:00)",
+          "value": "Manama, Bahrain (UTC +03:00)"
+        },
+        {
+          "label": "Manaus, Brazil (UTC -04:00)",
+          "value": "Manaus, Brazil (UTC -04:00)"
+        },
+        {
+          "label": "Manila, Philippines (UTC +08:00)",
+          "value": "Manila, Philippines (UTC +08:00)"
+        },
+        {
+          "label": "Mannheim, Germany (UTC +01:00)",
+          "value": "Mannheim, Germany (UTC +01:00)"
+        },
+        {
+          "label": "Maputo, Mozambique (UTC +02:00)",
+          "value": "Maputo, Mozambique (UTC +02:00)"
+        },
+        {
+          "label": "Marseille, France (UTC +01:00)",
+          "value": "Marseille, France (UTC +01:00)"
+        },
+        {
+          "label": "Maseru, Lesotho (UTC +02:00)",
+          "value": "Maseru, Lesotho (UTC +02:00)"
+        },
+        {
+          "label": "Mbabane, Swaziland (UTC +02:00)",
+          "value": "Mbabane, Swaziland (UTC +02:00)"
+        },
+        {
+          "label": "Medellin, Colombia (UTC -05:00)",
+          "value": "Medellin, Colombia (UTC -05:00)"
+        },
+        {
+          "label": "Melbourne, Australia (UTC +10:00)",
+          "value": "Melbourne, Australia (UTC +10:00)"
+        },
+        {
+          "label": "Memphis, Tennessee (UTC -06:00)",
+          "value": "Memphis, Tennessee (UTC -06:00)"
+        },
+        {
+          "label": "Mexico City, Mexico (UTC -05:00)",
+          "value": "Mexico City, Mexico (UTC -05:00)"
+        },
+        {
+          "label": "Miami, Florida (UTC -05:00)",
+          "value": "Miami, Florida (UTC -05:00)"
+        },
+        {
+          "label": "Milan, Italy (UTC +01:00)",
+          "value": "Milan, Italy (UTC +01:00)"
+        },
+        {
+          "label": "Milwaukee, Wisconsin (UTC -06:00)",
+          "value": "Milwaukee, Wisconsin (UTC -06:00)"
+        },
+        {
+          "label": "Minneapolis, Minnesota (UTC -06:00)",
+          "value": "Minneapolis, Minnesota (UTC -06:00)"
+        },
+        {
+          "label": "Minsk, Belarus (UTC +02:00)",
+          "value": "Minsk, Belarus (UTC +02:00)"
+        },
+        {
+          "label": "Mississauga, Canada (UTC -05:00)",
+          "value": "Mississauga, Canada (UTC -05:00)"
+        },
+        {
+          "label": "Mogadishu, Somalia (UTC +03:00)",
+          "value": "Mogadishu, Somalia (UTC +03:00)"
+        },
+        {
+          "label": "Monaco, Monaco (UTC +01:00)",
+          "value": "Monaco, Monaco (UTC +01:00)"
+        },
+        {
+          "label": "Monrovia, Liberia (UTC 00:00)",
+          "value": "Monrovia, Liberia (UTC 00:00)"
+        },
+        {
+          "label": "Montevideo, Uruguay (UTC -03:00)",
+          "value": "Montevideo, Uruguay (UTC -03:00)"
+        },
+        {
+          "label": "Montreal, Canada (UTC -05:00)",
+          "value": "Montreal, Canada (UTC -05:00)"
+        },
+        {
+          "label": "Moscow, Russia (UTC +04:00)",
+          "value": "Moscow, Russia (UTC +04:00)"
+        },
+        {
+          "label": "Mumbai, India (UTC +05:05)",
+          "value": "Mumbai, India (UTC +05:05)"
+        },
+        {
+          "label": "Munich, Germany (UTC +01:00)",
+          "value": "Munich, Germany (UTC +01:00)"
+        },
+        {
+          "label": "Murcia, Spain (UTC +01:00)",
+          "value": "Murcia, Spain (UTC +01:00)"
+        },
+        {
+          "label": "Muscat, Oman (UTC +04:00)",
+          "value": "Muscat, Oman (UTC +04:00)"
+        },
+        {
+          "label": "Nagoya, Japan (UTC +09:00)",
+          "value": "Nagoya, Japan (UTC +09:00)"
+        },
+        {
+          "label": "Nairobi, Kenya (UTC +03:00)",
+          "value": "Nairobi, Kenya (UTC +03:00)"
+        },
+        {
+          "label": "Nanjing, China (UTC +08:00)",
+          "value": "Nanjing, China (UTC +08:00)"
+        },
+        {
+          "label": "Naples, Italy (UTC +01:00)",
+          "value": "Naples, Italy (UTC +01:00)"
+        },
+        {
+          "label": "Nashville, Tennessee (UTC -06:00)",
+          "value": "Nashville, Tennessee (UTC -06:00)"
+        },
+        {
+          "label": "Nassau, Bahamas (UTC -05:00)",
+          "value": "Nassau, Bahamas (UTC -05:00)"
+        },
+        {
+          "label": "Ndjamena, Chad (UTC +01:00)",
+          "value": "Ndjamena, Chad (UTC +01:00)"
+        },
+        {
+          "label": "N'Djamena, Chad (UTC +01:00)",
+          "value": "N'Djamena, Chad (UTC +01:00)"
+        },
+        {
+          "label": "Nelson, New Zealand (UTC +12:00)",
+          "value": "Nelson, New Zealand (UTC +12:00)"
+        },
+        {
+          "label": "New Delhi, India (UTC +05:05)",
+          "value": "New Delhi, India (UTC +05:05)"
+        },
+        {
+          "label": "New Orleans, Louisiana (UTC -06:00)",
+          "value": "New Orleans, Louisiana (UTC -06:00)"
+        },
+        {
+          "label": "New York, New York (UTC -05:00)",
+          "value": "New York, New York (UTC -05:00)"
+        },
+        {
+          "label": "Niagara Falls, Canada (UTC -05:00)",
+          "value": "Niagara Falls, Canada (UTC -05:00)"
+        },
+        {
+          "label": "Niamey, Niger (UTC +01:00)",
+          "value": "Niamey, Niger (UTC +01:00)"
+        },
+        {
+          "label": "Nice, France (UTC +01:00)",
+          "value": "Nice, France (UTC +01:00)"
+        },
+        {
+          "label": "Nicosia, Cyprus (UTC +02:00)",
+          "value": "Nicosia, Cyprus (UTC +02:00)"
+        },
+        {
+          "label": "Nizhny Novgorod, Russia (UTC +03:00)",
+          "value": "Nizhny Novgorod, Russia (UTC +03:00)"
+        },
+        {
+          "label": "Nouakchott, Mauritania (UTC 00:00)",
+          "value": "Nouakchott, Mauritania (UTC 00:00)"
+        },
+        {
+          "label": "Novosibirsk, Russia (UTC +06:00)",
+          "value": "Novosibirsk, Russia (UTC +06:00)"
+        },
+        {
+          "label": "Nuku'alofa, Tonga (UTC +13:00)",
+          "value": "Nuku'alofa, Tonga (UTC +13:00)"
+        },
+        {
+          "label": "Nuremberg, Germany (UTC +01:00)",
+          "value": "Nuremberg, Germany (UTC +01:00)"
+        },
+        {
+          "label": "Nuuk, Greenland (UTC -03:00)",
+          "value": "Nuuk, Greenland (UTC -03:00)"
+        },
+        {
+          "label": "Oakland, California (UTC -08:00)",
+          "value": "Oakland, California (UTC -08:00)"
+        },
+        {
+          "label": "Oklahoma City, Oklahoma (UTC -06:00)",
+          "value": "Oklahoma City, Oklahoma (UTC -06:00)"
+        },
+        {
+          "label": "Omaha, Nebraska (UTC -06:00)",
+          "value": "Omaha, Nebraska (UTC -06:00)"
+        },
+        {
+          "label": "Omsk, Russia (UTC +06:00)",
+          "value": "Omsk, Russia (UTC +06:00)"
+        },
+        {
+          "label": "Orlando, Florida (UTC -05:00)",
+          "value": "Orlando, Florida (UTC -05:00)"
+        },
+        {
+          "label": "Osaka, Japan (UTC +09:00)",
+          "value": "Osaka, Japan (UTC +09:00)"
+        },
+        {
+          "label": "Oshawa, Canada (UTC -05:00)",
+          "value": "Oshawa, Canada (UTC -05:00)"
+        },
+        {
+          "label": "Oslo, Norway (UTC +01:00)",
+          "value": "Oslo, Norway (UTC +01:00)"
+        },
+        {
+          "label": "Ottawa, Canada (UTC -05:00)",
+          "value": "Ottawa, Canada (UTC -05:00)"
+        },
+        {
+          "label": "Ouagadougou, Burkina Faso (UTC +00:00)",
+          "value": "Ouagadougou, Burkina Faso (UTC +00:00)"
+        },
+        {
+          "label": "Palermo, Italy (UTC +01:00)",
+          "value": "Palermo, Italy (UTC +01:00)"
+        },
+        {
+          "label": "Palikir, Micronesia (UTC +11:00)",
+          "value": "Palikir, Micronesia (UTC +11:00)"
+        },
+        {
+          "label": "Palma, Majorca (UTC +01:00)",
+          "value": "Palma, Majorca (UTC +01:00)"
+        },
+        {
+          "label": "Palmerston North, New Zealand (UTC +12:00)",
+          "value": "Palmerston North, New Zealand (UTC +12:00)"
+        },
+        {
+          "label": "Panama City, Panama (UTC -05:00)",
+          "value": "Panama City, Panama (UTC -05:00)"
+        },
+        {
+          "label": "Papeete, Tahiti (UTC -10:00)",
+          "value": "Papeete, Tahiti (UTC -10:00)"
+        },
+        {
+          "label": "Paramaribo, Surinam (UTC -03:00)",
+          "value": "Paramaribo, Surinam (UTC -03:00)"
+        },
+        {
+          "label": "Paris, France (UTC +01:00)",
+          "value": "Paris, France (UTC +01:00)"
+        },
+        {
+          "label": "Perth, Australia (UTC +08:00)",
+          "value": "Perth, Australia (UTC +08:00)"
+        },
+        {
+          "label": "Philadelphia, Pennsylvania (UTC -05:00)",
+          "value": "Philadelphia, Pennsylvania (UTC -05:00)"
+        },
+        {
+          "label": "Phnom Penh, Cambodia (UTC +07:00)",
+          "value": "Phnom Penh, Cambodia (UTC +07:00)"
+        },
+        {
+          "label": "Phoenix, Arizona (UTC -07:00)",
+          "value": "Phoenix, Arizona (UTC -07:00)"
+        },
+        {
+          "label": "Pittsburgh, Pennsylvania (UTC -05:00)",
+          "value": "Pittsburgh, Pennsylvania (UTC -05:00)"
+        },
+        {
+          "label": "Port Louis, Mauritius (UTC +04:00)",
+          "value": "Port Louis, Mauritius (UTC +04:00)"
+        },
+        {
+          "label": "Port Moresby, Papua New Guinea (UTC +10:00)",
+          "value": "Port Moresby, Papua New Guinea (UTC +10:00)"
+        },
+        {
+          "label": "Port of Spain, Trinidad (UTC -04:00)",
+          "value": "Port of Spain, Trinidad (UTC -04:00)"
+        },
+        {
+          "label": "Port Stanley, Falkland Is. (UTC -04:00)",
+          "value": "Port Stanley, Falkland Is. (UTC -04:00)"
+        },
+        {
+          "label": "Port-au-Prince, Haiti (UTC -05:00)",
+          "value": "Port-au-Prince, Haiti (UTC -05:00)"
+        },
+        {
+          "label": "Portland, Oregon, United States (UTC -08:00)",
+          "value": "Portland, Oregon, United States (UTC -08:00)"
+        },
+        {
+          "label": "Porto Novo, Benin (UTC +01:00)",
+          "value": "Porto Novo, Benin (UTC +01:00)"
+        },
+        {
+          "label": "Prague, Czech Republic (UTC +01:00)",
+          "value": "Prague, Czech Republic (UTC +01:00)"
+        },
+        {
+          "label": "Praia, Cape Verde (UTC -01:00)",
+          "value": "Praia, Cape Verde (UTC -01:00)"
+        },
+        {
+          "label": "Pretoria, South Africa (UTC +02:00)",
+          "value": "Pretoria, South Africa (UTC +02:00)"
+        },
+        {
+          "label": "Pyongyang, North Korea (UTC +09:00)",
+          "value": "Pyongyang, North Korea (UTC +09:00)"
+        },
+        {
+          "label": "Qaanaaq, Greenland (UTC -04:00)",
+          "value": "Qaanaaq, Greenland (UTC -04:00)"
+        },
+        {
+          "label": "Québec, Canada (UTC -05:00)",
+          "value": "Québec, Canada (UTC -05:00)"
+        },
+        {
+          "label": "Quito, Ecuador (UTC -05:00)",
+          "value": "Quito, Ecuador (UTC -05:00)"
+        },
+        {
+          "label": "Rabat, Morocco (UTC 00:00)",
+          "value": "Rabat, Morocco (UTC 00:00)"
+        },
+        {
+          "label": "Rangoon, Myanmar (UTC +06:05)",
+          "value": "Rangoon, Myanmar (UTC +06:05)"
+        },
+        {
+          "label": "Regina, Canada (UTC -06:00)",
+          "value": "Regina, Canada (UTC -06:00)"
+        },
+        {
+          "label": "Reykjavik, Iceland (UTC 00:00)",
+          "value": "Reykjavik, Iceland (UTC 00:00)"
+        },
+        {
+          "label": "Richmond, Canada (UTC -08:00)",
+          "value": "Richmond, Canada (UTC -08:00)"
+        },
+        {
+          "label": "Riga, Latvia (UTC +02:00)",
+          "value": "Riga, Latvia (UTC +02:00)"
+        },
+        {
+          "label": "Rio de Janeiro, Brazil (UTC -03:00)",
+          "value": "Rio de Janeiro, Brazil (UTC -03:00)"
+        },
+        {
+          "label": "Riyadh, Saudi Arabia (UTC +03:00)",
+          "value": "Riyadh, Saudi Arabia (UTC +03:00)"
+        },
+        {
+          "label": "Rome, Italy (UTC +01:00)",
+          "value": "Rome, Italy (UTC +01:00)"
+        },
+        {
+          "label": "Roseau, Dominica (UTC -04:00)",
+          "value": "Roseau, Dominica (UTC -04:00)"
+        },
+        {
+          "label": "Rotorua, New Zealand (UTC +12:00)",
+          "value": "Rotorua, New Zealand (UTC +12:00)"
+        },
+        {
+          "label": "Sacramento, California (UTC -08:00)",
+          "value": "Sacramento, California (UTC -08:00)"
+        },
+        {
+          "label": "Saguenay, Canada (UTC -05:00)",
+          "value": "Saguenay, Canada (UTC -05:00)"
+        },
+        {
+          "label": "Saint John, Canada (UTC -04:00)",
+          "value": "Saint John, Canada (UTC -04:00)"
+        },
+        {
+          "label": "Saint Petersburg, Russia (UTC +03:00)",
+          "value": "Saint Petersburg, Russia (UTC +03:00)"
+        },
+        {
+          "label": "Saint-Denis, Réunion (UTC +04:00)",
+          "value": "Saint-Denis, Réunion (UTC +04:00)"
+        },
+        {
+          "label": "Salt Lake City, Utah (UTC -07:00)",
+          "value": "Salt Lake City, Utah (UTC -07:00)"
+        },
+        {
+          "label": "Samara, Russia (UTC +03:00)",
+          "value": "Samara, Russia (UTC +03:00)"
+        },
+        {
+          "label": "San Antonio, Texas (UTC -06:00)",
+          "value": "San Antonio, Texas (UTC -06:00)"
+        },
+        {
+          "label": "San Diego, California (UTC -08:00)",
+          "value": "San Diego, California (UTC -08:00)"
+        },
+        {
+          "label": "San Francisco, California (UTC -08:00)",
+          "value": "San Francisco, California (UTC -08:00)"
+        },
+        {
+          "label": "San Jose, California (UTC -08:00)",
+          "value": "San Jose, California (UTC -08:00)"
+        },
+        {
+          "label": "San Jose, Costa Rica (UTC -06:00)",
+          "value": "San Jose, Costa Rica (UTC -06:00)"
+        },
+        {
+          "label": "San Juan, Puerto Rico (UTC -04:00)",
+          "value": "San Juan, Puerto Rico (UTC -04:00)"
+        },
+        {
+          "label": "San Marino, San Marino (UTC +01:00)",
+          "value": "San Marino, San Marino (UTC +01:00)"
+        },
+        {
+          "label": "San Salvador, El Salvador (UTC -06:00)",
+          "value": "San Salvador, El Salvador (UTC -06:00)"
+        },
+        {
+          "label": "Sana'a, Yemen (UTC +03:00)",
+          "value": "Sana'a, Yemen (UTC +03:00)"
+        },
+        {
+          "label": "Santiago, Chile (UTC -04:00)",
+          "value": "Santiago, Chile (UTC -04:00)"
+        },
+        {
+          "label": "Santo Domingo, Dominican Rep. (UTC -04:00)",
+          "value": "Santo Domingo, Dominican Rep. (UTC -04:00)"
+        },
+        {
+          "label": "Sao Paulo, Brazil (UTC -03:00)",
+          "value": "Sao Paulo, Brazil (UTC -03:00)"
+        },
+        {
+          "label": "São Tomé, Sao Tome and Principe (UTC 00:00)",
+          "value": "São Tomé, Sao Tome and Principe (UTC 00:00)"
+        },
+        {
+          "label": "Sapporo, Japan (UTC +09:00)",
+          "value": "Sapporo, Japan (UTC +09:00)"
+        },
+        {
+          "label": "Sarajevo, Bosnia-Herzegovina (UTC +01:00)",
+          "value": "Sarajevo, Bosnia-Herzegovina (UTC +01:00)"
+        },
+        {
+          "label": "Seattle, Washington (UTC -08:00)",
+          "value": "Seattle, Washington (UTC -08:00)"
+        },
+        {
+          "label": "Seoul, South Korea (UTC +09:00)",
+          "value": "Seoul, South Korea (UTC +09:00)"
+        },
+        {
+          "label": "Seville, Spain (UTC +01:00)",
+          "value": "Seville, Spain (UTC +01:00)"
+        },
+        {
+          "label": "Shanghai, China (UTC +08:00)",
+          "value": "Shanghai, China (UTC +08:00)"
+        },
+        {
+          "label": "Sherbrooke, Canada (UTC -05:00)",
+          "value": "Sherbrooke, Canada (UTC -05:00)"
+        },
+        {
+          "label": "Singapore, Singapore (UTC +08:00)",
+          "value": "Singapore, Singapore (UTC +08:00)"
+        },
+        {
+          "label": "Skopje, Macedonia (UTC +01:00)",
+          "value": "Skopje, Macedonia (UTC +01:00)"
+        },
+        {
+          "label": "Sofia, Bulgaria (UTC +02:00)",
+          "value": "Sofia, Bulgaria (UTC +02:00)"
+        },
+        {
+          "label": "St. George's, Grenada (UTC -04:00)",
+          "value": "St. George's, Grenada (UTC -04:00)"
+        },
+        {
+          "label": "St. John's, Antigua (UTC -04:00)",
+          "value": "St. John's, Antigua (UTC -04:00)"
+        },
+        {
+          "label": "St. John's, Newfoundland (UTC -03:05)",
+          "value": "St. John's, Newfoundland (UTC -03:05)"
+        },
+        {
+          "label": "St. Louis, Missouri (UTC -06:00)",
+          "value": "St. Louis, Missouri (UTC -06:00)"
+        },
+        {
+          "label": "St. Petersburg, Russia (UTC +03:00)",
+          "value": "St. Petersburg, Russia (UTC +03:00)"
+        },
+        {
+          "label": "Stamford, Connecticut (UTC -05:00)",
+          "value": "Stamford, Connecticut (UTC -05:00)"
+        },
+        {
+          "label": "Stockholm, Sweden (UTC +01:00)",
+          "value": "Stockholm, Sweden (UTC +01:00)"
+        },
+        {
+          "label": "Strasbourg, France (UTC +01:00)",
+          "value": "Strasbourg, France (UTC +01:00)"
+        },
+        {
+          "label": "Surrey, Canada (UTC -08:00)",
+          "value": "Surrey, Canada (UTC -08:00)"
+        },
+        {
+          "label": "Suva, Fiji (UTC +12:00)",
+          "value": "Suva, Fiji (UTC +12:00)"
+        },
+        {
+          "label": "Sydney, Australia (UTC +10:00)",
+          "value": "Sydney, Australia (UTC +10:00)"
+        },
+        {
+          "label": "Taipei, Taiwan (UTC +08:00)",
+          "value": "Taipei, Taiwan (UTC +08:00)"
+        },
+        {
+          "label": "Talinn, Estonia (UTC +02:00)",
+          "value": "Talinn, Estonia (UTC +02:00)"
+        },
+        {
+          "label": "Tashkent, Uzbekistan (UTC +05:00)",
+          "value": "Tashkent, Uzbekistan (UTC +05:00)"
+        },
+        {
+          "label": "Tauranga, New Zealand (UTC +12:00)",
+          "value": "Tauranga, New Zealand (UTC +12:00)"
+        },
+        {
+          "label": "Tbilisi, Georgia (UTC +04:00)",
+          "value": "Tbilisi, Georgia (UTC +04:00)"
+        },
+        {
+          "label": "Tegucigalpa, Honduras (UTC -06:00)",
+          "value": "Tegucigalpa, Honduras (UTC -06:00)"
+        },
+        {
+          "label": "Tehran, Iran (UTC +03:05)",
+          "value": "Tehran, Iran (UTC +03:05)"
+        },
+        {
+          "label": "Tel Aviv, Israel (UTC +02:00)",
+          "value": "Tel Aviv, Israel (UTC +02:00)"
+        },
+        {
+          "label": "The Hague, Netherlands (UTC +01:00)",
+          "value": "The Hague, Netherlands (UTC +01:00)"
+        },
+        {
+          "label": "Thimphu, Bhutan (UTC +06:00)",
+          "value": "Thimphu, Bhutan (UTC +06:00)"
+        },
+        {
+          "label": "Thunder Bay, Canada (UTC -05:00)",
+          "value": "Thunder Bay, Canada (UTC -05:00)"
+        },
+        {
+          "label": "Tianjin, China (UTC +08:00)",
+          "value": "Tianjin, China (UTC +08:00)"
+        },
+        {
+          "label": "Tirana, Albania (UTC +01:00)",
+          "value": "Tirana, Albania (UTC +01:00)"
+        },
+        {
+          "label": "Tokyo, Japan (UTC +09:00)",
+          "value": "Tokyo, Japan (UTC +09:00)"
+        },
+        {
+          "label": "Toronto, Canada (UTC -05:00)",
+          "value": "Toronto, Canada (UTC -05:00)"
+        },
+        {
+          "label": "Tórshavn, Faroe Islands (UTC 00:00)",
+          "value": "Tórshavn, Faroe Islands (UTC 00:00)"
+        },
+        {
+          "label": "Toulouse, France (UTC +01:00)",
+          "value": "Toulouse, France (UTC +01:00)"
+        },
+        {
+          "label": "Tripoli, Libya (UTC +02:00)",
+          "value": "Tripoli, Libya (UTC +02:00)"
+        },
+        {
+          "label": "Tucson, Arizona (UTC -07:00)",
+          "value": "Tucson, Arizona (UTC -07:00)"
+        },
+        {
+          "label": "Tunis, Tunisia (UTC +01:00)",
+          "value": "Tunis, Tunisia (UTC +01:00)"
+        },
+        {
+          "label": "Turin, Italy (UTC +01:00)",
+          "value": "Turin, Italy (UTC +01:00)"
+        },
+        {
+          "label": "Ulaanbaatar, Mongolia (UTC +08:00)",
+          "value": "Ulaanbaatar, Mongolia (UTC +08:00)"
+        },
+        {
+          "label": "Vaduz, Liechtenstein (UTC +01:00)",
+          "value": "Vaduz, Liechtenstein (UTC +01:00)"
+        },
+        {
+          "label": "Valencia, Spain (UTC +01:00)",
+          "value": "Valencia, Spain (UTC +01:00)"
+        },
+        {
+          "label": "Valletta, Malta (UTC +01:00)",
+          "value": "Valletta, Malta (UTC +01:00)"
+        },
+        {
+          "label": "Vancouver, Canada (UTC -08:00)",
+          "value": "Vancouver, Canada (UTC -08:00)"
+        },
+        {
+          "label": "Vatican City, The Vatican (UTC +01:00)",
+          "value": "Vatican City, The Vatican (UTC +01:00)"
+        },
+        {
+          "label": "Victoria, Seychelles (UTC +04:00)",
+          "value": "Victoria, Seychelles (UTC +04:00)"
+        },
+        {
+          "label": "Vienna, Austria (UTC +01:00)",
+          "value": "Vienna, Austria (UTC +01:00)"
+        },
+        {
+          "label": "Vientiane, Laos (UTC +07:00)",
+          "value": "Vientiane, Laos (UTC +07:00)"
+        },
+        {
+          "label": "Vilnius, Lithuania (UTC +02:00)",
+          "value": "Vilnius, Lithuania (UTC +02:00)"
+        },
+        {
+          "label": "Vladivostok, Russia (UTC +10:00)",
+          "value": "Vladivostok, Russia (UTC +10:00)"
+        },
+        {
+          "label": "Warsaw, Poland (UTC +01:00)",
+          "value": "Warsaw, Poland (UTC +01:00)"
+        },
+        {
+          "label": "Washington D.C., USA (UTC -05:00)",
+          "value": "Washington D.C., USA (UTC -05:00)"
+        },
+        {
+          "label": "Wellington, New Zealand (UTC +12:00)",
+          "value": "Wellington, New Zealand (UTC +12:00)"
+        },
+        {
+          "label": "Whistler, Canada (UTC -08:00)",
+          "value": "Whistler, Canada (UTC -08:00)"
+        },
+        {
+          "label": "Windhoek, Namibia (UTC +01:00)",
+          "value": "Windhoek, Namibia (UTC +01:00)"
+        },
+        {
+          "label": "Windsor, Canada (UTC -05:00)",
+          "value": "Windsor, Canada (UTC -05:00)"
+        },
+        {
+          "label": "Winnipeg, Canada (UTC -06:00)",
+          "value": "Winnipeg, Canada (UTC -06:00)"
+        },
+        {
+          "label": "Winston Salem, North Carolina (UTC -05:00)",
+          "value": "Winston Salem, North Carolina (UTC -05:00)"
+        },
+        {
+          "label": "Yamoussoukro, Ivory Coast (UTC 00:00)",
+          "value": "Yamoussoukro, Ivory Coast (UTC 00:00)"
+        },
+        {
+          "label": "Yaoundé, Cameroon (UTC +01:00)",
+          "value": "Yaoundé, Cameroon (UTC +01:00)"
+        },
+        {
+          "label": "Yaren, Nauru (UTC +12:00)",
+          "value": "Yaren, Nauru (UTC +12:00)"
+        },
+        {
+          "label": "Yekaterinburg, Russia (UTC +05:00)",
+          "value": "Yekaterinburg, Russia (UTC +05:00)"
+        },
+        {
+          "label": "Yerevan, Armenia (UTC +04:00)",
+          "value": "Yerevan, Armenia (UTC +04:00)"
+        },
+        {
+          "label": "Yokohama, Japan (UTC +09:00)",
+          "value": "Yokohama, Japan (UTC +09:00)"
+        },
+        {
+          "label": "Zagreb, Croatia (UTC +01:00)",
+          "value": "Zagreb, Croatia (UTC +01:00)"
+        },
+        {
+          "label": "Zaragoza, Spain (UTC +01:00)",
+          "value": "Zaragoza, Spain (UTC +01:00)"
+        },
+        {
+          "label": "Zurich, Switzerland (UTC +01:00)",
+          "value": "Zurich, Switzerland (UTC +01:00)"
+        },
+        {
+          "label": "Santa Cruz de Tenerife (UTC +00:00)",
+          "value": "Santa Cruz de Tenerife (UTC +00:00)"
+        }
+      ],
+      "validators": [
+        "required"
+      ],
+      "pipe": "",
+      "pipeOptions": null
+    },
+    {
+      "title": "Tradeable",
+      "field": "isTradeable",
+      "type": "toggle_button",
+      "defaultValue": false,
+      "visibilityArea": "B",
+      "onChangeValue": false,
+      "unique": false,
+      "list": [
+        {
+          "label": "Select",
+          "value": ""
+        },
+        {
+          "label": "Yes",
+          "value": true
+        },
+        {
+          "label": "No",
+          "value": false
+        }
+      ],
+      "validators": [
+        "required"
+      ],
+      "pipe": "",
+      "pipeOptions": null
+    },
+    {
+      "title": "Status",
+      "field": "status",
+      "type": "toggle_button",
+      "defaultValue": true,
+      "visibilityArea": "B",
+      "onChangeValue": false,
+      "unique": false,
+      "list": [
+        {
+          "label": "Select",
+          "value": ""
+        },
+        {
+          "label": "Active",
+          "value": true
+        },
+        {
+          "label": "Inactive",
+          "value": false
+        }
+      ],
+      "validators": [
+        "required"
+      ],
+      "pipe": "",
+      "pipeOptions": null
+    },
+    {
+      "title": "Origin",
+      "field": "origin",
+      "type": "toggle_button",
+      "defaultValue": false,
+      "visibilityArea": "B",
+      "onChangeValue": false,
+      "unique": false,
+      "list": [
+        {
+          "label": "Select",
+          "value": ""
+        },
+        {
+          "label": "Yes",
+          "value": true
+        },
+        {
+          "label": "No",
+          "value": false
+        }
+      ],
+      "validators": [],
+      "pipe": "",
+      "pipeOptions": null
+    },
+    {
+      "title": "High Risk Zone",
+      "field": "highRiskZone",
+      "type": "toggle_button",
+      "defaultValue": false,
+      "visibilityArea": "B",
+      "onChangeValue": false,
+      "unique": false,
+      "list": [
+        {
+          "label": "Select",
+          "value": ""
+        },
+        {
+          "label": "Yes",
+          "value": true
+        },
+        {
+          "label": "No",
+          "value": false
+        }
+      ],
+      "validators": [],
+      "pipe": "",
+      "pipeOptions": null
+    }
+  ]
+}

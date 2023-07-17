@@ -1,0 +1,322 @@
+{
+  "title": "Incoterm",
+  "urls": {
+    "saveUrl": "{endpoint}/api-bm/api/incoterm/v1/save",
+    "fetchUrl": "{endpoint}/api-bm/api/incoterm/v1/getall?tenantId={tenantId}&page=0&size=20",
+    "hrefUrl": "{endpoint}/api-bm",
+    "importUrl": "{endpoint}/api-bm/api/incoterm/v1/import"
+  },
+  "columns": [
+    {
+      "title": "Incoterm Code",
+      "field": "code",
+      "idField": true,
+      "type": "text_field",
+      "defaultValue": "",
+      "visibilityArea": "B",
+      "onChangeValue": false,
+      "unique": true,
+      "validators": [
+        "required"
+      ],
+      "pipe": "",
+      "pipeOptions": null
+    },
+    {
+      "title": "Incoterm Name",
+      "field": "name",
+      "type": "dropdown",
+      "defaultValue": "",
+      "visibilityArea": "B",
+      "onChangeValue": false,
+      "unique": false,
+      "list": [
+        {
+          "label": "Select",
+          "value": ""
+        },
+        {
+          "label": "CFR",
+          "value": "CFR"
+        },
+        {
+          "label": "CIF",
+          "value": "CIF"
+        },
+        {
+          "label": "CIP",
+          "value": "CIP"
+        },
+        {
+          "label": "CPT",
+          "value": "CPT"
+        },
+        {
+          "label": "DAP",
+          "value": "DAP"
+        },
+        {
+          "label": "DDP",
+          "value": "DDP"
+        },
+        {
+          "label": "DEL",
+          "value": "DEL"
+        },
+        {
+          "label": "DPU",
+          "value": "DPU"
+        },
+        {
+          "label": "EXW",
+          "value": "EXW"
+        },
+        {
+          "label": "FAS",
+          "value": "FAS"
+        },
+        {
+          "label": "FCA",
+          "value": "FCA"
+        },
+        {
+          "label": "FOB",
+          "value": "FOB"
+        }
+      ],
+      "validators": [
+        "required"
+      ],
+      "pipe": "",
+      "pipeOptions": null
+    },
+    {
+      "title": "Incoterm Description",
+      "field": "description",
+      "type": "textarea",
+      "defaultValue": "",
+      "visibilityArea": "B",
+      "onChangeValue": false,
+      "unique": false,
+      "validators": [],
+      "pipe": "",
+      "pipeOptions": null
+    },
+    {
+      "title": "Transport Responsibility",
+      "field": "transportResponsibility",
+      "type": "label",
+      "defaultValue": "",
+      "visibilityArea": "B",
+      "onChangeValue": false,
+      "unique": false,
+      "list": [
+        {
+          "label": "Select",
+          "value": ""
+        },
+        {
+          "label": "Both",
+          "value": "Both"
+        },
+        {
+          "label": "Buyer",
+          "value": "Buyer"
+        },
+        {
+          "label": "Seller",
+          "value": "Seller"
+        }
+      ],
+      "validators": [
+        "required"
+      ],
+      "pipe": "",
+      "pipeOptions": null
+    },
+    {
+      "title": "Insurance Responsibility",
+      "field": "insuranceResponsibility",
+      "type": "label",
+      "defaultValue": "",
+      "visibilityArea": "B",
+      "onChangeValue": false,
+      "unique": false,
+      "list": [
+        {
+          "label": "Select",
+          "value": ""
+        },
+        {
+          "label": "Both",
+          "value": "Both"
+        },
+        {
+          "label": "Buyer",
+          "value": "Buyer"
+        },
+        {
+          "label": "Seller",
+          "value": "Seller"
+        }
+      ],
+      "validators": [
+        "required"
+      ],
+      "pipe": "",
+      "pipeOptions": null
+    },
+    {
+      "title": "Title Transfer Event",
+      "field": "titleTransferEvent",
+      "type": "label",
+      "defaultValue": "",
+      "visibilityArea": "B",
+      "onChangeValue": false,
+      "unique": false,
+      "list": [
+        {
+          "label": "Select",
+          "value": ""
+        },
+        {
+          "label": "Bill Of Lading",
+          "value": "Bill Of Lading"
+        },
+        {
+          "label": "Doc Presentation",
+          "value": "Doc Presentation"
+        },
+        {
+          "label": "Invoice Date",
+          "value": "Invoice Date"
+        },
+        {
+          "label": "LC Opening",
+          "value": "LC Opening"
+        },
+        {
+          "label": "Load Berthing Date",
+          "value": "Load Berthing Date"
+        },
+        {
+          "label": "Load Date",
+          "value": "Load Date"
+        },
+        {
+          "label": "Load ETA Date",
+          "value": "Load ETA Date"
+        },
+        {
+          "label": "Load ETD Date",
+          "value": "Load ETD Date"
+        },
+        {
+          "label": "Load Laycan End",
+          "value": "Load Laycan End"
+        },
+        {
+          "label": "Load Laycan Start",
+          "value": "Load Laycan Start"
+        },
+        {
+          "label": "Load NOR Date",
+          "value": "Load NOR Date"
+        },
+        {
+          "label": "Nomination",
+          "value": "Nomination"
+        },
+        {
+          "label": "Pay/Collect Date",
+          "value": "Pay/Collect Date"
+        },
+        {
+          "label": "Shipping Instruction",
+          "value": "Shipping Instruction"
+        },
+        {
+          "label": "Trade Confirmation",
+          "value": "Trade Confirmation"
+        },
+        {
+          "label": "Unload ETA Date",
+          "value": "Unload ETA Date"
+        },
+        {
+          "label": "Unload Laycan End",
+          "value": "Unload Laycan End"
+        },
+        {
+          "label": "Unload Laycan Start",
+          "value": "Unload Laycan Start"
+        },
+        {
+          "label": "Unload NOR Date",
+          "value": "Unload NOR Date"
+        }
+      ],
+      "validators": [
+        "required"
+      ],
+      "pipe": "",
+      "pipeOptions": null
+    },
+    {
+      "title": "Option For Invoice",
+      "field": "optionForInvoice",
+      "type": "label",
+      "defaultValue": "",
+      "visibilityArea": "B",
+      "onChangeValue": false,
+      "unique": false,
+      "list": [
+        {
+          "label": "Select",
+          "value": ""
+        },
+        {
+          "label": "Load Quantity",
+          "value": "Load Quantity"
+        },
+        {
+          "label": "Discharge Quantity",
+          "value": "Discharge Quantity"
+        }
+      ],
+      "validators": [
+        "required"
+      ],
+      "pipe": "",
+      "pipeOptions": null
+    },
+    {
+      "title": "Status",
+      "field": "status",
+      "type": "toggle_button",
+      "defaultValue": true,
+      "visibilityArea": "B",
+      "onChangeValue": false,
+      "unique": false,
+      "list": [
+        {
+          "label": "Select",
+          "value": ""
+        },
+        {
+          "label": "Active",
+          "value": true
+        },
+        {
+          "label": "Inactive",
+          "value": false
+        }
+      ],
+      "validators": [
+        "required"
+      ],
+      "pipe": "",
+      "pipeOptions": null
+    }
+  ]
+}

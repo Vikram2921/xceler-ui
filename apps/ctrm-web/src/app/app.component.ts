@@ -13,13 +13,14 @@ import {
   Resolver,
   ScreenInfoComponent,
   ScreenRegister,
-  StoreService,
+  StoreService, ToastMessageModel,
   ToastService
 } from "@xceler-ui/xceler-ui";
 import {PhysicalTradeActions} from "./physicals/physical_trade/PhysicalTradeActions";
 import {ProfileFunctions} from "../../../../libs/xceler-ui/src/lib/profiles/Profiles";
 import {PhysicalTrade} from "./physicals/physical_trade/physical-trade";
 import {environment} from "./environment";
+import {RecordInfoComponent} from "../../../../libs/xceler-ui/src/lib/components/RecordInfo/record-info.component";
 
 @Component({
   selector: 'xceler-ui-root',
@@ -34,6 +35,7 @@ export class AppComponent implements OnInit,AfterViewInit{
   pinWidth: string = '20rem';
   loaded:boolean = false;
   screen:string = 'physicalTrade';
+  loadingPop!:ToastMessageModel;
   constructor(private cd:ChangeDetectorRef) {
     ProfileRegister.registerAllProfiles();
   }
@@ -47,6 +49,7 @@ export class AppComponent implements OnInit,AfterViewInit{
   private registerFunctionFiles() {
     FunctionRegister.registerFunctionsFile('profiles',ProfileFunctions);
     FunctionRegister.registerFunctionsFile('PhysicalTradeActions',PhysicalTradeActions);
+    this.loadingPop = ToastService.showLoadingPopup('Please wait while we load the application',{path:'./assets/loading.gif',width:100,height:100});
   }
 
 
@@ -55,6 +58,7 @@ export class AppComponent implements OnInit,AfterViewInit{
     ComponentRegister.registerComponent("grid",GridComponent);
     ComponentRegister.registerComponent("grid_toolbar",GridToolbarComponent);
     ComponentRegister.registerComponent("tabs",OptionButtonComponent);
+    ComponentRegister.registerComponent("info",RecordInfoComponent);
   }
 
 
@@ -96,5 +100,6 @@ export class AppComponent implements OnInit,AfterViewInit{
     StoreService.addListValues("common","common_company",Resolver.convertListObjectToListOptions(resp['userInfoData'].Company,'masterTypeValue','masterTypeValue'))
     StoreService.addListValues("common","common_counterparty",Resolver.convertListObjectToListOptions(resp['userInfoData'].Counterparty,'masterTypeValue','masterTypeValue'))
     StoreService.addListValues("common","common_profitcenter",Resolver.convertListObjectToListOptions(resp['userInfoData']['Profit Center'],'masterTypeValue','masterTypeValue'))
+    this.loadingPop?.close();
   }
 }

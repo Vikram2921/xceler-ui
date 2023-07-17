@@ -19,7 +19,7 @@
           "apps/bussiness-master/src/favicon.ico",
           "apps/bussiness-master/src/assets"
         ],
-        "styles": ["apps/bussiness-master/src/styles.css"],
+        "styles": ["apps/bussiness-master/src/styles.css","libs/xceler-ui/src/lib/styles/styles.css"],
         "scripts": []
       },
       "configurations": {
