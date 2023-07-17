@@ -4,14 +4,14 @@
   width: 8rem;
   height: 2.5rem;
   border-radius: 20px;
-  background-color: gray;
+  background-color: rgba(128, 128, 128, 0.32);
   position: relative;
   cursor: pointer;
   transition: background-color 0.3s ease-in-out;
 }
 
 .slider-toggle-button.active {
-  background-color: green;
+  background-color: #64BD63;
 }
 
 .slider {
@@ -25,7 +25,7 @@
 }
 
 .slider-toggle-button.active .slider {
-  transform: translateX(290%);
+  transform: translateX(100%);
 }
 
 .button-text {
