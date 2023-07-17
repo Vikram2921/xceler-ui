@@ -1,5 +1,5 @@
 import {ControlType} from "./control-type";
-import {ListOption} from "../form-controls/core/list-option";
+import {ListOption} from "@xceler-ui/xceler-ui";
 
 export class ColumnModel {
   field:string = '';

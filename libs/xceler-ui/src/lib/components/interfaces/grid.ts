@@ -1,4 +1,4 @@
-import {GridComponent} from "../grid/grid.component";
+import {GridComponent} from "@xceler-ui/xceler-ui";
 
 export class PageObject {
   private _content!:any[];

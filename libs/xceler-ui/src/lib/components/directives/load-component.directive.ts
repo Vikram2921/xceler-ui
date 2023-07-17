@@ -1,7 +1,7 @@
 import {Directive, Input, OnInit, Type, ViewContainerRef} from '@angular/core';
 import {HostActivity} from "../models/host-activity";
 import {EventListener} from "../interfaces/event-listener";
-import {PopupService} from "../popup/service/popup-service.service";
+import {PopupService} from "@xceler-ui/xceler-ui";
 import {ComponentRegister} from "../registers/component-register.service";
 
 @Directive({

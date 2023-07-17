@@ -8,8 +8,6 @@ import {ValidationField} from "./validation-box/validation-box.component";
 import {StoreService} from "../services/store.service";
 import {FunctionRegister} from "../registers/function-register.service";
 import {FunctionParams} from "../models/function-params";
-import {StorageService} from "../services/storage.service";
-import {ApiService} from "../services/api-service.service";
 
 @Component({
   selector: 'xui-form-input-component',
@@ -25,7 +23,7 @@ export class FormInputComponentComponent extends HostActivity{
   editMode = false;
   formControlService:FormControlService = new FormControlService();
 
-  constructor(private storageService:StorageService,private apiService:ApiService) {
+  constructor() {
     super();
   }
   override init(props: { [p: string]: any }) {

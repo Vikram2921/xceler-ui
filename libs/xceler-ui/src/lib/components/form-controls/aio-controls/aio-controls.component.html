@@ -26,36 +26,36 @@
 </div>
 
 <ng-template #text_field>
-    <text-field placeholder="Enter {{header}}"  [disabled]="disabled" [(ngModel)]="value" (ngModelChange)="onChangeValue.emit($event)"></text-field>
+    <xui-text-field placeholder="Enter {{header}}"  [disabled]="disabled" [(ngModel)]="value" (ngModelChange)="onChangeValue.emit($event)"></xui-text-field>
 </ng-template>
 
 
 <ng-template #number>
-  <text-field placeholder="Enter {{header}}"  [disabled]="disabled" [type]="'number'" [(ngModel)]="value" (ngModelChange)="onChangeValue.emit($event)"></text-field>
+  <xui-text-field placeholder="Enter {{header}}"  [disabled]="disabled" [type]="'number'" [(ngModel)]="value" (ngModelChange)="onChangeValue.emit($event)"></xui-text-field>
 </ng-template>
 
 <ng-template #label>
-  <text-field placeholder="Enter {{header}}"  [disabled]="true" [(ngModel)]="value" (ngModelChange)="onChangeValue.emit($event)"></text-field>
+  <xui-text-field placeholder="Enter {{header}}"  [disabled]="true" [(ngModel)]="value" (ngModelChange)="onChangeValue.emit($event)"></xui-text-field>
 </ng-template>
 
 <ng-template #dropdown>
-  <dropdown [disabled]="disabled" [listOptions]="listOptions" [(ngModel)]="value" (ngModelChange)="onChangeValue.emit($event)"></dropdown>
+  <xui-dropdown [disabled]="disabled" [listOptions]="listOptions" [(ngModel)]="value" (ngModelChange)="onChangeValue.emit($event)"></xui-dropdown>
 </ng-template>
 
 
 <ng-template #multi_select>
-  <dropdown [disabled]="disabled" [multiple]="true" [listOptions]="listOptions" [(ngModel)]="value" (ngModelChange)="onChangeValue.emit($event)"></dropdown>
+  <xui-dropdown [disabled]="disabled" [multiple]="true" [listOptions]="listOptions" [(ngModel)]="value" (ngModelChange)="onChangeValue.emit($event)"></xui-dropdown>
 </ng-template>
 <ng-template #option_button>
-  <option-button [disabled]="disabled" [options]="listOptions" [(ngModel)]="value" (ngModelChange)="onChangeValue.emit($event)"></option-button>
+  <xui-option-button [disabled]="disabled" [options]="listOptions" [(ngModel)]="value" (ngModelChange)="onChangeValue.emit($event)"></xui-option-button>
 </ng-template>
 
 <ng-template #unit_input>
-  <unit-input [disabled]="disabled" [options]="listOptions" [(ngModel)]="value" (ngModelChange)="onChangeValue.emit($event)"></unit-input>
+  <xui-unit-input [disabled]="disabled" [options]="listOptions" [(ngModel)]="value" (ngModelChange)="onChangeValue.emit($event)"></xui-unit-input>
 </ng-template>
 
 <ng-template #toggle_button>
-  <toggle-button [disabled]="disabled" [options]="listOptions" [(ngModel)]="value" (ngModelChange)="onChangeValue.emit($event)"></toggle-button>
+  <xui-toggle-button [disabled]="disabled" [options]="listOptions" [(ngModel)]="value" (ngModelChange)="onChangeValue.emit($event)"></xui-toggle-button>
 </ng-template>
 
 <ng-template #button>
@@ -63,15 +63,15 @@
 </ng-template>
 
 <ng-template #textarea>
-  <text-area [(ngModel)]="value" [disabled]="disabled" (ngModelChange)="onChangeValue.emit($event)"></text-area>
+  <xui-text-area [(ngModel)]="value" [disabled]="disabled" (ngModelChange)="onChangeValue.emit($event)"></xui-text-area>
 </ng-template>
 
 <ng-template #datepicker>
-  <date-picker placeholder="Select {{header}}" [disabled]="disabled" [(ngModel)]="value" (ngModelChange)="onChangeValue.emit($event)"></date-picker>
+  <xui-date-picker placeholder="Select {{header}}" [disabled]="disabled" [(ngModel)]="value" (ngModelChange)="onChangeValue.emit($event)"></xui-date-picker>
 </ng-template>
 <ng-template #dualslider>
-  <dual-slider [(ngModel)]="value" [disabled]="disabled" (ngModelChange)="onChangeValue.emit($event)"></dual-slider>
+  <xui-dual-slider [(ngModel)]="value" [disabled]="disabled" (ngModelChange)="onChangeValue.emit($event)"></xui-dual-slider>
 </ng-template>
 <ng-template #slider>
-  <slider [(ngModel)]="value" [disabled]="disabled" (ngModelChange)="onChangeValue.emit($event)"></slider>
+  <xui-slider [(ngModel)]="value" [disabled]="disabled" (ngModelChange)="onChangeValue.emit($event)"></xui-slider>
 </ng-template>

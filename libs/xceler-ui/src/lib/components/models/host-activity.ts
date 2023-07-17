@@ -1,5 +1,5 @@
 import {EventListener} from "../interfaces/event-listener";
-import {BaseComponent} from "../form-controls/core/base-component";
+import {BaseComponent} from "@xceler-ui/xceler-ui";
 
 export class HostActivity extends BaseComponent{
 

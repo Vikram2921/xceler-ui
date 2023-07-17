@@ -15,11 +15,11 @@
       <p class="section_name">{{section.sectionName}}</p>
       <div class="input_ui">
         <div *ngFor="let col of getFormVisibleFields(section.columns)" class="col col-{{(col.colSpan && !isNaN(col.colSpan))?(col.colSpan * 4):4}}">
-          <aio-controls
+          <xui-aio-controls
                   formControlName="{{col.field}}"
                   (onClickButton)="onClickButton($event)"
                   [field]="col.field" [header]="col.title" [controlType]="col.type" [disabled]="col.disabled"
-                  [listOptions]="col.listStore?StoreService.getListValues(activity.screenJson.title,col.listStore):col.list?col.list:[]" (onFocusField)="onFocusChange($event)"></aio-controls>
+                  [listOptions]="col.listStore?StoreService.getListValues(activity.screenJson.title,col.listStore):col.list?col.list:[]" (onFocusField)="onFocusChange($event)"></xui-aio-controls>
         </div>
       </div>
     </div>
@@ -28,10 +28,10 @@
 <ng-template #with_out_section>
   <div class="input_ui" [formGroup]="formControlService.getFormGroup()">
     <div *ngFor="let col of getFormVisibleFields(activity.screenJson.columns)" class="col col-{{(col.colSpan && !isNaN(col.colSpan))?(col.colSpan * 4):4}}">
-      <aio-controls formControlName="{{col.field}}" [field]="col.field"
+      <xui-aio-controls formControlName="{{col.field}}" [field]="col.field"
                     (onClickButton)="onClickButton($event)"
                     [header]="col.title" [controlType]="col.type" [disabled]="col.disabled"
-                    [listOptions]="col.listStore?StoreService.getListValues(activity.screenJson.title,col.listStore):col.list?col.list:[]" (onFocusField)="onFocusChange($event)"></aio-controls>
+                    [listOptions]="col.listStore?StoreService.getListValues(activity.screenJson.title,col.listStore):col.list?col.list:[]" (onFocusField)="onFocusChange($event)"></xui-aio-controls>
     </div>
   </div>
 </ng-template>

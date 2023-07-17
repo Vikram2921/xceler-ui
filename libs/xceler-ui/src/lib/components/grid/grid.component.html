@@ -6,7 +6,7 @@
       <thead>
       <tr>
         <th class="checkbox-col z-2" *ngIf="gridConfig.checkbox">
-          <checkbox (onCheckedChange)="toggleAll()" [checked]="activity.selectedRows.length == rows.length"></checkbox>
+          <xui-checkbox (onCheckedChange)="toggleAll()" [checked]="activity.selectedRows.length == rows.length"></xui-checkbox>
         </th>
         <th class="action z-2" *ngIf="gridConfig.actions">
           <div class="headerDiv divider">
@@ -23,7 +23,7 @@
       <tbody>
       <tr *ngFor="let row of rows;index as index">
         <td class="checkbox-col z-1" *ngIf="gridConfig.checkbox">
-          <checkbox (onCheckedChange)="toggleSingle(row)" [checked]="activity.selectedRows.includes(row)"></checkbox>
+          <xui-checkbox (onCheckedChange)="toggleSingle(row)" [checked]="activity.selectedRows.includes(row)"></xui-checkbox>
         </td>
         <td class="action z-1" *ngIf="gridConfig.actions">
           <div style="display: inline-flex;gap: 0.5rem">
@@ -37,12 +37,12 @@
         <td *ngFor="let col of gridColumns">
           <ng-container [ngTemplateOutlet]="editingRows.includes(index)?input:output" [ngTemplateOutletContext]="{row:row,col:col}"></ng-container>
           <ng-template #input let-row="row" let-col="col">
-            <aio-controls [controlType]="col.type" [field]="col.field"
+            <xui-aio-controls [controlType]="col.type" [field]="col.field"
                           [disabled]="col.disabled"
                           [controlDisabledView]="col.disableControlView"
                           [pipe]="col.pipe" [pipeOptions]="col.pipeOptions"
                           [value]="row[col.field]" (onChangeValue)="onChangeValue.emit($event)"
-                          [listOptions]="(col.list || col.listStore)?StoreService.getListValues(activity.screenJson.title,col.listStore,col.list):[]"></aio-controls>
+                          [listOptions]="(col.list || col.listStore)?StoreService.getListValues(activity.screenJson.title,col.listStore,col.list):[]"></xui-aio-controls>
           </ng-template>
           <ng-template #output let-row="row" let-col="col">
             <ng-container [ngSwitch]="col.pipe">
@@ -57,9 +57,9 @@
       </tbody>
     </table>
   </div>
-  <paginator *ngIf="page" [totalItems]="page.totalElements"
+  <xui-paginator *ngIf="page" [totalItems]="page.totalElements"
              [currentPageRecords]="page.numberOfElements" [selectedRecords]="activity.selectedRows.length"
-             [totalPages]="page.totalPages" [selectedPage]="page.number" (onPageChange)="onChangePage($event)"></paginator>
+             [totalPages]="page.totalPages" [selectedPage]="page.number" (onPageChange)="onChangePage($event)"></xui-paginator>
 </div>
 
 <ng-template #noDataView>

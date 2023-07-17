@@ -1,8 +1,7 @@
-import {ListOption} from "../form-controls/core/list-option";
-import {environment} from "../../environment";
+import {ListOption} from "@xceler-ui/xceler-ui";
 
 export class Resolver {
-  public static getModifiedUrl(url:string,customInputs?:any,page?:number) {
+  public static getModifiedUrl(url:string,environment:any,customInputs?:any,page?:number) {
     let obj:any = Object.assign({
       "tenantId": localStorage.getItem("tenantId"),
       "username": localStorage.getItem("userName"),

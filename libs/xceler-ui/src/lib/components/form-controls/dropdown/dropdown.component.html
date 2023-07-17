@@ -18,8 +18,8 @@
   <ng-container *ngIf="showList">
     <div (insideViewport)="adjustDropdownPosition($event,header)" class="content-box" >
       <div *ngIf="searchable || multiple" class="search-container">
-        <checkbox *ngIf="multiple" [checked]="selectedValues.length == listOptions.length" (onCheckedChange)="selectAll()"></checkbox>
-        <text-field style="width: inherit" [(ngModel)]="searchText"></text-field>
+        <xui-checkbox *ngIf="multiple" [checked]="selectedValues.length == listOptions.length" (onCheckedChange)="selectAll()"></xui-checkbox>
+        <xui-text-field style="width: inherit" [(ngModel)]="searchText"></xui-text-field>
         <p class="cross" (click)="searchText = ''">&#10006;</p>
       </div>
       <div class="dropdown-content scrollbar">
@@ -27,7 +27,7 @@
              class="dropdown-option"
              [ngClass]="{'selected-option':selectedValues.includes(item.value)}"
              (click)="onSelect(item)">
-          <checkbox *ngIf="multiple" [checked]="selectedValues.includes(item.value)" (onCheckedChange)="onSelect(item)"></checkbox>
+          <xui-checkbox *ngIf="multiple" [checked]="selectedValues.includes(item.value)" (onCheckedChange)="onSelect(item)"></xui-checkbox>
           <p>{{item.label}}</p>
         </div>
       </div>

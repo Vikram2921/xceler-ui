@@ -16,7 +16,7 @@
               </div>
               <ng-template #loading>
                 <div>
-                  <img  ngSrc="{{msg.props['path']}}" width="{{msg.props['width']}}" height="{{msg.props['height']}}" alt="loading">
+                  <img  src="{{msg.props['path']}}" width="{{msg.props['width']}}" height="{{msg.props['height']}}" alt="loading">
                   <span style="color: #15104E">{{msg.heading}}</span>
                 </div>
               </ng-template>
@@ -33,7 +33,7 @@
       <ng-template #others>
         <div style="min-height: 6px" [style.background]="getType(msg.type).color"></div>
         <div *ngIf="msg.type !== 'html'" class="message-div">
-          <img *ngIf="getType(msg.type).icon" class="mt-1" ngSrc="{{getType(msg.type).icon}}"
+          <img *ngIf="getType(msg.type).icon" class="mt-1" src="{{getType(msg.type).icon}}"
                style="font-size: 20px;height: 20px" alt="icon">
           <div class="message">
             <p *ngIf="msg.heading !== null && msg.heading !== undefined && msg.heading.length > 0" class="message_heading">{{msg.heading}}</p>

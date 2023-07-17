@@ -1,5 +1,5 @@
 import {Grid} from "./grid";
-import {GridComponent} from "../grid/grid.component";
+import {GridComponent} from "@xceler-ui/xceler-ui";
 import {ScreenModel} from "../models/screen-model";
 
 export interface Activity extends Grid {

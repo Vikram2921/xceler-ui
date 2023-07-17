@@ -39,11 +39,46 @@ import {SliderComponent} from "./components/form-controls/slider/slider.componen
 import {AdvanceFilterComponent} from "./components/advance-filter/advance-filter.component";
 import {ValidationBoxComponent} from "./components/form-input-component/validation-box/validation-box.component";
 import {FormInputComponentComponent} from "./components/form-input-component/form-input-component.component";
-import {FaIconLibrary} from "@fortawesome/angular-fontawesome";
+import {FaIconLibrary, FontAwesomeModule} from "@fortawesome/angular-fontawesome";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 
 @NgModule({
-  imports: [CommonModule],
-  declarations:[
+  imports: [CommonModule, FontAwesomeModule, FormsModule, ReactiveFormsModule],
+  exports: [
+    AdvanceFilterComponent,
+    GridComponent,
+    AioControlsComponent,
+    PopupComponent,
+    ToasterComponent,
+    IconButtonComponent,
+    OptionButtonComponent,
+    JSONToUIComponent,
+    DropdownComponent,
+    InsideViewportDirective,
+    TextFieldComponent,
+    ProgressButtonComponent,
+    SanitizeHtmlPipe,
+    ToastSchedulerDirective,
+    FilterListPipe,
+    CheckboxComponent,
+    GridToolbarComponent,
+    PaginatorComponent,
+    UnitInputComponent,
+    ToggleButtonComponent,
+    SideMenuComponent,
+    ScreenInfoComponent,
+    NavbarComponent,
+    LoadComponentDirective,
+    ContextPopupComponent,
+    DateFormatPipe,
+    FormInputComponentComponent,
+    ValidationBoxComponent,
+    DatePickerComponent,
+    TextAreaComponent,
+    DualSliderComponent,
+    SliderComponent
+  ],
+  declarations: [
     GridComponent,
     AioControlsComponent,
     PopupComponent,
