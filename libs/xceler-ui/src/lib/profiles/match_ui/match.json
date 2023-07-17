@@ -1,0 +1,40 @@
+{
+  "columns": 13,
+  "rows": 6,
+  "setupFunction": "simple_grid",
+  "rowHeightList": ["5rem","5px","45px","40px","calc(100% - 295px)","40px"],
+  "items": [
+    {
+      "itemId": "Navbar",
+      "areaColRange": [1,13],
+      "areaRowRange": [1],
+      "componentId": "navbar"
+    },
+    {
+      "itemId": "blank1",
+      "areaColRange": [1,13],
+      "areaRowRange": [2]
+    },
+    {
+      "itemId": "tabs",
+      "areaColRange": [1,13],
+      "areaRowRange": [3],
+      "componentId": "tabs",
+      "padding": ["0.5rem 1rem 10px 0.6rem"]
+    },
+    {
+      "itemId": "grid1",
+      "areaColRange": [1,6],
+      "areaRowRange": [5],
+      "componentId": "grid",
+      "padding": ["0","10px"]
+    },
+    {
+      "itemId": "grid2",
+      "areaColRange": [8,13],
+      "areaRowRange": [5],
+      "componentId": "grid",
+      "padding": ["0","10px"]
+    }
+  ]
+}
