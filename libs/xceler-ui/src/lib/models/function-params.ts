@@ -11,4 +11,5 @@ export class FunctionParams {
   previousValue!:string;
   activity!:Activity;
   formControlService!:FormControlService;
+  firstChange:boolean = false;
 }

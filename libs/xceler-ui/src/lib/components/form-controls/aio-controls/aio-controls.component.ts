@@ -43,4 +43,9 @@ export class AioControlsComponent extends BaseFormControl{
   onButtonClick() {
     this.onClickButton.emit(this.field??'');
   }
+
+  updateValue($event: any) {
+    this.value = $event;
+    this.onChangeValue.emit($event)
+  }
 }

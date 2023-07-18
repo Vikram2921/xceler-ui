@@ -67,7 +67,7 @@ export class FormInputComponentComponent extends HostActivity{
   }
 
   private attachChangeListener(col:ColumnModel) {
-    this.formControlService.attachChangeListener(col.field,FunctionRegister.getFunction(this.activity.screenJson.functionFile,col.field),this.getFunctionParams(col),true)
+    this.formControlService.attachChangeListener(col.field, FunctionRegister.getFunction(this.activity.screenJson.functionFile,(col.actionFunction && col.actionFunction.length > 0)?col.actionFunction:col.field),this.getFunctionParams(col),true)
   }
 
   getValidationSection() {

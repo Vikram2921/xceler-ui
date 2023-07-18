@@ -77,7 +77,7 @@ export class DropdownComponent extends BaseFormControl implements  OnChanges {
     if(dropList !== null && dropList !== undefined) {
       const headerRect = dropdownHeader.getBoundingClientRect();
       dropList.nativeElement.style.minWidth = `${headerRect.width}px`;
-      dropList.nativeElement.style.top = `${headerRect.height + headerRect.top}px`;
+      dropList.nativeElement.style.top = `${headerRect.bottom}px`;
     }
   }
 

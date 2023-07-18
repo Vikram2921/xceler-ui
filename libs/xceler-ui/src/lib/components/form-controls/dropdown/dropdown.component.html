@@ -1,5 +1,5 @@
 <div class="dropdown-box"  (mouseleave)="showList = false">
-  <div #header class="dropdown-header" [ngClass]="disabled?'disabled':''"  (click)="!disabled?toggleList():''">
+  <div tabindex="-1" #header class="dropdown-header" [ngClass]="disabled?'disabled':''"  (click)="!disabled?toggleList():''">
     <p *ngIf="!multiple;else multiple_view" class="dropdown-label">{{selectedOption !== null && selectedOption !== undefined?selectedOption?selectedOption.label:'':listOptions[0].label}}</p>
     <svg xmlns="http://www.w3.org/2000/svg" width="10.033" height="5" style="align-self: center;margin-left: 10px"><path d="M5.016 0 0 .003 2.506 2.5 5.016 5l2.509-2.5L10.033.003 5.016 0z"/></svg>
     <ng-template #multiple_view>

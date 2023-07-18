@@ -7,6 +7,7 @@ export class DeliverySchedule {
 
   static getDeliveryList(data: any, internalPackage: any = null) {
     let quantity = 1;
+    data['quantity'] = parseFloat(data['quantity']);
     let requiredFields = ["quantityUom", "quantityPeriodicity", "periodStartDate", "periodEndDate"];
     let bulkFields: string[] = ["quantity"]
     let containerFields: string[] = ["internalPackage", "internalPackageUnit"]
@@ -26,7 +27,7 @@ export class DeliverySchedule {
     if (!check) return {value: [], total: 0, totalNumberOfUnit: 0};
 
     if (data['packageType'] === 'Unit' && internalPackage != null) {
-      quantity = internalPackage['quantity'];
+      quantity = parseFloat(internalPackage['quantity']);
     }
     let value: any[] = [];
     let totalNumberOfUnit: number;
@@ -121,14 +122,14 @@ export class DeliverySchedule {
     return Math.abs(months) + 1;
   }
 
-  static quantityCalculation(data: { [key: string]: any }) {
+  static quantityCalculation(data: { [key: string]: any },environment:{[key:string]:any}) {
     let unitObj: any = {};
     unitObj['packageType'] = "Unit";
     unitObj['internalPackageUnit'] = data['internalPackageUnit'];
     unitObj['commodity'] = data['commodity'];
     unitObj['quantityUom'] = data['quantityUom'];
     unitObj['internalPackageName'] = data['internalPackage'];
-    return ApiService.post(Resolver.getModifiedUrl('{endpoint}/ctrm-api/api/externalpackage/v1/quantityandunitconversion?tenantId={tenantId}'), unitObj);
+    return ApiService.post(Resolver.getModifiedUrl('{endpoint}/ctrm-api/api/externalpackage/v1/quantityandunitconversion?tenantId={tenantId}',environment), unitObj);
   }
 
   private static getLineItem(data: any, index: number, quantity: number, value: any[]) {
@@ -161,10 +162,10 @@ export class DeliverySchedule {
     object['shipDelMonth'] = this.getFormattedDate(object['periodEndDate'], 'MMMM-yy');
     if (data['packageType'] === 'Bulk') {
       object['noOfUnits'] = 1;
-      object['quantity'] = data['quantity'];
+      object['quantity'] = parseFloat(data['quantity']);
       object['package'] = '';
     } else if (data['packageType'] === 'Unit') {
-      object['noOfUnits'] = data['internalPackageUnit'];
+      object['noOfUnits'] = parseFloat(data['internalPackageUnit']);
       object['quantity'] = quantity;
       object['package'] = data['externalPackage'];
     }

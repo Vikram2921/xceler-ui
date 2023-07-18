@@ -20,4 +20,5 @@ export class ColumnModel {
   pipe?:string;
   pipeOptions?:any;
   disableControlView:boolean =false;
+  actionFunction?:string;
 }

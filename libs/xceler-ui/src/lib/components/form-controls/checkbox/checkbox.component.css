@@ -13,10 +13,10 @@ input[type="checkbox"] {
 
 .checkbox-box {
   display: inline-block;
-  width: 15px;
+  width: 20px;
   border-radius: 5px;
   position: relative;
-  height: 15px;
+  height: 20px;
   background-color: #eee;
   margin-right: 5px;
 }
@@ -26,9 +26,9 @@ input[type="checkbox"] {
   top: 0;
   left: 0;
   border-radius: 1px;
-  height: 15px;
+  height: 20px;
   cursor: pointer;
-  width: 15px;
+  width: 20px;
   background-color: rgba(182, 182, 182, 0.63);
   border: 1px solid #b7b7b7;
 }
@@ -52,12 +52,12 @@ input[type="checkbox"] {
 }
 
 .checkbox-box .checkmark:after {
-  left: 0.34rem;
-  top: 0.10rem;
-  width: 0.2rem;
-  height: 0.43rem;
   border: solid white;
-  border-width: 0 2px 2px 0;
+  left: 0.44rem;
+  top: 0.08rem;
+  width: 0.3rem;
+  height: 0.53rem;
+  border-width: 0 3px 3px 0;
   transform: rotate(45deg);
 }
 

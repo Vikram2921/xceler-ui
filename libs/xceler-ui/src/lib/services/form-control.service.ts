@@ -215,12 +215,15 @@ export class FormControlService {
         params.previousValue = this.formGroup.value[field];
         params.currentValue = this.formGroup.value[field];
         params.formGroup = this.formGroup;
+        params.firstChange = true;
         functionToRun(params);
       }
       this.formGroup.controls[field].valueChanges.pipe(pairwise()).subscribe(next => {
         params.previousValue = next[0];
         params.currentValue = next[1];
         params.formGroup = this.formGroup;
+        params.rowData = this.formGroup.value;
+        params.firstChange = false;
         functionToRun(params);
       });
     }

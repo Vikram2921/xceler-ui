@@ -2,6 +2,7 @@ import {AfterViewInit, ChangeDetectorRef, Component, OnInit, ViewChild} from '@a
 import {DeliverySchedule} from "./delivery-schedule";
 import {FormGroup} from "@angular/forms";
 import {ColumnModel, ControlType, GridComponent, GridConfig, HostActivity} from "@xceler-ui/xceler-ui";
+import {environment} from "../../../environment";
 
 @Component({
   selector: 'app-delivery-schedule',
@@ -32,7 +33,7 @@ export class DeliveryScheduleComponent extends HostActivity implements AfterView
     gridConfig.height = "400px";
     this.grid.showFromColumnModels(this.columns,gridConfig);
     if(this.rowData['packageType'].toLowerCase() === 'unit') {
-      DeliverySchedule.quantityCalculation(this.rowData).then((next) => {
+      DeliverySchedule.quantityCalculation(this.rowData,environment).then((next) => {
         this.calculateDeliverySchedule(next);
       })
     } else {
