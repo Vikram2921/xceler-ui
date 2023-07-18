@@ -19,8 +19,8 @@ export class SliderComponent extends BaseFormControl implements OnInit{
   @Input() min: any = 0;
   @Input() max: any = 100;
   @Input() direction: any = 'ltr';
-  @Input() hoverFormat: string = '{value} %';
-  @Input() maxFormat: string = '{value} %';
+  @Input() hoverFormat: string = '{value} MT';
+  @Input() maxFormat: string = '{value} KG';
   @Output() onChangeValue = new EventEmitter();
   hoverValue: string = '';
   maxValue: string = '';

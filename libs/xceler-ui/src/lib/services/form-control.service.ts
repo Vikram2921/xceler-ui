@@ -106,6 +106,13 @@ export class FormControlService {
     }
   }
 
+  patchValue(field: string, newValue: any) {
+    if (this.formGroup.controls[field] !== null && this.formGroup.controls[field] !== undefined) {
+      console.log(this.formGroup,field,newValue);
+      this.formGroup.controls[field].patchValue(newValue);
+    }
+  }
+
   getFields() {
     return this.fields;
   }
@@ -203,8 +210,14 @@ export class FormControlService {
     return false;
   }
 
-  attachChangeListener(field:string,functionToRun:Function | null,params:FunctionParams) {
+  attachChangeListener(field:string,functionToRun:Function | null,params:FunctionParams,kickStart:boolean = false) {
     if(this.formGroup.contains(field) && functionToRun != null) {
+      if(kickStart) {
+        params.previousValue = this.formGroup.value[field];
+        params.currentValue = this.formGroup.value[field];
+        params.formGroup = this.formGroup;
+        functionToRun(params);
+      }
       this.formGroup.controls[field].valueChanges.pipe(pairwise()).subscribe(next => {
         params.previousValue = next[0];
         params.currentValue = next[1];

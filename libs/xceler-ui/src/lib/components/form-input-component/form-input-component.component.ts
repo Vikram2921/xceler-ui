@@ -58,6 +58,7 @@ export class FormInputComponentComponent extends HostActivity{
       }
     })
     this.formControlService.build();
+    console.log(this.formControlService.getFormGroup())
     actionColumns.forEach(actionColumn => {
       this.attachChangeListener(actionColumn);
     })
@@ -67,7 +68,7 @@ export class FormInputComponentComponent extends HostActivity{
   }
 
   private attachChangeListener(col:ColumnModel) {
-    this.formControlService.attachChangeListener(col.field,FunctionRegister.getFunction(this.activity.screenJson.functionFile,col.field),this.getFunctionParams(col))
+    this.formControlService.attachChangeListener(col.field,FunctionRegister.getFunction(this.activity.screenJson.functionFile,col.field),this.getFunctionParams(col),true)
   }
 
   getValidationSection() {
@@ -91,6 +92,7 @@ export class FormInputComponentComponent extends HostActivity{
   private getFunctionParams(col: ColumnModel) {
     const params = new FunctionParams();
     params.field = col;
+    params.activity =this.activity;
     params.formControlService = this.formControlService;
     params.rowData = this.formControlService.getFormGroup().value;
     return params;

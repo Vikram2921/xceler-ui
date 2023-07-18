@@ -43,7 +43,6 @@ export class AppComponent implements OnInit,AfterViewInit{
     this.registerFunctionFiles();
     this.registerScreens();
     this.registerToastTypes();
-    this.storeCommonLists();
   }
 
   private registerFunctionFiles() {
@@ -74,10 +73,11 @@ export class AppComponent implements OnInit,AfterViewInit{
 
 
 
-  ngAfterViewInit(): void {
+  async ngAfterViewInit() {
     this.registerComponent();
     this.loaded = true;
     this.cd.detectChanges();
+    await this.storeCommonLists();
     this.jsonToUIComponent.loadProfile(Profiles.SIMPLE_GRID,{environment:environment,screen:'physicalTrade'});
   }
 

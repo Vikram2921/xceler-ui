@@ -75,29 +75,9 @@ export class DropdownComponent extends BaseFormControl implements  OnChanges {
 
   adjustDropdownPosition(dropList: ElementRef, dropdownHeader: HTMLDivElement) {
     if(dropList !== null && dropList !== undefined) {
-      const dropdownRect = dropList.nativeElement.getBoundingClientRect();
       const headerRect = dropdownHeader.getBoundingClientRect();
-      const windowWidth = window.innerWidth;
-      const windowHeight = window.innerHeight;
-      const isOverflowingRight = dropdownRect.right > windowWidth;
-      const isOverflowingLeft = dropdownRect.left < 0;
-      const isOverflowingBottom = dropdownRect.bottom > windowHeight;
-      const isOverflowingTop = headerRect.top - dropdownRect.height < 0;
-      if (isOverflowingRight) {
-        dropList.nativeElement.style.left = `${ 0 - dropdownRect.width}px`;
-      } else if (isOverflowingLeft) {
-        dropList.nativeElement.style.left = "0";
-      } else {
-        dropList.nativeElement.style.left = "";
-      }
-
-      if (isOverflowingBottom) {
-        dropList.nativeElement.style.top = `${ headerRect.bottom - dropdownRect.height}px`;
-      } else if (isOverflowingTop) {
-        dropList.nativeElement.style.top = `${headerRect.height}px`;
-      } else {
-        dropList.nativeElement.style.top = "";
-      }
+      dropList.nativeElement.style.minWidth = `${headerRect.width}px`;
+      dropList.nativeElement.style.top = `${headerRect.height + headerRect.top}px`;
     }
   }
 

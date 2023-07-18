@@ -48,7 +48,7 @@
             <ng-container [ngSwitch]="col.pipe">
               <ng-container *ngSwitchCase="'dateFormat'">{{row[col.field] | date : col.pipeOptions.format}}</ng-container>
               <ng-container *ngSwitchDefault>
-                <p [ngClass]="col.isField?'clickable':''">{{row[col.field]}}<p>
+                <p [ngClass]="col.idField?'clickable':''" (click)="onClickClickableField(col,row)">{{row[col.field]}}<p>
               </ng-container>
             </ng-container>
           </ng-template>

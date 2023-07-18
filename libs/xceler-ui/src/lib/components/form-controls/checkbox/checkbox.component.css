@@ -4,6 +4,7 @@
   user-select: none;
   cursor: pointer;
   position: relative;
+  align-items: center;
 }
 
 input[type="checkbox"] {

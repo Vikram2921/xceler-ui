@@ -20,3 +20,16 @@
 .advance_filter_button:hover {
   background-color: #fddcb7;
 }
+
+.save_button {
+  padding: 0.5rem;
+  background: #1a75ff;
+  color: white;
+  user-select: none;
+  cursor: pointer;
+  border: none;
+  border-radius: 3px;
+}
+.save_button:hover {
+  background: rgb(14, 110, 255);
+}

@@ -65,7 +65,8 @@ import {
 } from '@fortawesome/angular-fontawesome';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {RecordInfoComponent} from "./components/RecordInfo/record-info.component";
+import { RecordInfoComponent } from './components/RecordInfo/record-info.component';
+import { AppendToDirective } from './directives/append-to.directive';
 
 @NgModule({
   imports: [
@@ -144,6 +145,7 @@ import {RecordInfoComponent} from "./components/RecordInfo/record-info.component
     SliderComponent,
     AdvanceFilterComponent,
     RecordInfoComponent,
+    AppendToDirective,
   ],
 })
 export class XcelerUiModule {

@@ -11,6 +11,7 @@ import {ProfileFunctions} from "../../../../libs/xceler-ui/src/lib/profiles/Prof
 import {environment} from "./environment";
 import {Incoterm} from "./masters/incoterm/Incoterm";
 import {LocationMaster} from "./masters/location/location";
+import {Counterparty} from "./masters/counterparty/counterparty";
 
 @Component({
   selector: 'xceler-ui-root',
@@ -51,6 +52,7 @@ export class AppComponent implements OnInit,AfterViewInit{
   private registerScreens() {
     ScreenRegister.addScreen("incoterm",new Incoterm());
     ScreenRegister.addScreen("location",new LocationMaster());
+    ScreenRegister.addScreen("counterparty",new Counterparty());
   }
 
   private registerToastTypes() {

@@ -1,5 +1,18 @@
 import {ColumnModel} from "./column-model";
 
+export class UrlModel {
+    method!:string;
+    url!:string;
+    data?:any;
+}
+export class Urls {
+    saveUrl!: UrlModel;
+    fetchUrl!: UrlModel;
+    hrefUrl!: UrlModel;
+    updateUrl!: UrlModel;
+    deleteUrl!: UrlModel;
+    importUrl!: UrlModel;
+}
 export class Tabs {
     label!: string;
     selected!: boolean;
@@ -7,31 +20,30 @@ export class Tabs {
     modelName!:string;
 }
 
-export class ScreenModel {
-  urls: {
-    saveUrl: string,
-    fetchUrl: string
-    hrefUrl: string,
-    updateUrl: string,
-    deleteUrl: string,
-    importUrl: string
-  } = {
-    saveUrl: "",
-    fetchUrl: "",
-    hrefUrl: "",
-    updateUrl: "",
-    deleteUrl: "",
-    importUrl: ""
-  };
-  gridConfiguration: {
+export class GridConfiguration {
     checkbox: boolean
-    canAdd: boolean,
-    canEdit: boolean,
-    canCopy: boolean,
-    canDelete: boolean,
-    canExport: boolean,
+    canAdd: boolean
+    canEdit: boolean
+    canCopy: boolean
+    canDelete: boolean
+    canExport: boolean
     canImport: boolean
-  } = {
+
+
+  constructor(checkbox: boolean = true, canAdd: boolean = true, canEdit: boolean = true, canCopy: boolean = true, canDelete: boolean = true, canExport: boolean = true, canImport: boolean = true) {
+    this.checkbox = checkbox;
+    this.canAdd = canAdd;
+    this.canEdit = canEdit;
+    this.canCopy = canCopy;
+    this.canDelete = canDelete;
+    this.canExport = canExport;
+    this.canImport = canImport;
+  }
+}
+
+export class ScreenModel {
+  urls!: Urls;
+  gridConfiguration: GridConfiguration = {
     canAdd: true,
     canCopy: true,
     canDelete: true,

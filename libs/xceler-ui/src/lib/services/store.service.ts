@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import {ListOption} from "../components/form-controls/core/list-option";
+import {BehaviorSubject} from "rxjs";
 
 export class Store {
   listValues: {[key: string]: ListOption[]} = {};
@@ -11,6 +12,7 @@ export class Store {
 })
 export class StoreService {
 
+  private static storeObserver = new BehaviorSubject({});
   private static stores: {[key: string]: Store} = {};
 
   static addStore(store: string) {
@@ -21,8 +23,12 @@ export class StoreService {
 
   static addListValues(store: string, key: string, value: ListOption[]) {
     this.stores[store].listValues[key] = value;
+    this.storeObserver.next({store:store,key:key,value:value});
   }
 
+  static getObserver() {
+      return this.storeObserver;
+  }
 
   static getListValues(store: string, key: string,def?:ListOption[]):ListOption[] {
     if(key?.startsWith("common_")) {

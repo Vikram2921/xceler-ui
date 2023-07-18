@@ -1,0 +1,530 @@
+{
+  "title": "Counterparty",
+  "urls": {
+    "saveUrl": "{endpoint}/api-bm/api/counterparty/v1/savecounterparty",
+    "fetchUrl": "{endpoint}/api-bm/api/counterparty/v1/getall?tenantId={tenantId}&page={page}&size=20",
+    "hrefUrl": "{endpoint}/api-bm/api/counterparty/v1/getbyuuid?tenantId=d7408d31-d720-4173-b76e-0595ce2679b4&uuid=",
+    "updateUrl": "{endpoint}/api-bm/api/counterparty/v1/update",
+    "importUrl": "{endpoint}/api-bm/api/counterparty/v1/import"
+  },
+  "sections": [
+    {
+      "sectionName": "Counterparty Detail",
+      "columns": [
+        {
+          "title": "Counterparty Code",
+          "field": "code",
+          "type": "text_field",
+          "defaultValue": "",
+          "visibilityArea": "B",
+          "onChangeValue": true,
+          "unique": true,
+          "validators": [],
+          "pipe": "",
+          "pipeOptions": null
+        },
+        {
+          "title": "Counterparty Name",
+          "field": "name",
+          "type": "text_field",
+          "defaultValue": "",
+          "visibilityArea": "B",
+          "onChangeValue": false,
+          "unique": true,
+          "validators": [],
+          "pipe": "",
+          "pipeOptions": null
+        },
+        {
+          "title": "Counterparty Type",
+          "field": "counterpartyTypeCode",
+          "type": "dropdown",
+          "defaultValue": "",
+          "visibilityArea": "B",
+          "onChangeValue": false,
+          "unique": false,
+          "list": [
+            {
+              "label": "Select",
+              "value": ""
+            },
+            {
+              "label": "Bank",
+              "value": "Bank"
+            },
+            {
+              "label": "Buyer",
+              "value": "Buyer"
+            },
+            {
+              "label": "Cash Broker",
+              "value": "Cash Broker"
+            },
+            {
+              "label": "Clearing Broker",
+              "value": "Clearing Broker"
+            },
+            {
+              "label": "Company Agent",
+              "value": "Company Agent"
+            },
+            {
+              "label": "Conversion Provider",
+              "value": "Conversion Provider"
+            },
+            {
+              "label": "Counterparty",
+              "value": "Counterparty"
+            },
+            {
+              "label": "Exchange",
+              "value": "Exchange"
+            },
+            {
+              "label": "Execution Broker",
+              "value": "Execution Broker"
+            },
+            {
+              "label": "Financing Agent",
+              "value": "Financing Agent"
+            },
+            {
+              "label": "Floor Broker",
+              "value": "Floor Broker"
+            },
+            {
+              "label": "Forwarding Agent",
+              "value": "Forwarding Agent"
+            },
+            {
+              "label": "Inspector",
+              "value": "Inspector"
+            },
+            {
+              "label": "Insurers",
+              "value": "Insurers"
+            },
+            {
+              "label": "Intercompany",
+              "value": "Intercompany"
+            },
+            {
+              "label": "Internal Plant Counterpart",
+              "value": "Internal Plant Counterpart"
+            },
+            {
+              "label": "LSE(Load Servicing Entity)",
+              "value": "LSE(Load Servicing Entity)"
+            },
+            {
+              "label": "Lawyers",
+              "value": "Lawyers"
+            },
+            {
+              "label": "Other",
+              "value": "Other"
+            },
+            {
+              "label": "Physical Broker",
+              "value": "Physical Broker"
+            },
+            {
+              "label": "Port Agent",
+              "value": "Port Agent"
+            },
+            {
+              "label": "Railcar",
+              "value": "Railcar"
+            },
+            {
+              "label": "Related Party",
+              "value": "Related Party"
+            },
+            {
+              "label": "Ship Agent",
+              "value": "Ship Agent"
+            },
+            {
+              "label": "Ship Broker",
+              "value": "Ship Broker"
+            },
+            {
+              "label": "Ship Owner",
+              "value": "Ship Owner"
+            },
+            {
+              "label": "Storage Owner",
+              "value": "Storage Owner"
+            },
+            {
+              "label": "Supplier",
+              "value": "Supplier"
+            },
+            {
+              "label": "Surveyors",
+              "value": "Surveyors"
+            },
+            {
+              "label": "Trucking",
+              "value": "Trucking"
+            },
+            {
+              "label": "Vendor",
+              "value": "Vendor"
+            }
+          ],
+          "validators": [],
+          "pipe": "",
+          "pipeOptions": null
+        },
+        {
+          "title": "Counterparty Description",
+          "field": "description",
+          "type": "textarea",
+          "defaultValue": "",
+          "visibilityArea": "B",
+          "onChangeValue": false,
+          "unique": false,
+          "validators": [],
+          "pipe": "",
+          "pipeOptions": null
+        },
+        {
+          "title": "Parent Counterparty",
+          "field": "parent",
+          "type": "dropdown",
+          "defaultValue": "none",
+          "visibilityArea": "B",
+          "onChangeValue": false,
+          "unique": false,
+          "list": [
+            {
+              "label": "None",
+              "value": "none"
+            }
+          ],
+          "validators": [],
+          "pipe": "",
+          "pipeOptions": null
+        },
+        {
+          "title": "Country Of Registration",
+          "field": "countryOfRegistration",
+          "type": "dropdown",
+          "defaultValue": "",
+          "visibilityArea": "B",
+          "onChangeValue": true,
+          "unique": false,
+          "list": [
+            {
+              "label": "Select",
+              "value": ""
+            }
+          ],
+          "validators": [],
+          "pipe": "",
+          "pipeOptions": null
+        },
+        {
+          "title": "Timezone",
+          "field": "timeZone",
+          "type": "dropdown",
+          "defaultValue": "",
+          "visibilityArea": "B",
+          "onChangeValue": false,
+          "unique": false,
+          "list": [
+            {
+              "label": "Select",
+              "value": ""
+            }
+          ],
+          "validators": [],
+          "pipe": "",
+          "pipeOptions": null
+        },
+        {
+          "title": "Day Light Saving",
+          "field": "dayLightSaving",
+          "type": "toggle_button",
+          "defaultValue": false,
+          "visibilityArea": "B",
+          "onChangeValue": false,
+          "unique": false,
+          "list": [
+            {
+              "label": "Select",
+              "value": ""
+            },
+            {
+              "label": "Enable",
+              "value": true
+            },
+            {
+              "label": "Disable",
+              "value": false
+            }
+          ],
+          "validators": [],
+          "pipe": "",
+          "pipeOptions": null
+        },
+        {
+          "title": "Currency",
+          "field": "currency",
+          "type": "dropdown",
+          "defaultValue": null,
+          "visibilityArea": "B",
+          "onChangeValue": false,
+          "unique": false,
+          "list": [
+            {
+              "label": "Select",
+              "value": ""
+            }
+          ],
+          "validators": [],
+          "pipe": "",
+          "pipeOptions": null
+        },
+        {
+          "title": "Website",
+          "field": "website",
+          "type": "text_field",
+          "defaultValue": "",
+          "visibilityArea": "B",
+          "onChangeValue": false,
+          "unique": false,
+          "validators": [],
+          "pipe": "",
+          "pipeOptions": null
+        },
+        {
+          "title": "Telephone",
+          "field": "telephone",
+          "type": "text_field",
+          "defaultValue": "",
+          "visibilityArea": "B",
+          "onChangeValue": false,
+          "unique": false,
+          "validators": [],
+          "pipe": "",
+          "pipeOptions": null
+        },
+        {
+          "title": "Fax",
+          "field": "fax",
+          "type": "text_field",
+          "defaultValue": "",
+          "visibilityArea": "B",
+          "onChangeValue": false,
+          "unique": false,
+          "validators": [],
+          "pipe": "",
+          "pipeOptions": null
+        },
+        {
+          "title": "Address",
+          "field": "address",
+          "type": "label",
+          "defaultValue": "",
+          "visibilityArea": "B",
+          "onChangeValue": false,
+          "unique": false,
+          "validators": [],
+          "pipe": "",
+          "pipeOptions": null
+        },
+        {
+          "title": "Logo",
+          "field": "logo",
+          "type": "file",
+          "defaultValue": "",
+          "visibilityArea": "B",
+          "onChangeValue": true,
+          "unique": false,
+          "validators": [],
+          "pipe": "",
+          "pipeOptions": null
+        },
+        {
+          "title": "Financing Agent",
+          "field": "financingAgent",
+          "type": "multi_select",
+          "defaultValue": "",
+          "visibilityArea": "B",
+          "onChangeValue": false,
+          "unique": false,
+          "list": [],
+          "validators": [],
+          "pipe": "",
+          "pipeOptions": null
+        },
+        {
+          "title": "External #Ref",
+          "field": "counterpartyExternalReference",
+          "type": "text_field",
+          "defaultValue": "",
+          "visibilityArea": "B",
+          "onChangeValue": false,
+          "unique": false,
+          "validators": [],
+          "pipe": "",
+          "pipeOptions": null
+        },
+        {
+          "title": "External #Ref 2",
+          "field": "counterpartyExternalReference2",
+          "type": "text_field",
+          "defaultValue": "",
+          "visibilityArea": "B",
+          "onChangeValue": false,
+          "unique": false,
+          "validators": [],
+          "pipe": "",
+          "pipeOptions": null
+        },
+        {
+          "title": "External #Ref 3",
+          "field": "counterpartyExternalReference3",
+          "type": "text_field",
+          "defaultValue": "",
+          "visibilityArea": "B",
+          "onChangeValue": false,
+          "unique": false,
+          "validators": [],
+          "pipe": "",
+          "pipeOptions": null
+        },
+        {
+          "title": "External #Ref 4",
+          "field": "counterpartyExternalReference4",
+          "type": "text_field",
+          "defaultValue": "",
+          "visibilityArea": "B",
+          "onChangeValue": false,
+          "unique": false,
+          "validators": [],
+          "pipe": "",
+          "pipeOptions": null
+        },
+        {
+          "title": "Finance Controller Approval",
+          "field": "financeControllerApproval",
+          "type": "toggle_button",
+          "defaultValue": false,
+          "visibilityArea": "B",
+          "onChangeValue": false,
+          "unique": false,
+          "list": [
+            {
+              "label": "Yes",
+              "value": true
+            },
+            {
+              "label": "No",
+              "value": false
+            }
+          ],
+          "validators": [],
+          "pipe": "",
+          "pipeOptions": null
+        },
+        {
+          "title": "Tradeable",
+          "field": "isTradeable",
+          "type": "toggle_button",
+          "defaultValue": false,
+          "visibilityArea": "B",
+          "onChangeValue": false,
+          "unique": false,
+          "list": [
+            {
+              "label": "Yes",
+              "value": true
+            },
+            {
+              "label": "No",
+              "value": false
+            }
+          ],
+          "validators": [],
+          "pipe": "",
+          "pipeOptions": null
+        },
+        {
+          "title": "Status",
+          "field": "status",
+          "type": "toggle_button",
+          "defaultValue": true,
+          "visibilityArea": "B",
+          "onChangeValue": false,
+          "unique": false,
+          "list": [
+            {
+              "label": "Select",
+              "value": ""
+            },
+            {
+              "label": "Active",
+              "value": true
+            },
+            {
+              "label": "Inactive",
+              "value": false
+            }
+          ],
+          "validators": [],
+          "pipe": "",
+          "pipeOptions": null
+        },
+        {
+          "title": "KYC Applicable",
+          "field": "kycStatus",
+          "type": "toggle_button",
+          "defaultValue": false,
+          "visibilityArea": "B",
+          "onChangeValue": false,
+          "unique": false,
+          "list": [
+            {
+              "label": "Yes",
+              "value": true
+            },
+            {
+              "label": "No",
+              "value": false
+            }
+          ],
+          "validators": [],
+          "pipe": "",
+          "pipeOptions": null
+        },
+        {
+          "title": "Logo Name",
+          "field": "logoFileName",
+          "type": "label",
+          "defaultValue": "",
+          "visibilityArea": "H",
+          "onChangeValue": false,
+          "unique": false,
+          "validators": [],
+          "pipe": "",
+          "pipeOptions": null
+        },
+        {
+          "title": "Logo Type",
+          "field": "logoFileType",
+          "type": "label",
+          "defaultValue": "",
+          "visibilityArea": "H",
+          "onChangeValue": false,
+          "unique": false,
+          "validators": [],
+          "pipe": "",
+          "pipeOptions": null
+        }
+      ]
+    }
+  ]
+}

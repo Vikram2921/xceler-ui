@@ -1,6 +1,6 @@
 import {ChangeDetectorRef, Component, EventEmitter, Output} from '@angular/core';
 import {Activity} from "../../interfaces/activity";
-import {ScreenModel} from "../../models/screen-model";
+import {GridConfiguration, ScreenModel} from "../../models/screen-model";
 import {ColumnModel} from "../../models/column-model";
 import {ApiService} from "../../services/api-service.service";
 import {StorageService} from "../../services/storage.service";
@@ -35,6 +35,7 @@ export class GridComponent extends HostActivity{
   gridConfig!:GridConfig;
   @Output() onChangeValue:EventEmitter<any> = new EventEmitter<any>();
   @Output() onPageChange:EventEmitter<number> = new EventEmitter()
+  @Output() onFieldClick:EventEmitter<{col:ColumnModel,row:{[key:string]:any}}> = new EventEmitter<{col:ColumnModel,row:{[key:string]:any}}>();
 
 
   constructor(public apiService:ApiService,public storageService:StorageService,private cd:ChangeDetectorRef) {
@@ -71,6 +72,9 @@ export class GridComponent extends HostActivity{
   }
 
   loadJson(screenModel:ScreenModel) {
+    if(!screenModel.gridConfiguration) {
+      screenModel.gridConfiguration = new GridConfiguration();
+    }
     this.screenModel = screenModel;
     this.title = screenModel.title;
     if(screenModel.sections && screenModel.sections.length > 0) {
@@ -147,4 +151,10 @@ export class GridComponent extends HostActivity{
   }
 
   protected readonly StoreService = StoreService;
+
+  onClickClickableField(col: ColumnModel,row:{[key:string]:any}) {
+    if(col.idField) {
+      this.onFieldClick.emit({col:col,row:row})
+    }
+  }
 }

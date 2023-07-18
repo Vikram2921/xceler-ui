@@ -19,7 +19,7 @@ export class PaginatorComponent extends BaseComponent implements OnChanges,OnIni
 
 
   jumpTo(number: any) {
-    if(this.selectedPage !== number) {
+    if(this.selectedPage !== number && number <= (this.totalPages - 1) && number >= 0) {
       if(number <= 0) {
         number = 0;
       }

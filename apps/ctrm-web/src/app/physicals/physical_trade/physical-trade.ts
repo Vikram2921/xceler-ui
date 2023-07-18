@@ -20,6 +20,8 @@ export class PhysicalTrade implements Activity {
     Object.keys(config).forEach(key => {
       StoreService.addListValues(this.screenJson.title,key,Resolver.convertListStringToListOptions(config[key]));
     })
+    let traderNameList = await ApiService.get(Resolver.getModifiedUrl('{endpoint}/ctrm-api/api/trade/v1/getuser?tenantId={tenantId}&userType=Trader',environment)).then((next: any) => next);
+    StoreService.addListValues("common","common_traderName",Resolver.convertListObjectToListOptions(traderNameList,'value','value'));
     this.screenJson.addOption('config',config);
     grid.loadJson(this.screenJson);
   }

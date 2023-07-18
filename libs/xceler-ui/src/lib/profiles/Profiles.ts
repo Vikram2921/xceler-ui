@@ -48,7 +48,7 @@ export const ProfileFunctions:{[key:string]:Function} = {
       if(gridObj) {
         refreshButton.disable();
         refreshButton.setAnimation('spin');
-        ApiService.get(Resolver.getModifiedUrl(activity.screenJson.urls.fetchUrl,options.options.environment,undefined,gridObj.currentPage)).then((next:any) => {
+        ApiService.decideUrlCallItself(activity.screenJson.urls.fetchUrl,options.options.environment,{page:gridObj.currentPage}).then((next:any) => {
           activity.data =next;
           gridObj.refreshData();
           refreshButton.enable();
@@ -74,7 +74,7 @@ export const ProfileFunctions:{[key:string]:Function} = {
       grid.show(activity);
       refreshButton.disable();
       refreshButton.setAnimation('spin');
-      activity.data = await ApiService.get(Resolver.getModifiedUrl(activity.screenJson.urls.fetchUrl,options.options.environment,undefined,0)).then((next:any) => next);
+      activity.data = await ApiService.decideUrlCallItself(activity.screenJson.urls.fetchUrl,options.options.environment,{page:0}).then((next:any) => next);
       grid.refreshData();
       refreshButton.enable();
       refreshButton.clearAnimation();
@@ -83,7 +83,7 @@ export const ProfileFunctions:{[key:string]:Function} = {
           grid.refreshData();
           refreshButton.disable();
         refreshButton.setAnimation('spin');
-          ApiService.get(Resolver.getModifiedUrl(activity.screenJson.urls.fetchUrl,options.options.environment,undefined,pageNumber)).then((next:any) => {
+        ApiService.decideUrlCallItself(activity.screenJson.urls.fetchUrl,options.options.environment,{page:pageNumber}).then((next:any) => {
             activity.data =next;
             grid.refreshData();
             refreshButton.enable();

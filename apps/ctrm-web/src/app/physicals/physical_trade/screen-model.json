@@ -4,7 +4,10 @@
   "functionFile": "PhysicalTradeActions",
   "urls": {
     "saveUrl": "{endpoint}/ctrm-api/api/trade/v1/createphysicaltrade",
-    "fetchUrl": "{endpoint}/ctrm-api/api/trade/v1/getallphysicaltrade?tenantId={tenantId}&tradeType=Physical&page={page}&size={size}",
+    "fetchUrl": {
+      "method": "GET",
+      "url": "{endpoint}/ctrm-api/api/trade/v1/getallphysicaltrade?tenantId={tenantId}&tradeType=Physical&page={page}&size={size}"
+    },
     "hrefUrl": "{endpoint}/ctrm-api/api/trade/v1/getphysicaltradebyuuid?tenantId=675e4e4c-a5a3-4921-99f0-ea00ea71c672&uuid=",
     "updateUrl": "{endpoint}/ctrm-api/api/trade/v1/updatephysicaltrade",
     "importUrl": "{endpoint}/ctrm-api/api/trade/v1/import?tenantId=675e4e4c-a5a3-4921-99f0-ea00ea71c672"
@@ -148,12 +151,8 @@
           "visibilityArea": "B",
           "listener": false,
           "unique": false,
-          "list": [
-            {
-              "label": "Select",
-              "value": ""
-            }
-          ],
+          "list": [],
+          "listStore": "common_traderName",
           "validators": [
             "required"
           ],
@@ -226,6 +225,7 @@
           "visibilityArea": "B",
           "listener": false,
           "unique": false,
+          "listStore": "origin",
           "validators": [],
           "pipe": "",
           "pipeOptions": null
@@ -235,6 +235,7 @@
           "field": "grade",
           "type": "dropdown",
           "defaultValue": "",
+          "listStore": "grade",
           "visibilityArea": "F",
           "listener": false,
           "unique": false,
@@ -247,6 +248,7 @@
           "field": "brand",
           "type": "dropdown",
           "defaultValue": "",
+          "listStore": "brand",
           "visibilityArea": "F",
           "listener": false,
           "unique": false,
@@ -259,6 +261,7 @@
           "field": "season",
           "type": "dropdown",
           "defaultValue": "",
+          "listStore": "season",
           "visibilityArea": "F",
           "listener": false,
           "unique": false,
@@ -471,6 +474,7 @@
           "field": "internalPackage",
           "type": "dropdown",
           "defaultValue": "",
+          "listStore": "internalPackage",
           "visibilityArea": "F",
           "listener": true,
           "unique": false,
