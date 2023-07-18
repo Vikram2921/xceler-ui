@@ -32,7 +32,6 @@ export class DualSliderComponent extends BaseFormControl {
       obj = JSON.parse(obj);
     }
     this.value = obj;
-    console.log(this.value)
     this.updateValue();
   }
 

@@ -108,7 +108,6 @@ export class FormControlService {
 
   patchValue(field: string, newValue: any) {
     if (this.formGroup.controls[field] !== null && this.formGroup.controls[field] !== undefined) {
-      console.log(this.formGroup,field,newValue);
       this.formGroup.controls[field].patchValue(newValue);
     }
   }

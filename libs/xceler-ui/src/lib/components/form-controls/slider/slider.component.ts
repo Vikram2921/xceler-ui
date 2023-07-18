@@ -1,4 +1,4 @@
-import {ChangeDetectorRef, Component, EventEmitter, forwardRef, Input, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, forwardRef, Input, OnInit, Output} from '@angular/core';
 import {Resolver} from "../../../models/resolver";
 import {BaseFormControl} from "../core/base-form-control";
 import {NG_VALUE_ACCESSOR} from "@angular/forms";
@@ -26,12 +26,8 @@ export class SliderComponent extends BaseFormControl implements OnInit{
   maxValue: string = '';
   left: number = 0;
 
-  constructor(private cd:ChangeDetectorRef) {
-    super();
-  }
-
   onSliderChange(event: any) {
-    this.value = event.target.value;
+    this.value = event;
     this.updateView();
     this.onChangeValue.emit(this.value);
   }
@@ -44,7 +40,6 @@ export class SliderComponent extends BaseFormControl implements OnInit{
   private updateView() {
     this.hoverValue = Resolver.getModifiedUrl(this.hoverFormat, {value: this.value});
     this.maxValue = Resolver.getModifiedUrl(this.maxFormat, {value: this.max});
-    this.cd.detectChanges();
   }
 
   ngOnInit(): void {

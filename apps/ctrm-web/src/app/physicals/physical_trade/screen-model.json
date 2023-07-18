@@ -60,6 +60,7 @@
           "type": "datepicker",
           "visibilityArea": "B",
           "listener": false,
+          "defaultValue": "",
           "unique": false,
           "validators": [
             "required"
@@ -895,7 +896,7 @@
           "type": "dropdown",
           "defaultValue": "USD",
           "visibilityArea": "F",
-          "disabled": true,
+          "disabled": false,
           "listener": true,
           "unique": false,
           "list": [
@@ -917,7 +918,7 @@
           "defaultValue": "0",
           "visibilityArea": "F",
           "listener": false,
-          "disabled": true,
+          "disabled": false,
           "unique": false,
           "validators": [],
           "pipe": "",

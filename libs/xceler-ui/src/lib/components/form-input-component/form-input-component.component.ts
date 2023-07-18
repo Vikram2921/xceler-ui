@@ -58,7 +58,6 @@ export class FormInputComponentComponent extends HostActivity{
       }
     })
     this.formControlService.build();
-    console.log(this.formControlService.getFormGroup())
     actionColumns.forEach(actionColumn => {
       this.attachChangeListener(actionColumn);
     })

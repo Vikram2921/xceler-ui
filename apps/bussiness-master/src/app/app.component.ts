@@ -75,7 +75,6 @@ export class AppComponent implements OnInit,AfterViewInit{
   }
 
   onItemChange(item: any) {
-    console.log(item.profile)
     if(item.profile) {
       this.jsonToUIComponent.loadProfile(Profiles.SIMPLE_GRID, {environment:environment,screen:item.profile});
     }

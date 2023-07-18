@@ -155,7 +155,6 @@ export class DeliverySchedule {
 
   private static getObligationObject(startDate: Date, quantity: any, data: any) {
     let object: any = {};
-    console.log(startDate);
     object['periodStartDate'] = this.convertDateToUTC(startDate);
     object['periodEndDate'] = (this.calculateDeliveryEndDate(data['quantityPeriodicity'].toLowerCase() === 'fixed' ? data['periodEndDate'] : startDate, data['quantityPeriodicity']));
     object['packageType'] = data['packageType'];
