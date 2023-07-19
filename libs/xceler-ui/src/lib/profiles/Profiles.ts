@@ -3,9 +3,9 @@ import {
   ApiService,
   ButtonModel,
   ColumnModel,
-  ComponentRegister,
+  ComponentRegister, FormControlService,
   FormInputComponentComponent,
-  FunctionParams,
+  FunctionParams, FunctionRegister,
   GridComponent,
   GridToolbarComponent,
   ListOption,
@@ -21,20 +21,11 @@ import {
 export const ProfileFunctions:{[key:string]:Function} = {
 
   simple_grid : async (options:FunctionParams | any) => {
+    options['formControlService'] = new FormControlService();
     let activity:Activity = ScreenRegister.getScreen(options.options.screen);
     let update:boolean = options.update;
     let idField:ColumnModel | undefined = activity.screenJson.getColumns().find(column => column.idField);
     let gridObj!:GridComponent;
-    let headerProps:any = {
-      show:true,
-      title:'New '+activity.screenJson.title,
-    }
-    let footerProps:any = {
-      show:true,
-      progressButtons:[new ProgressButtonProp('Save')]
-    }
-    PopupService.addPopup("dsad",FormInputComponentComponent,options,headerProps,footerProps,new PopupProps('right',true,true,'75%'));
-
     let screenInfoFunction:Function = (screenInfo:ScreenInfoComponent) => {
       screenInfo.iconPath = activity.screenJson.iconPath;
       screenInfo.title = activity.screenJson.title;
@@ -55,7 +46,21 @@ export const ProfileFunctions:{[key:string]:Function} = {
               ToastService.addErrorMessage('Warning','Please select a row to edit');
               return;
           }
-          let updateButton = new ProgressButtonProp('Update',false,false,() => {
+          let updateButton = new ProgressButtonProp('Update',false,false,(buttonProp:ProgressButtonProp) => {
+            buttonProp.text = "Updating";
+            buttonProp.disabled = true;
+            let hasPreSave = FunctionRegister.hasFunction(activity.screenJson.functionFile,"preSave");
+            let payload = {};
+            if(hasPreSave) {
+              let func = FunctionRegister.getFunction(activity.screenJson.functionFile,"preSave");
+              if(func) {
+                payload = func(options,'update');
+              }
+            }
+            // ApiService.decideUrlCallItself(activity.screenJson.urls.updateUrl,options.options.environment,payload).then((next:any) => {
+            //   PopupService.removePopup(next.buttonName);
+            //   ToastService.addSuccessMessage('Success','Data updated successfully !');
+            // });
           })
           buttons.push(updateButton);
           if(idField) {
@@ -71,11 +76,18 @@ export const ProfileFunctions:{[key:string]:Function} = {
           let saveButton = new ProgressButtonProp('Save',false,false,(buttonProp:ProgressButtonProp) => {
             buttonProp.text = "Saving";
             buttonProp.disabled = true;
-            setTimeout(() => {
-              buttonProp.text = "Save";
-              buttonProp.loading = false;
-              buttonProp.disabled = false;
-            },2000);
+            let hasPreSave = FunctionRegister.hasFunction(activity.screenJson.functionFile,"preSave");
+            let payload = {};
+            if(hasPreSave) {
+              let func = FunctionRegister.getFunction(activity.screenJson.functionFile,"preSave");
+              if(func) {
+                payload = func(options,'save');
+              }
+            }
+            // ApiService.decideUrlCallItself(activity.screenJson.urls.saveUrl,options.options.environment,payload).then((next:any) => {
+            //   PopupService.removePopup(next.buttonName);
+            //   ToastService.addSuccessMessage('Success','Data saved successfully !');
+            // });
           })
           buttons.push(saveButton);
           options['rowData'] = null;

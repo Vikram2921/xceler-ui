@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import {ListOption} from "../components/form-controls/core/list-option";
 import {BehaviorSubject} from "rxjs";
+import currency from '../assets/currency.json'
+import {Resolver} from "../models/resolver";
 
 export class Store {
   listValues: {[key: string]: ListOption[]} = {};
@@ -14,6 +16,15 @@ export class StoreService {
 
   private static storeObserver = new BehaviorSubject({});
   private static stores: {[key: string]: Store} = {};
+
+  public static addCommon() {
+    StoreService.addStore("common");
+    StoreService.addListValues("common","common_currency",Resolver.convertListObjectToListOptions(Object.values(currency),"code","code"));
+  }
+
+  public static hasStore(store: string) {
+    return this.stores[store];
+  }
 
   static addStore(store: string) {
     if(this.stores[store])

@@ -9,9 +9,13 @@ import {
 import {DeliveryScheduleComponent} from "./delivery-schedule/delivery-schedule.component";
 import {environment} from "../../environment";
 import {DeliverySchedule} from "./delivery-schedule/delivery-schedule";
+import {Validators} from "@angular/forms";
 
 
 export const PhysicalTradeActions: { [key: string]: Function } = {
+  preSave: (params: FunctionParams,mode:string) => {
+    console.log(params,mode);
+  },
   company: (params: FunctionParams) => {
 
   },
@@ -119,6 +123,7 @@ export const PhysicalTradeActions: { [key: string]: Function } = {
   provisionalPricing: (params: FunctionParams) => {
     let currentValue = params.currentValue;
     if (currentValue) {
+      params.formControlService.updateValidators('provisionalPriceType', [Validators.required]);
       params.formControlService.enable('provisionalPriceType');
       params.formControlService.enable('percentage');
       params.formControlService.enable('provisionalPrice');
@@ -183,5 +188,18 @@ export const PhysicalTradeActions: { [key: string]: Function } = {
         options['hoverFormatRight'] = hoverFormatMax;
         params.field.customOptions = options;
       }
+  },
+  provisionalPriceType: (params:FunctionParams) => {
+    if(params.currentValue && params.currentValue.length > 0) {
+      if(params.currentValue.toLowerCase() === "percentage") {
+        params.formControlService.enable('percentage');
+        params.formControlService.updateValidators('percentage',[Validators.required])
+        params.formControlService.disable('provisionalPrice','');
+      } else {
+        params.formControlService.disable('percentage','');
+        params.formControlService.updateValidators('provisionalPrice',[Validators.required])
+        params.formControlService.enable('provisionalPrice');
+      }
+    }
   }
 }

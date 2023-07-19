@@ -23,13 +23,14 @@ export class FormInputComponentComponent extends HostActivity{
   sectionMap:Map<string,ColumnModel[]> = new Map();
   sectionNames:string[] = [];
   editMode = false;
-  formControlService:FormControlService = new FormControlService();
+  formControlService!:FormControlService;
 
   constructor() {
     super();
   }
   override init(props: { [p: string]: any }) {
     let activity = ScreenRegister.getScreen(props['options'].screen);
+    this.formControlService = props['formControlService'];
     this.rowData = props['rowData'];
     this.editMode = (this.rowData !== null && this.rowData !== undefined);
     this.columns = [];

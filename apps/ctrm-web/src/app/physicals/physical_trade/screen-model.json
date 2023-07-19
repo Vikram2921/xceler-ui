@@ -775,6 +775,7 @@
           "visibilityArea": "F",
           "listener": true,
           "unique": false,
+          "listStore": "common_currency",
           "list": [
             {
               "label": "Select",
@@ -920,6 +921,7 @@
           "type": "dropdown",
           "defaultValue": "",
           "visibilityArea": "F",
+          "listStore": "common_currency",
           "listener": true,
           "disabled": true,
           "unique": false,
@@ -961,6 +963,7 @@
           "visibilityArea": "F",
           "disabled": false,
           "listener": true,
+          "listStore": "common_currency",
           "unique": false,
           "list": [
             {
@@ -982,6 +985,8 @@
           "visibilityArea": "F",
           "listener": false,
           "disabled": false,
+          "min": 0,
+          "max": 100,
           "unique": false,
           "validators": [],
           "pipe": "",

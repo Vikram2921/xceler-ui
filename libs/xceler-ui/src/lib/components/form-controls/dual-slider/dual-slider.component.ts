@@ -1,6 +1,7 @@
-import {Component, forwardRef, Input} from '@angular/core';
+import {Component, forwardRef, Input, OnChanges, SimpleChanges} from '@angular/core';
 import {NG_VALUE_ACCESSOR} from "@angular/forms";
 import {BaseFormControl} from "../core/base-form-control";
+
 
 @Component({
   selector: 'xui-dual-slider',
@@ -14,7 +15,7 @@ import {BaseFormControl} from "../core/base-form-control";
     },
   ]
 })
-export class DualSliderComponent extends BaseFormControl{
+export class DualSliderComponent extends BaseFormControl implements OnChanges{
 
   @Input() leftField:string = 'min';
   @Input() rightField:string = 'max';
@@ -38,6 +39,19 @@ export class DualSliderComponent extends BaseFormControl{
     }
     this.value = obj;
     this.updateValue();
+  }
+
+  setCustomOptions(options:any) {
+      this.hoverFormatLeft = options.hoverFormatLeft;
+      this.maxFormatLeft = options.maxFormatLeft;
+      this.hoverFormatRight = options.hoverFormatRight;
+      this.maxFormatRight = options.maxFormatRight;
+  }
+
+  ngOnChanges(changes:SimpleChanges) {
+    if(changes['customOptions']?.currentValue) {
+        this.setCustomOptions(changes['customOptions'].currentValue);
+    }
   }
 
   private updateValue() {

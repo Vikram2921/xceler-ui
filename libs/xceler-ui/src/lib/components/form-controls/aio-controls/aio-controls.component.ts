@@ -16,33 +16,31 @@ import {ListOption} from "../core/list-option";
     },
   ]
 })
-export class AioControlsComponent extends BaseFormControl{
-  @Input() field:string | null = '';
-  @Input() header:string | null = '';
-  @Input() pipe!:string;
-  @Input() pipeOptions!:any;
-  @Input() controlDisabledView:boolean = false;
+export class AioControlsComponent extends BaseFormControl {
+  @Input() field: string | null = '';
+  @Input() header: string | null = '';
+  @Input() pipe!: string;
+  @Input() pipeOptions!: any;
+  @Input() controlDisabledView: boolean = false;
   @Input() controlType: ControlType | string = '';
   @Input() listOptions!: ListOption[];
-  @Input() customOptions!:any;
+  @Input() customOptions!: any;
   @Output() onChangeValue = new EventEmitter<any>();
-  @Output() onFocusField:EventEmitter<string> = new EventEmitter<string>();
-  @Output() onClickButton:EventEmitter<string> = new EventEmitter<string>();
+  @Output() onFocusField: EventEmitter<string> = new EventEmitter<string>();
+  @Output() onClickButton: EventEmitter<string> = new EventEmitter<string>();
+  @Input() max: any;
+  @Input() min: any;
 
   writeValue(obj: any): void {
     this.value = obj;
   }
 
-  protected readonly onfocus = onfocus;
-
-  onFocusIn(event: FocusEvent) {
-    this.onFocusField.emit(this.field??'');
+  onFocusIn() {
+    this.onFocusField.emit(this.field ?? '');
   }
 
-  protected readonly ControlType = ControlType;
-
   onButtonClick() {
-    this.onClickButton.emit(this.field??'');
+    this.onClickButton.emit(this.field ?? '');
   }
 
   updateValue($event: any) {

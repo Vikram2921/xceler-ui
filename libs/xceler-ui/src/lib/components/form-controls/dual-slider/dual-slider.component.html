@@ -1,5 +1,5 @@
 <div style="display: inline-flex;width: 100%;padding: 0.7rem">
-  <xui-slider direction="rtl" [value]="val1" [maxFormat]="customOptions?.maxFormatLeft??'{value}'" [hoverFormat]="customOptions?.hoverFormatLeft??'{value}'" (onChangeValue)="onChangeSliderLeft($event)"></xui-slider>
+  <xui-slider direction="rtl" [value]="val1" [maxFormat]="maxFormatLeft" [hoverFormat]="hoverFormatLeft" (onChangeValue)="onChangeSliderLeft($event)"></xui-slider>
   <span style="width: 3px;height: 18px;background: #737373"></span>
-  <xui-slider [value]="val2" [maxFormat]="customOptions?.maxFormatRight??'{value}'" [hoverFormat]="customOptions?.hoverFormatRight??'{value}'" (onChangeValue)="onChangeSliderRight($event)"></xui-slider>
+  <xui-slider [value]="val2" [maxFormat]="maxFormatRight" [hoverFormat]="hoverFormatRight" (onChangeValue)="onChangeSliderRight($event)"></xui-slider>
 </div>

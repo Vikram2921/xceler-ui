@@ -17,6 +17,8 @@ import {NG_VALUE_ACCESSOR} from "@angular/forms";
 export class TextFieldComponent extends BaseFormControl{
   @Input() placeholder: any = 'Enter Value';
   @Input() type: string = 'text';
+  @Input() min: any;
+  @Input() max: any;
   writeValue(obj: any): void {
     this.value = obj;
   }
