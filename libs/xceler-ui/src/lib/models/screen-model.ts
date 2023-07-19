@@ -43,15 +43,7 @@ export class GridConfiguration {
 
 export class ScreenModel {
   urls!: Urls;
-  gridConfiguration: GridConfiguration = {
-    canAdd: true,
-    canCopy: true,
-    canDelete: true,
-    canEdit: true,
-    canExport: true,
-    canImport: true,
-    checkbox: true
-  };
+  gridConfiguration: GridConfiguration = new GridConfiguration();
   tabs: Tabs[] = [];
   sections!: {"sectionName":string,columns:ColumnModel[]}[];
   columns: ColumnModel[] = [];

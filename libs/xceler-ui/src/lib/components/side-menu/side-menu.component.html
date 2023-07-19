@@ -15,15 +15,15 @@
     </div>
   </div>
   <div class="menu scrollbar">
-    <div *ngFor="let item of menuJson" class="menu_item" (click)="onClickItem(item)" (mouseenter)="!pinned && !hovered?showChilds(item,$event):''">
+    <div *ngFor="let item of menuJson" id="{{item.iconId}}" class="menu_item" (click)="onClickItem(item)" (mouseenter)="showChilds(item)">
       <img style="margin-left: 0.5rem" alt="{{item.iconLabel}}" src='./assets/icons/{{item.iconPath}}'>
       <p style="width: inherit" *ngIf="hovered || pinned">{{item.iconLabel}}</p>
+      <xui-context-popup *ngIf="!pinned && !hovered" [targetElement]="item.iconId" [attachLeaveListener]="true">
+        <div *ngFor="let child of childs" class="menu_item" style="padding: 10px;gap: 0.2rem" (click)="onClickItem(child)">
+          <img style="mix-blend-mode: multiply" height="25" alt="{{child.childLabel}}" src='./assets/icons/{{child.childIconPath}}'>
+          <p style="font-weight: 600;font-size: 14px;margin-left: 10px">{{child.childLabel}}</p>
+        </div>
+      </xui-context-popup>
     </div>
   </div>
 </div>
-<xui-context-popup>
-  <div *ngFor="let child of childs" class="menu_item" style="padding: 10px;gap: 0.2rem" (click)="onClickItem(child)">
-      <img style="mix-blend-mode: multiply" height="25" alt="{{child.childLabel}}" src='./assets/icons/{{child.childIconPath}}'>
-      <p style="font-weight: 600;font-size: 14px;margin-left: 10px">{{child.childLabel}}</p>
-  </div>
-</xui-context-popup>

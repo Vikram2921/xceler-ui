@@ -29,4 +29,14 @@ export class FunctionRegister {
     }
     return null;
   }
+
+  static hasFunction(fileName:string,functionName:string) {
+    if(this.functionFiles.has(fileName)) {
+      let file = this.functionFiles.get(fileName);
+      if(file && file[functionName]) {
+          return true;
+      }
+    }
+    return false;
+  }
 }

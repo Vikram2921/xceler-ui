@@ -25,6 +25,7 @@ import {
   faCalendar,
   faCircle,
   faCheckCircle,
+  faSpinner, faInfoCircle
 } from '@fortawesome/free-solid-svg-icons';
 import { CommonModule } from '@angular/common';
 import { GridComponent } from './components/grid/grid.component';
@@ -158,6 +159,7 @@ export class XcelerUiModule {
       faAdd,
       faFileImport,
       faFileExport,
+      faSpinner,
       faSave,
       faTimes,
       faCheck,
@@ -175,7 +177,8 @@ export class XcelerUiModule {
       faForward,
       faForwardFast,
       faBackward,
-      faBackwardFast
+      faBackwardFast,
+      faInfoCircle
     );
   }
 }

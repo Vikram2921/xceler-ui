@@ -36,7 +36,7 @@
 
 .option-button-disabled {
   cursor: not-allowed;
-  background: rgba(118, 118, 118, 0.11);
+  opacity: 0.5;
 }
 
 

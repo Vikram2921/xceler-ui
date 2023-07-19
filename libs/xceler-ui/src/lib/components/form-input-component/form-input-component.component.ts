@@ -20,21 +20,35 @@ export class FormInputComponentComponent extends HostActivity{
   currentFocusField = '';
   rowData!:{[key:string]:any};
   columns:ColumnModel[] = [];
+  sectionMap:Map<string,ColumnModel[]> = new Map();
+  sectionNames:string[] = [];
   editMode = false;
-  formControlService:FormControlService = new FormControlService();
+  formControlService!:FormControlService;
 
   constructor() {
     super();
   }
   override init(props: { [p: string]: any }) {
-    this.activity = ScreenRegister.getScreen(props['options'].screen);
+    let activity = ScreenRegister.getScreen(props['options'].screen);
+    this.formControlService = props['formControlService'];
     this.rowData = props['rowData'];
     this.editMode = (this.rowData !== null && this.rowData !== undefined);
+    this.columns = [];
+    if(activity.screenJson.sections && activity.screenJson.sections.length > 0) {
+        activity.screenJson.sections.forEach(section => {
+            this.sectionMap.set(section.sectionName,section.columns);
+            this.columns = this.columns.concat(section.columns)
+          this.sectionNames.push(section.sectionName);
+        })
+    } else {
+      this.columns = activity.screenJson.getColumns();
+    }
+    this.activity = activity;
     this.buildFormGroup();
   }
 
-  getFormVisibleFields(columns:ColumnModel[]) {
-    return columns.filter(column => ['B','F'].includes(<string>column.visibilityArea));
+  getFormVisibleFields(columns:ColumnModel[] | undefined) {
+    return columns?columns.filter(column => ['B','F'].includes(<string>column.visibilityArea)):[];
   }
 
   private getValueForForm(col:ColumnModel) {
@@ -45,7 +59,6 @@ export class FormInputComponentComponent extends HostActivity{
   }
 
   private buildFormGroup() {
-    this.columns = this.activity.screenJson.getColumns();
     const actionColumns:ColumnModel[] =[];
     const disabled:string[] =[];
     this.columns.forEach((col) => {
@@ -62,7 +75,7 @@ export class FormInputComponentComponent extends HostActivity{
       this.attachChangeListener(actionColumn);
     })
     disabled.forEach((name) => {
-      this.formControlService.disable(name);
+      this.formControlService.disable(name,null);
     })
   }
 

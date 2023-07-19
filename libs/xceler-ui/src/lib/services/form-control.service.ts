@@ -78,7 +78,7 @@ export class FormControlService {
     this.formGroup.controls[field].updateValueAndValidity();
   }
 
-  disable(field:string,value?:any) {
+  disable(field:string,value:any) {
     this.formGroup.controls[field].disable();
     if(value !== null && value !== undefined) {
         this.setValue(field,value);
@@ -204,13 +204,13 @@ export class FormControlService {
 
   hasControl(controlName: string): boolean {
     if (this.formGroup !== null && this.formGroup !== undefined) {
-      return this.formGroup.contains(controlName);
+      return this.formGroup.controls[controlName] !== null && this.formGroup.controls[controlName] !== undefined;
     }
     return false;
   }
 
   attachChangeListener(field:string,functionToRun:Function | null,params:FunctionParams,kickStart:boolean = false) {
-    if(this.formGroup.contains(field) && functionToRun != null) {
+    if(this.formGroup.controls[field] && functionToRun != null) {
       if(kickStart) {
         params.previousValue = this.formGroup.value[field];
         params.currentValue = this.formGroup.value[field];

@@ -89,6 +89,20 @@ export class DropdownComponent extends BaseFormControl implements  OnChanges {
         if(changes['listOptions'].currentValue === null || changes['listOptions'].currentValue === undefined || changes['listOptions'].currentValue.length === 0) {
             this.listOptions = [new ListOption()];
         }
+        if(this.multiple) {
+          this.selectedValues = this.value;
+          this.selectedOptions = this.listOptions.filter(option => this.selectedValues.includes(option.value));
+          this.selectedLabels = this.selectedOptions.map(option => option.label);
+        } else {
+          let filtered = this.listOptions.filter(option => this.value == option.value);
+          if(filtered.length > 0) {
+              this.selectedOption = filtered[0];
+              this.selectedValues = [];
+              this.selectedValues.push(this.selectedOption.value);
+              this.selectedLabels = [];
+              this.selectedLabels.push(this.selectedOption.label);
+          }
+        }
     }
   }
 

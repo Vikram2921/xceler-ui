@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import {ListOption} from "../components/form-controls/core/list-option";
 import {BehaviorSubject} from "rxjs";
+import currency from '../assets/currency.json'
+import {Resolver} from "../models/resolver";
 
 export class Store {
   listValues: {[key: string]: ListOption[]} = {};
@@ -14,6 +16,15 @@ export class StoreService {
 
   private static storeObserver = new BehaviorSubject({});
   private static stores: {[key: string]: Store} = {};
+
+  public static addCommon() {
+    StoreService.addStore("common");
+    StoreService.addListValues("common","common_currency",Resolver.convertListObjectToListOptions(Object.values(currency),"code","code"));
+  }
+
+  public static hasStore(store: string) {
+    return this.stores[store];
+  }
 
   static addStore(store: string) {
     if(this.stores[store])
@@ -30,11 +41,17 @@ export class StoreService {
       return this.storeObserver;
   }
 
-  static getListValues(store: string, key: string,def?:ListOption[]):ListOption[] {
+  static getListValues(store: string, key?: string,defaultList?:ListOption[]) {
     if(key?.startsWith("common_")) {
       store = "common";
     }
-    return this.stores[store].listValues[key]??def??[new ListOption()];
+    if(key && key.length > 0 && this.stores[store]) {
+      let list = this.stores[store].listValues[key];
+      if(list && list.length > 0) {
+        return list;
+      }
+    }
+    return (defaultList && defaultList.length > 0)?defaultList:[new ListOption()];
   }
   static getStore(store: string) {
     return this.stores[store];

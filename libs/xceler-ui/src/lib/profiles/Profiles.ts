@@ -1,15 +1,27 @@
 import {
-  Activity, ApiService, ButtonModel,
-  ColumnModel, ComponentRegister, FormInputComponentComponent,
-  FunctionParams,
-  GridComponent, GridToolbarComponent, ListOption, OptionButtonComponent, PopupProps, PopupService, Resolver,
+  Activity,
+  ApiService,
+  ButtonModel,
+  ColumnModel,
+  ComponentRegister, FormControlService,
+  FormInputComponentComponent,
+  FunctionParams, FunctionRegister,
+  GridComponent,
+  GridToolbarComponent,
+  ListOption,
+  OptionButtonComponent,
+  PopupProps,
+  PopupService,
+  ProgressButtonProp,
   ScreenInfoComponent,
-  ScreenRegister, ToastService
+  ScreenRegister,
+  ToastService
 } from "@xceler-ui/xceler-ui";
 
 export const ProfileFunctions:{[key:string]:Function} = {
 
   simple_grid : async (options:FunctionParams | any) => {
+    options['formControlService'] = new FormControlService();
     let activity:Activity = ScreenRegister.getScreen(options.options.screen);
     let update:boolean = options.update;
     let idField:ColumnModel | undefined = activity.screenJson.getColumns().find(column => column.idField);
@@ -27,19 +39,65 @@ export const ProfileFunctions:{[key:string]:Function} = {
           show:true,
           title:'New '+activity.screenJson.title,
         }
+        let buttons:ProgressButtonProp[] =[];
+        let info:any = null;
         if(next.buttonName == 'Edit') {
           if(activity.selectedRows.length == 0){
               ToastService.addErrorMessage('Warning','Please select a row to edit');
               return;
           }
+          let updateButton = new ProgressButtonProp('Update',false,false,(buttonProp:ProgressButtonProp) => {
+            buttonProp.text = "Updating";
+            buttonProp.disabled = true;
+            let hasPreSave = FunctionRegister.hasFunction(activity.screenJson.functionFile,"preSave");
+            let payload = {};
+            if(hasPreSave) {
+              let func = FunctionRegister.getFunction(activity.screenJson.functionFile,"preSave");
+              if(func) {
+                payload = func(options,'update');
+              }
+            }
+            // ApiService.decideUrlCallItself(activity.screenJson.urls.updateUrl,options.options.environment,payload).then((next:any) => {
+            //   PopupService.removePopup(next.buttonName);
+            //   ToastService.addSuccessMessage('Success','Data updated successfully !');
+            // });
+          })
+          buttons.push(updateButton);
           if(idField) {
             headerProps.title = activity.selectedRows[0][idField.field];
           }
+          info = {};
+          info['createdBy'] = activity.selectedRows[0]['createdBy'];
+          info['createdTimestamp'] = activity.selectedRows[0]['createdTimestamp'];
+          info['updatedBy']= activity.selectedRows[0]['updatedBy'];
+          info['updatedTimestamp'] = activity.selectedRows[0]['updatedTimestamp'];
           options['rowData'] = activity.selectedRows[0];
         } else {
+          let saveButton = new ProgressButtonProp('Save',false,false,(buttonProp:ProgressButtonProp) => {
+            buttonProp.text = "Saving";
+            buttonProp.disabled = true;
+            let hasPreSave = FunctionRegister.hasFunction(activity.screenJson.functionFile,"preSave");
+            let payload = {};
+            if(hasPreSave) {
+              let func = FunctionRegister.getFunction(activity.screenJson.functionFile,"preSave");
+              if(func) {
+                payload = func(options,'save');
+              }
+            }
+            // ApiService.decideUrlCallItself(activity.screenJson.urls.saveUrl,options.options.environment,payload).then((next:any) => {
+            //   PopupService.removePopup(next.buttonName);
+            //   ToastService.addSuccessMessage('Success','Data saved successfully !');
+            // });
+          })
+          buttons.push(saveButton);
           options['rowData'] = null;
         }
-        PopupService.addPopup(next.buttonName,FormInputComponentComponent,options,headerProps,undefined,new PopupProps('right',true,true,'75%'));
+        let footerProps:any = {
+          show:true,
+          progressButtons:buttons,
+          info:info
+        }
+        PopupService.addPopup(next.buttonName,FormInputComponentComponent,options,headerProps,footerProps,new PopupProps('right',true,true,'75%'));
         activity.selectedRows = [];
       }
     }

@@ -77,7 +77,7 @@
           "defaultValue": "",
           "visibilityArea": "B",
           "listener": true,
-          "unique": false,
+          "unique": true,
           "list": [
             {
               "label": "Buy",
@@ -104,7 +104,7 @@
           "defaultValue": "",
           "visibilityArea": "F",
           "listener": true,
-          "unique": false,
+          "unique": true,
           "list": [],
           "validators": [
             "required"
@@ -161,6 +161,20 @@
           "pipeOptions": null
         },
         {
+          "title": "Created By",
+          "field": "createdBy",
+          "type": "label",
+          "defaultValue": "",
+          "visibilityArea": "F",
+          "listener": false,
+          "unique": false,
+          "list": [],
+          "listStore": "",
+          "validators": [],
+          "pipe": "",
+          "pipeOptions": null
+        },
+        {
           "title": "Broker",
           "field": "broker",
           "type": "dropdown",
@@ -189,6 +203,17 @@
           "title": "External Reference",
           "field": "externalReference",
           "type": "text_field",
+          "defaultValue": "",
+          "visibilityArea": "F",
+          "listener": false,
+          "unique": false,
+          "validators": [],
+          "pipe": "",
+          "pipeOptions": null
+        },{
+          "title": "Contract Term",
+          "field": "contractTerm",
+          "type": "dropdown",
           "defaultValue": "",
           "visibilityArea": "F",
           "listener": false,
@@ -510,6 +535,34 @@
           "pipeOptions": null
         },
         {
+          "title": "External Package Type",
+          "field": "externalPackage",
+          "type": "dropdown",
+          "defaultValue": "",
+          "listStore": "externalPackage",
+          "visibilityArea": "F",
+          "listener": false,
+          "unique": false,
+          "disabled": true,
+          "list": [],
+          "validators": [],
+          "pipe": "",
+          "pipeOptions": null
+        },
+        {
+          "title": "External Package Unit",
+          "field": "externalPackageUnit",
+          "type": "number",
+          "defaultValue": "",
+          "visibilityArea": "F",
+          "listener": false,
+          "disabled": true,
+          "unique": false,
+          "validators": [],
+          "pipe": "",
+          "pipeOptions": null
+        },
+        {
           "title": "Quantity Periodicity",
           "field": "quantityPeriodicity",
           "type": "dropdown",
@@ -722,6 +775,7 @@
           "visibilityArea": "F",
           "listener": true,
           "unique": false,
+          "listStore": "common_currency",
           "list": [
             {
               "label": "Select",
@@ -867,6 +921,7 @@
           "type": "dropdown",
           "defaultValue": "",
           "visibilityArea": "F",
+          "listStore": "common_currency",
           "listener": true,
           "disabled": true,
           "unique": false,
@@ -908,6 +963,7 @@
           "visibilityArea": "F",
           "disabled": false,
           "listener": true,
+          "listStore": "common_currency",
           "unique": false,
           "list": [
             {
@@ -929,6 +985,8 @@
           "visibilityArea": "F",
           "listener": false,
           "disabled": false,
+          "min": 0,
+          "max": 100,
           "unique": false,
           "validators": [],
           "pipe": "",

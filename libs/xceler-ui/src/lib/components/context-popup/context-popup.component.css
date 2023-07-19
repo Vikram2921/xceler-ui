@@ -1,5 +1,5 @@
 .context_popup {
-  position: absolute;
+  position: fixed;
   z-index: 15;
   border-radius: 0.2rem;
   background: white;

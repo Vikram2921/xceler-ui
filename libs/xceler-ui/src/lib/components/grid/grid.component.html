@@ -42,7 +42,7 @@
                           [controlDisabledView]="col.disableControlView"
                           [pipe]="col.pipe" [pipeOptions]="col.pipeOptions"
                           [value]="row[col.field]" (onChangeValue)="onChangeValue.emit($event)"
-                          [listOptions]="(col.list || col.listStore)?StoreService.getListValues(activity.screenJson.title,col.listStore,col.list):[]"></xui-aio-controls>
+                          [listOptions]="StoreService.getListValues(activity.screenJson.title,col.listStore,col.list)"></xui-aio-controls>
           </ng-template>
           <ng-template #output let-row="row" let-col="col">
             <ng-container [ngSwitch]="col.pipe">

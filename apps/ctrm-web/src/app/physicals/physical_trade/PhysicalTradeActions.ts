@@ -4,15 +4,18 @@ import {
   ListOption,
   PopupService,
   Resolver,
-  StoreService,
-  ToastService
+  StoreService
 } from "@xceler-ui/xceler-ui";
 import {DeliveryScheduleComponent} from "./delivery-schedule/delivery-schedule.component";
 import {environment} from "../../environment";
 import {DeliverySchedule} from "./delivery-schedule/delivery-schedule";
+import {Validators} from "@angular/forms";
 
 
 export const PhysicalTradeActions: { [key: string]: Function } = {
+  preSave: (params: FunctionParams,mode:string) => {
+    console.log(params,mode);
+  },
   company: (params: FunctionParams) => {
 
   },
@@ -51,7 +54,6 @@ export const PhysicalTradeActions: { [key: string]: Function } = {
       StoreService.addListValues(params.activity.screenJson.title, "season", season);
       StoreService.addListValues(params.activity.screenJson.title, "externalPackage", externalPackage);
       StoreService.addListValues(params.activity.screenJson.title, "internalPackage", internalPackage);
-      console.log(params.formControlService.getFormGroup().value)
     }
   },
   deliveryScheduleCalc: async (params: FunctionParams) => {
@@ -96,10 +98,14 @@ export const PhysicalTradeActions: { [key: string]: Function } = {
       params.formControlService.disable('quantity', 0);
       params.formControlService.enable("internalPackage")
       params.formControlService.enable("internalPackageUnit")
+      params.formControlService.enable("externalPackage")
+      params.formControlService.enable("externalPackageUnit")
     } else {
       params.formControlService.enable('quantity');
       params.formControlService.disable("internalPackage", '')
       params.formControlService.disable("internalPackageUnit", 0)
+      params.formControlService.disable("externalPackage",'')
+      params.formControlService.disable("externalPackageUnit",0)
     }
   },
   priceType: (params: FunctionParams) => {
@@ -117,6 +123,7 @@ export const PhysicalTradeActions: { [key: string]: Function } = {
   provisionalPricing: (params: FunctionParams) => {
     let currentValue = params.currentValue;
     if (currentValue) {
+      params.formControlService.updateValidators('provisionalPriceType', [Validators.required]);
       params.formControlService.enable('provisionalPriceType');
       params.formControlService.enable('percentage');
       params.formControlService.enable('provisionalPrice');
@@ -157,6 +164,41 @@ export const PhysicalTradeActions: { [key: string]: Function } = {
       let response = await ApiService.get(Resolver.getModifiedUrl(url, environment, {name:  encodeURIComponent(params.currentValue)})).then((response: any) => response);
       if(response && response.length > 0 && response[0]) {
         params.formControlService.getFormGroup().controls['paymentTermsClause'].patchValue(response[0].description);
+      }
+    }
+  },
+  quantityToleranceType: (params:FunctionParams) => {
+      if(params.field) {
+        let hoverFormatMax: string;
+        let maxFormatMax: string;
+        let hoverFormatMin: string;
+        let maxFormatMin: string;
+        let unit = params.formGroup?.value['quantityUom'];
+        if(params.currentValue === "percentage") {
+          unit ="%";
+        }
+        hoverFormatMax = "{value} " + unit;
+        maxFormatMax = "{value} " + unit;
+        maxFormatMin = "-{value} " + unit;
+        hoverFormatMin = "-{value} " + unit;
+        let options:any = {};
+        options['maxFormatLeft'] = maxFormatMin;
+        options['hoverFormatLeft'] = hoverFormatMin;
+        options['maxFormatRight'] = maxFormatMax;
+        options['hoverFormatRight'] = hoverFormatMax;
+        params.field.customOptions = options;
+      }
+  },
+  provisionalPriceType: (params:FunctionParams) => {
+    if(params.currentValue && params.currentValue.length > 0) {
+      if(params.currentValue.toLowerCase() === "percentage") {
+        params.formControlService.enable('percentage');
+        params.formControlService.updateValidators('percentage',[Validators.required])
+        params.formControlService.disable('provisionalPrice','');
+      } else {
+        params.formControlService.disable('percentage','');
+        params.formControlService.updateValidators('provisionalPrice',[Validators.required])
+        params.formControlService.enable('provisionalPrice');
       }
     }
   }

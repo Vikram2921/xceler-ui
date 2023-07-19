@@ -63,7 +63,6 @@ export class AppComponent implements OnInit,AfterViewInit{
 
   private registerScreens() {
     ScreenRegister.addScreen("physicalTrade",new PhysicalTrade());
-    // ScreenRegister.addScreen("paperTrade",new PaperTrade());
   }
 
   private registerToastTypes() {
@@ -93,6 +92,7 @@ export class AppComponent implements OnInit,AfterViewInit{
   }
 
   private async storeCommonLists() {
+    StoreService.addCommon();
     let url = "{endpoint}/api-iam/api/userProfile/v1/getUserDetails?userId={username}&tenantId={tenantId}"
     let resp = await ApiService.get(Resolver.getModifiedUrl(url,environment)).then((next:any) => next);
     StoreService.addStore("common");
