@@ -51,7 +51,6 @@ export const PhysicalTradeActions: { [key: string]: Function } = {
       StoreService.addListValues(params.activity.screenJson.title, "season", season);
       StoreService.addListValues(params.activity.screenJson.title, "externalPackage", externalPackage);
       StoreService.addListValues(params.activity.screenJson.title, "internalPackage", internalPackage);
-      console.log(params.formControlService.getFormGroup().value)
     }
   },
   deliveryScheduleCalc: async (params: FunctionParams) => {

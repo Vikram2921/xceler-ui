@@ -42,5 +42,36 @@ export class Resolver {
       .pop() + addExtra;
   }
 
+  public static decidePopupPositionFromElement(element:HTMLElement) {
+      let popupPosition:any = {};
+      let elementPosition = element.getBoundingClientRect();
+      let windowHeight = window.innerHeight;
+      let windowWidth = window.innerWidth;
+      popupPosition.top = elementPosition.top + element.offsetHeight;
+      popupPosition.left = elementPosition.left;
+      if(popupPosition.top + element.offsetHeight > windowHeight) {
+          popupPosition.top = elementPosition.top - element.offsetHeight;
+      }
+      if(popupPosition.left + element.offsetWidth > windowWidth) {
+          popupPosition.left = windowWidth - element.offsetWidth;
+      }
+      return popupPosition;
+  }
+
+  public static decidePopupPositionFromEvent(event:MouseEvent) {
+      let popupPosition:any = {};
+      let windowHeight = window.innerHeight;
+      let windowWidth = window.innerWidth;
+      popupPosition.top = event.clientY;
+      popupPosition.left = event.clientX;
+      if(popupPosition.top + 100 > windowHeight) {
+          popupPosition.top = event.clientY - 100;
+      }
+      if(popupPosition.left + 100 > windowWidth) {
+          popupPosition.left = windowWidth - 100;
+      }
+      return popupPosition;
+  }
+
 
 }

@@ -1,10 +1,22 @@
 import {
-  Activity, ApiService, ButtonModel,
-  ColumnModel, ComponentRegister, FormInputComponentComponent,
+  Activity,
+  ApiService,
+  ButtonModel,
+  ColumnModel,
+  ComponentRegister,
+  FormInputComponentComponent,
   FunctionParams,
-  GridComponent, GridToolbarComponent, ListOption, OptionButtonComponent, PopupProps, PopupService, Resolver,
+  GridComponent,
+  GridToolbarComponent,
+  ListOption,
+  OptionButtonComponent,
+  PopupProps,
+  PopupService,
+  ProgressButtonProp,
+  Resolver,
   ScreenInfoComponent,
-  ScreenRegister, ToastService
+  ScreenRegister,
+  ToastService
 } from "@xceler-ui/xceler-ui";
 
 export const ProfileFunctions:{[key:string]:Function} = {
@@ -14,6 +26,16 @@ export const ProfileFunctions:{[key:string]:Function} = {
     let update:boolean = options.update;
     let idField:ColumnModel | undefined = activity.screenJson.getColumns().find(column => column.idField);
     let gridObj!:GridComponent;
+    let headerProps:any = {
+      show:true,
+      title:'New '+activity.screenJson.title,
+    }
+    let footerProps:any = {
+      show:true,
+      progressButtons:[new ProgressButtonProp('Save')]
+    }
+    PopupService.addPopup("dsad",FormInputComponentComponent,options,headerProps,footerProps,new PopupProps('right',true,true,'75%'));
+
     let screenInfoFunction:Function = (screenInfo:ScreenInfoComponent) => {
       screenInfo.iconPath = activity.screenJson.iconPath;
       screenInfo.title = activity.screenJson.title;
@@ -27,19 +49,38 @@ export const ProfileFunctions:{[key:string]:Function} = {
           show:true,
           title:'New '+activity.screenJson.title,
         }
+        let buttons:ProgressButtonProp[] =[];
         if(next.buttonName == 'Edit') {
           if(activity.selectedRows.length == 0){
               ToastService.addErrorMessage('Warning','Please select a row to edit');
               return;
           }
+          let updateButton = new ProgressButtonProp('Update',false,false,() => {
+            console.log("Update pressed");
+          })
+          buttons.push(updateButton);
           if(idField) {
             headerProps.title = activity.selectedRows[0][idField.field];
           }
           options['rowData'] = activity.selectedRows[0];
         } else {
+          let saveButton = new ProgressButtonProp('Save',false,false,(buttonProp:ProgressButtonProp) => {
+            buttonProp.text = "Saving";
+            buttonProp.disabled = true;
+            setTimeout(() => {
+              buttonProp.text = "Save";
+              buttonProp.loading = false;
+              buttonProp.disabled = false;
+            },2000);
+          })
+          buttons.push(saveButton);
           options['rowData'] = null;
         }
-        PopupService.addPopup(next.buttonName,FormInputComponentComponent,options,headerProps,undefined,new PopupProps('right',true,true,'75%'));
+        let footerProps:any = {
+          show:true,
+          progressButtons:buttons
+        }
+        PopupService.addPopup(next.buttonName,FormInputComponentComponent,options,headerProps,footerProps,new PopupProps('right',true,true,'75%'));
         activity.selectedRows = [];
       }
     }

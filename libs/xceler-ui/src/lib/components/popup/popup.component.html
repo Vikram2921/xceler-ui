@@ -25,7 +25,21 @@
 </ng-template>
 
 <ng-template #footer let-prop="props" let-id="id">
-  <div style="padding: 0.2rem">
-    <button class="cancel-button" (click)="PopupService.removePopup(id)">Close</button>
+  <div style="padding: 0.2rem;display: inline-flex;width: 100%;align-items: center">
+    <div style="width: inherit;">
+      <button class="cancel-button" (click)="PopupService.removePopup(id)">Close</button>
+      <ng-container *ngFor="let progresButton of prop.progressButtons??[]">
+        <xui-progress-button [buttonProp]="progresButton"></xui-progress-button>
+      </ng-container>
+    </div>
+    <div>
+      <fa-icon id="infoIcon" size="2x" icon="info-circle"></fa-icon>
+      <xui-context-popup [targetElement]="'infoIcon'">
+        <div>
+          info
+        </div>
+      </xui-context-popup>
+    </div>
   </div>
 </ng-template>
+

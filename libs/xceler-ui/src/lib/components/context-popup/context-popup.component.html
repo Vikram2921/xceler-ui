@@ -3,6 +3,7 @@
   (mouseleave)="show = false"
   [style.top]="top+'px'"
   [style.left]="left+'px'"
+  [style.z-index]="Resolver.maxZIndex()"
   class="context_popup">
     <ng-content></ng-content>
 </div>

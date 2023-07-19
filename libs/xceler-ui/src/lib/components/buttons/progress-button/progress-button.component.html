@@ -1,1 +1,4 @@
-<p>progress-button works!</p>
+<div class="progress_button" [ngClass]="buttonProp.disabled?'disabled':''" (click)="!buttonProp.disabled?onClickButton():''">
+  <fa-icon animation="spin" *ngIf="buttonProp.loading" icon="spinner"></fa-icon>
+  <p>{{buttonProp.text}}</p>
+</div>
