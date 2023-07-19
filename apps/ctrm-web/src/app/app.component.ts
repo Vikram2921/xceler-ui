@@ -63,7 +63,6 @@ export class AppComponent implements OnInit,AfterViewInit{
 
   private registerScreens() {
     ScreenRegister.addScreen("physicalTrade",new PhysicalTrade());
-    // ScreenRegister.addScreen("paperTrade",new PaperTrade());
   }
 
   private registerToastTypes() {

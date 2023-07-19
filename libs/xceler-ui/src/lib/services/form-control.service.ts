@@ -78,7 +78,7 @@ export class FormControlService {
     this.formGroup.controls[field].updateValueAndValidity();
   }
 
-  disable(field:string,value?:any) {
+  disable(field:string,value:any) {
     this.formGroup.controls[field].disable();
     if(value !== null && value !== undefined) {
         this.setValue(field,value);

@@ -4,8 +4,7 @@ import {
   ListOption,
   PopupService,
   Resolver,
-  StoreService,
-  ToastService
+  StoreService
 } from "@xceler-ui/xceler-ui";
 import {DeliveryScheduleComponent} from "./delivery-schedule/delivery-schedule.component";
 import {environment} from "../../environment";
@@ -95,10 +94,14 @@ export const PhysicalTradeActions: { [key: string]: Function } = {
       params.formControlService.disable('quantity', 0);
       params.formControlService.enable("internalPackage")
       params.formControlService.enable("internalPackageUnit")
+      params.formControlService.enable("externalPackage")
+      params.formControlService.enable("externalPackageUnit")
     } else {
       params.formControlService.enable('quantity');
       params.formControlService.disable("internalPackage", '')
       params.formControlService.disable("internalPackageUnit", 0)
+      params.formControlService.disable("externalPackage",'')
+      params.formControlService.disable("externalPackageUnit",0)
     }
   },
   priceType: (params: FunctionParams) => {
@@ -158,5 +161,27 @@ export const PhysicalTradeActions: { [key: string]: Function } = {
         params.formControlService.getFormGroup().controls['paymentTermsClause'].patchValue(response[0].description);
       }
     }
+  },
+  quantityToleranceType: (params:FunctionParams) => {
+      if(params.field) {
+        let hoverFormatMax: string;
+        let maxFormatMax: string;
+        let hoverFormatMin: string;
+        let maxFormatMin: string;
+        let unit = params.formGroup?.value['quantityUom'];
+        if(params.currentValue === "percentage") {
+          unit ="%";
+        }
+        hoverFormatMax = "{value} " + unit;
+        maxFormatMax = "{value} " + unit;
+        maxFormatMin = "-{value} " + unit;
+        hoverFormatMin = "-{value} " + unit;
+        let options:any = {};
+        options['maxFormatLeft'] = maxFormatMin;
+        options['hoverFormatLeft'] = hoverFormatMin;
+        options['maxFormatRight'] = maxFormatMax;
+        options['hoverFormatRight'] = hoverFormatMax;
+        params.field.customOptions = options;
+      }
   }
 }

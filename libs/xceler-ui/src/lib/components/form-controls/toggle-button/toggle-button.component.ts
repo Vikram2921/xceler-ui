@@ -54,7 +54,6 @@ export class ToggleButtonComponent extends BaseFormControl implements OnChanges{
   }
 
   private updateButtonWidth() {
-    const textContent = this.elementRef.nativeElement.querySelector('.button-text').textContent;
     const textWidthTrue = this.getTextWidth(this.trueText);
     const textWidthFalse = this.getTextWidth(this.falseText);
     this.buttonWidth = Math.max(Math.max(textWidthTrue,textWidthFalse) + 60, 60);

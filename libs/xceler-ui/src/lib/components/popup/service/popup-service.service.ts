@@ -1,6 +1,7 @@
 import {Injectable, Type} from '@angular/core';
 import {HostActivity} from "../../../models/host-activity";
 import {BehaviorSubject} from "rxjs";
+import {Resolver} from "../../../models/resolver";
 
 @Injectable({
   providedIn: 'root'
@@ -69,6 +70,7 @@ export class PopupProps {
   modal: boolean = true;
   closeOnModal: boolean = false;
   width: string = 'fit-content';
+  zIndex: number = Resolver.maxZIndex();
 
 
   constructor(position: string = 'center', modal: boolean = true, closeOnModal: boolean = false, width: string = 'fit-content') {
@@ -76,5 +78,6 @@ export class PopupProps {
     this.modal = modal;
     this.closeOnModal = closeOnModal;
     this.width = width;
+    this.zIndex = Resolver.maxZIndex();
   }
 }

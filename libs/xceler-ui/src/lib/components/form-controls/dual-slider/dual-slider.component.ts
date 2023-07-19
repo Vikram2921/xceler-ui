@@ -14,10 +14,15 @@ import {BaseFormControl} from "../core/base-form-control";
     },
   ]
 })
-export class DualSliderComponent extends BaseFormControl {
+export class DualSliderComponent extends BaseFormControl{
 
   @Input() leftField:string = 'min';
   @Input() rightField:string = 'max';
+  @Input() customOptions?:any;
+  hoverFormatLeft:string = '-{value}';
+  maxFormatLeft:string = '-{value}';
+  hoverFormatRight:string = '{value}';
+  maxFormatRight:string = '{value}';
 
   val1: number = 0;
   val2: number = 0;

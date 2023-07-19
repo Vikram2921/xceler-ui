@@ -55,9 +55,7 @@ export class SideMenuComponent extends BaseComponent implements OnChanges {
     this.onChangeItem.emit(item);
   }
 
-  showChilds(item: any, $event: MouseEvent) {
+  showChilds(item: any) {
     this.childs = item.childs;
-    if(this.childs !== null && this.childs !== undefined && this.childs.length > 0)
-      this.contextPopup.showContext($event)
   }
 }

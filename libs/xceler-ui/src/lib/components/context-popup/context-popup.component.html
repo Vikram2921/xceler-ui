@@ -1,8 +1,7 @@
 <div
   *ngIf="show"
-  (mouseleave)="show = false"
-  [style.top]="top+'px'"
-  [style.left]="left+'px'"
+  (mouseleave)="hide()"
+  (insideViewport)="adjustPosition($event)"
   [style.z-index]="Resolver.maxZIndex()"
   class="context_popup">
     <ng-content></ng-content>

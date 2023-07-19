@@ -1,7 +1,7 @@
 <ng-container *ngFor="let popup of PopupService.getAll()">
-  <div *ngIf="popup.popupProp?.modal" class="container"
+  <div *ngIf="popup.popupProp?.modal" class="container" [style.z-index]="(popup.popupProp?(popup.popupProp.zIndex ):99)"
        (click)="popup.popupProp?.closeOnModal?PopupService.removePopup(popup.id):''"></div>
-  <div class="popup"
+  <div class="popup" [style.z-index]="(popup.popupProp?(popup.popupProp.zIndex + 1):100)"
        [style.width]="popup.popupProp?.width"
        [ngClass]="{'popup-left': popup.popupProp?.position === 'left', 'popup-right': popup.popupProp?.position === 'right', 'popup-center': popup.popupProp?.position === 'center'}">
     <div style="overflow:auto;display: flex;flex-direction: column;height: 100%;">
@@ -33,12 +33,29 @@
       </ng-container>
     </div>
     <div>
-      <fa-icon id="infoIcon" size="2x" icon="info-circle"></fa-icon>
-      <xui-context-popup [targetElement]="'infoIcon'">
-        <div>
-          info
-        </div>
-      </xui-context-popup>
+      <div *ngIf="prop.info" id="infoIcon">
+        <fa-icon  size="2x" icon="info-circle"></fa-icon>
+        <xui-context-popup [targetElement]="'infoIcon'" [attachLeaveListener]="true">
+          <div style="display: flex;flex-wrap: wrap;width: 300px">
+            <div class="created_item">
+              <p class="created_title">Created By</p>
+              <p class="created_value">{{prop.info.createdBy}}</p>
+            </div>
+            <div class="created_item">
+              <p class="created_title">Created Time</p>
+              <p class="created_value">{{prop.info.createdTimestamp | date: "dd MMMM yyyy"}}</p>
+            </div>
+            <div class="created_item">
+              <p class="created_title">Updated By</p>
+              <p class="created_value">{{prop.info.updatedBy}}</p>
+            </div>
+            <div class="created_item">
+              <p class="created_title">Updated Time</p>
+              <p class="created_value">{{prop.info.updatedTimestamp | date: "dd MMMM yyyy"}}</p>
+            </div>
+          </div>
+        </xui-context-popup>
+      </div>
     </div>
   </div>
 </ng-template>

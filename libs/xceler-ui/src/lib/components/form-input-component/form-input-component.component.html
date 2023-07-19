@@ -12,15 +12,15 @@
 <ng-template #with_section>
   <form *ngIf="formControlService.getFormGroup()" [formGroup]="formControlService.getFormGroup()">
     <div style="display: flex;flex-direction: column;gap: 10px;" >
-      <div *ngFor="let section of activity.screenJson.sections" class="section">
-        <p class="section_name">{{section.sectionName}}</p>
+      <div *ngFor="let section of sectionNames" class="section">
+        <p class="section_name">{{section}}</p>
         <div class="input_ui">
-          <div *ngFor="let col of getFormVisibleFields(section.columns)" class="col col-{{(col.colSpan && !isNaN(col.colSpan))?(col.colSpan * 4):4}}">
+          <div *ngFor="let col of getFormVisibleFields(sectionMap.get(section))" class="col col-{{(col.colSpan && !isNaN(col.colSpan))?(col.colSpan * 4):4}}">
             <xui-aio-controls
-              formControlName="{{col.field}}"
+              formControlName="{{col.field}}" [customOptions]="col.customOptions"
               (onClickButton)="onClickButton($event)"
-              [field]="col.field" [header]="col.title" [controlType]="col.type" [disabled]="col.disabled"
-              [listOptions]="col.listStore?StoreService.getListValues(activity.screenJson.title,col.listStore):col.list?col.list:[]" (onFocusField)="onFocusChange($event)"></xui-aio-controls>
+              [field]="col.field" [header]="col.title" [controlType]="col.type"
+              [listOptions]="StoreService.getListValues(activity.screenJson.title,col.listStore,col.list)" (onFocusField)="onFocusChange($event)"></xui-aio-controls>
           </div>
         </div>
       </div>
@@ -30,11 +30,11 @@
 <ng-template #with_out_section>
   <form [formGroup]="formControlService.getFormGroup()">
     <div class="input_ui">
-      <div *ngFor="let col of getFormVisibleFields(activity.screenJson.columns)" class="col col-{{(col.colSpan && !isNaN(col.colSpan))?(col.colSpan * 4):4}}">
+      <div *ngFor="let col of getFormVisibleFields(columns)" class="col col-{{(col.colSpan && !isNaN(col.colSpan))?(col.colSpan * 4):4}}">
         <xui-aio-controls formControlName="{{col.field}}" [field]="col.field"
-                          (onClickButton)="onClickButton($event)"
-                          [header]="col.title" [controlType]="col.type" [disabled]="col.disabled"
-                          [listOptions]="col.listStore?StoreService.getListValues(activity.screenJson.title,col.listStore):col.list?col.list:[]" (onFocusField)="onFocusChange($event)"></xui-aio-controls>
+                          (onClickButton)="onClickButton($event)" [customOptions]="col.customOptions"
+                          [header]="col.title" [controlType]="col.type"
+                          [listOptions]="StoreService.getListValues(activity.screenJson.title,col.listStore,col.list)" (onFocusField)="onFocusChange($event)"></xui-aio-controls>
       </div>
     </div>
   </form>

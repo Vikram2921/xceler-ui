@@ -1,8 +1,7 @@
-import {Component, ViewChild} from '@angular/core';
+import {Component} from '@angular/core';
 import {BaseComponent} from "../form-controls/core/base-component";
 import {PopupService} from "./service/popup-service.service";
 import {Resolver} from "../../models/resolver";
-import {ContextPopupComponent} from "../context-popup/context-popup.component";
 
 @Component({
   selector: 'xui-popup',

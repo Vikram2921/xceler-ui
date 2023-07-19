@@ -24,6 +24,7 @@ export class AioControlsComponent extends BaseFormControl{
   @Input() controlDisabledView:boolean = false;
   @Input() controlType: ControlType | string = '';
   @Input() listOptions!: ListOption[];
+  @Input() customOptions!:any;
   @Output() onChangeValue = new EventEmitter<any>();
   @Output() onFocusField:EventEmitter<string> = new EventEmitter<string>();
   @Output() onClickButton:EventEmitter<string> = new EventEmitter<string>();

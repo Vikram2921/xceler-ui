@@ -70,7 +70,10 @@
   <xui-date-picker placeholder="Select {{header}}" [disabled]="disabled" [(ngModel)]="value" (ngModelChange)="updateValue($event)"></xui-date-picker>
 </ng-template>
 <ng-template #dualslider>
-  <xui-dual-slider [(ngModel)]="value" [disabled]="disabled" (ngModelChange)="updateValue($event)"></xui-dual-slider>
+  <xui-dual-slider [(ngModel)]="value"
+                   [customOptions]="customOptions"
+                   [disabled]="disabled"
+                   (ngModelChange)="updateValue($event)"></xui-dual-slider>
 </ng-template>
 <ng-template #slider>
   <xui-slider [(ngModel)]="value" [disabled]="disabled" (ngModelChange)="updateValue($event)"></xui-slider>

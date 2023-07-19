@@ -13,7 +13,6 @@ import {
   PopupProps,
   PopupService,
   ProgressButtonProp,
-  Resolver,
   ScreenInfoComponent,
   ScreenRegister,
   ToastService
@@ -50,18 +49,23 @@ export const ProfileFunctions:{[key:string]:Function} = {
           title:'New '+activity.screenJson.title,
         }
         let buttons:ProgressButtonProp[] =[];
+        let info:any = null;
         if(next.buttonName == 'Edit') {
           if(activity.selectedRows.length == 0){
               ToastService.addErrorMessage('Warning','Please select a row to edit');
               return;
           }
           let updateButton = new ProgressButtonProp('Update',false,false,() => {
-            console.log("Update pressed");
           })
           buttons.push(updateButton);
           if(idField) {
             headerProps.title = activity.selectedRows[0][idField.field];
           }
+          info = {};
+          info['createdBy'] = activity.selectedRows[0]['createdBy'];
+          info['createdTimestamp'] = activity.selectedRows[0]['createdTimestamp'];
+          info['updatedBy']= activity.selectedRows[0]['updatedBy'];
+          info['updatedTimestamp'] = activity.selectedRows[0]['updatedTimestamp'];
           options['rowData'] = activity.selectedRows[0];
         } else {
           let saveButton = new ProgressButtonProp('Save',false,false,(buttonProp:ProgressButtonProp) => {
@@ -78,7 +82,8 @@ export const ProfileFunctions:{[key:string]:Function} = {
         }
         let footerProps:any = {
           show:true,
-          progressButtons:buttons
+          progressButtons:buttons,
+          info:info
         }
         PopupService.addPopup(next.buttonName,FormInputComponentComponent,options,headerProps,footerProps,new PopupProps('right',true,true,'75%'));
         activity.selectedRows = [];

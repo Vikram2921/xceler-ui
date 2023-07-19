@@ -18,6 +18,7 @@
   margin-top: 0.5rem;
   gap: 1rem;
   padding: 5px;
+  overflow: auto;
   flex-direction: column;
   height: inherit;
 }

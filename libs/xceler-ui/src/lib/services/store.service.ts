@@ -30,11 +30,17 @@ export class StoreService {
       return this.storeObserver;
   }
 
-  static getListValues(store: string, key: string,def?:ListOption[]):ListOption[] {
+  static getListValues(store: string, key?: string,defaultList?:ListOption[]) {
     if(key?.startsWith("common_")) {
       store = "common";
     }
-    return this.stores[store].listValues[key]??def??[new ListOption()];
+    if(key && key.length > 0 && this.stores[store]) {
+      let list = this.stores[store].listValues[key];
+      if(list && list.length > 0) {
+        return list;
+      }
+    }
+    return (defaultList && defaultList.length > 0)?defaultList:[new ListOption()];
   }
   static getStore(store: string) {
     return this.stores[store];

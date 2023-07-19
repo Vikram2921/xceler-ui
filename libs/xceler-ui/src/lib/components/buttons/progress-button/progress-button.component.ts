@@ -1,6 +1,4 @@
 import {Component, Input} from '@angular/core';
-import {UrlModel} from "../../../models/screen-model";
-import {ApiService} from "../../../services/api-service.service";
 
 export class ProgressButtonProp {
     text!: string;
