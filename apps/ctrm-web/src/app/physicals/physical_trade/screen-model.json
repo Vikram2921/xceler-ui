@@ -12,7 +12,27 @@
     "updateUrl": "{endpoint}/ctrm-api/api/trade/v1/updatephysicaltrade",
     "importUrl": "{endpoint}/ctrm-api/api/trade/v1/import?tenantId=675e4e4c-a5a3-4921-99f0-ea00ea71c672"
   },
-  "tabs": [{"label": "Draft","selected": true},{"label": "Confirmed"},{"label": "Void"}],
+  "tabs": [{"label": "Draft","selected": true,
+    "urls": {
+      "fetchUrl": {
+        "method": "POST",
+        "url": "{endpoint}/ctrm-api/api/trade/v1/getphysicaltradebycriteria?page={page}&size=20&tenantId={tenantId}",
+        "payloadFunction": "draft_payload"
+      }
+    },"useSameModel": true},
+    {"label": "Confirmed","urls": {
+      "fetchUrl": {
+        "method": "POST",
+        "url": "{endpoint}/ctrm-api/api/trade/v1/getphysicaltradebycriteria?page={page}&size=20&tenantId={tenantId}",
+        "payloadFunction": "draft_payload"
+      }
+    },"useSameModel": true},{"label": "Void","urls": {
+      "fetchUrl": {
+        "method": "POST",
+        "url": "{endpoint}/ctrm-api/api/trade/v1/getphysicaltradebycriteria?page={page}&size=20&tenantId={tenantId}",
+        "payloadFunction": "draft_payload"
+      }
+    },"useSameModel": true}],
   "sections": [
     {
       "sectionName": "Trade Counterparty and Company Details",
@@ -93,7 +113,7 @@
           "validators": [
             "required"
           ],
-          "pipe": "",
+          "pipe": "transactionType",
           "pipeOptions": null
         },
         {
@@ -231,7 +251,7 @@
           "title": "Commodity",
           "field": "commodity",
           "type": "dropdown",
-          "listStore": "common_commodity",
+          "listStore": "commodity",
           "defaultValue": "",
           "visibilityArea": "B",
           "listener": true,

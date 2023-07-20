@@ -15,9 +15,10 @@ export class FunctionRegister {
     if(this.functionFiles.has(fileName)) {
       let file = this.functionFiles.get(fileName);
       if(file !== null && file !== undefined) {
-        file[functionName](params);
+        return file[functionName](params);
       }
     }
+    return null;
   }
 
   static getFunction(fileName:string,functionName:string) {

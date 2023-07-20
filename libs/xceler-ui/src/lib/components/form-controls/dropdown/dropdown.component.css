@@ -67,7 +67,7 @@
 
 
 .content-box {
-  position: absolute;
+  position: fixed;
   background-color: #fff;
   width: fit-content;
   border: 1px solid #ccc;

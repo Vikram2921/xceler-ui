@@ -6,7 +6,7 @@
       <thead>
       <tr>
         <th class="checkbox-col z-2" *ngIf="gridConfig.checkbox">
-          <xui-checkbox (onCheckedChange)="toggleAll()" [checked]="activity.selectedRows.length == rows.length"></xui-checkbox>
+          <xui-checkbox (onCheckedChange)="toggleAll()" [checked]="activity.selectedRows.length == rows.length && rows.length > 0"></xui-checkbox>
         </th>
         <th class="action z-2" *ngIf="gridConfig.actions">
           <div class="headerDiv divider">
@@ -37,16 +37,14 @@
         <td *ngFor="let col of gridColumns">
           <ng-container [ngTemplateOutlet]="editingRows.includes(index)?input:output" [ngTemplateOutletContext]="{row:row,col:col}"></ng-container>
           <ng-template #input let-row="row" let-col="col">
-            <xui-aio-controls [controlType]="col.type" [field]="col.field"
-                          [disabled]="col.disabled"
-                          [controlDisabledView]="col.disableControlView"
-                          [pipe]="col.pipe" [pipeOptions]="col.pipeOptions"
+            <xui-aio-controls [disabled]="col.disabled" [columnModel]="col" [showHeader]="false"
                           [value]="row[col.field]" (onChangeValue)="onChangeValue.emit($event)"
-                          [listOptions]="StoreService.getListValues(activity.screenJson.title,col.listStore,col.list)"></xui-aio-controls>
+                          [listOptions]="activity?StoreService.getListValues(activity.screenJson.title,col.listStore,col.list):col.list?col.list:[]"></xui-aio-controls>
           </ng-template>
           <ng-template #output let-row="row" let-col="col">
             <ng-container [ngSwitch]="col.pipe">
               <ng-container *ngSwitchCase="'dateFormat'">{{row[col.field] | date : col.pipeOptions.format}}</ng-container>
+              <ng-container *ngSwitchCase="'transactionType'"><div #element [innerHTML]="row[col.field] | transactionType : element"></div></ng-container>
               <ng-container *ngSwitchDefault>
                 <p [ngClass]="col.idField?'clickable':''" (click)="onClickClickableField(col,row)">{{row[col.field]}}<p>
               </ng-container>

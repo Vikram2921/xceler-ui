@@ -25,7 +25,8 @@ import {
   faCalendar,
   faCircle,
   faCheckCircle,
-  faSpinner, faInfoCircle
+  faSpinner,
+  faInfoCircle,
 } from '@fortawesome/free-solid-svg-icons';
 import { CommonModule } from '@angular/common';
 import { GridComponent } from './components/grid/grid.component';
@@ -52,7 +53,6 @@ import { ScreenInfoComponent } from './components/screen-info/screen-info.compon
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { LoadComponentDirective } from './directives/load-component.directive';
 import { ContextPopupComponent } from './components/context-popup/context-popup.component';
-import { DateFormatPipe } from './pipes/date-format.pipe';
 import { DatePickerComponent } from './components/form-controls/date-picker/date-picker.component';
 import { TextAreaComponent } from './components/form-controls/text-area/text-area.component';
 import { DualSliderComponent } from './components/form-controls/dual-slider/dual-slider.component';
@@ -68,6 +68,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RecordInfoComponent } from './components/RecordInfo/record-info.component';
 import { AppendToDirective } from './directives/append-to.directive';
+import {TransactionTypePipe} from './pipes/transactiontype.pipe';
 
 @NgModule({
   imports: [
@@ -103,7 +104,6 @@ import { AppendToDirective } from './directives/append-to.directive';
     NavbarComponent,
     LoadComponentDirective,
     ContextPopupComponent,
-    DateFormatPipe,
     FormInputComponentComponent,
     ValidationBoxComponent,
     DatePickerComponent,
@@ -137,7 +137,6 @@ import { AppendToDirective } from './directives/append-to.directive';
     NavbarComponent,
     LoadComponentDirective,
     ContextPopupComponent,
-    DateFormatPipe,
     FormInputComponentComponent,
     ValidationBoxComponent,
     DatePickerComponent,
@@ -147,6 +146,7 @@ import { AppendToDirective } from './directives/append-to.directive';
     AdvanceFilterComponent,
     RecordInfoComponent,
     AppendToDirective,
+    TransactionTypePipe,
   ],
 })
 export class XcelerUiModule {

@@ -1,7 +1,7 @@
 import {
   Activity,
   ApiService,
-  GridComponent,
+  GridComponent, LoadApiService,
   PageObject,
   Resolver,
   ScreenModel,
@@ -23,6 +23,12 @@ export class PhysicalTrade implements Activity {
     let traderNameList = await ApiService.get(Resolver.getModifiedUrl('{endpoint}/ctrm-api/api/trade/v1/getuser?tenantId={tenantId}&userType=Trader',environment)).then((next: any) => next);
     StoreService.addListValues("common","common_traderName",Resolver.convertListObjectToListOptions(traderNameList,'value','value'));
     this.screenJson.addOption('config',config);
+
+    let loadApiResponse:any = await LoadApiService.getInstance()
+      .setMaster("commodity")
+      .addMaserCriteria("commodity")
+      .callApi(environment,null).then((next) => next);
+    StoreService.addListValues(this.screenJson.title,"commodity",Resolver.convertListStringToListOptions(loadApiResponse["commodity"]));
     grid.loadJson(this.screenJson);
   }
 

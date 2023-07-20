@@ -1,80 +1,80 @@
 <div class="aio-control-container" [tabIndex]="-1" (focusin)="onFocusIn()">
-  <p class="aio-control-header" *ngIf="(header !== null && header !== undefined && header.length > 0)">{{header}}</p>
-  <ng-container *ngIf="controlDisabledView && disabled;else normal">
-    <ng-container [ngSwitch]="pipe">
-      <ng-container *ngSwitchCase="'dateFormat'">{{value | date : pipeOptions.format}}</ng-container>
+  <p class="aio-control-header" *ngIf="showHeader">{{columnModel.title}}</p>
+  <ng-container *ngIf="columnModel.disableControlView && disabled;else normal">
+    <ng-container [ngSwitch]="columnModel.pipe">
+      <ng-container *ngSwitchCase="'dateFormat'">{{value | date : columnModel.pipeOptions.format}}</ng-container>
       <ng-container *ngSwitchDefault>
         {{value}}
       </ng-container>
     </ng-container>
   </ng-container>
   <ng-template #normal>
-    <ng-container *ngIf="controlType == 'text_field'" [ngTemplateOutlet]="text_field"></ng-container>
-    <ng-container *ngIf="controlType == 'label'" [ngTemplateOutlet]="label"></ng-container>
-    <ng-container *ngIf="controlType == 'dropdown'" [ngTemplateOutlet]="dropdown"></ng-container>
-    <ng-container *ngIf="controlType == 'multi_select'" [ngTemplateOutlet]="multi_select"></ng-container>
-    <ng-container *ngIf="controlType == 'option_button'" [ngTemplateOutlet]="option_button"></ng-container>
-    <ng-container *ngIf="controlType == 'unit_input'" [ngTemplateOutlet]="unit_input"></ng-container>
-    <ng-container *ngIf="controlType == 'toggle_button'" [ngTemplateOutlet]="toggle_button"></ng-container>
-    <ng-container *ngIf="controlType == 'number'" [ngTemplateOutlet]="number"></ng-container>
-    <ng-container *ngIf="controlType == 'button'" [ngTemplateOutlet]="button"></ng-container>
-    <ng-container *ngIf="controlType == 'datepicker'" [ngTemplateOutlet]="datepicker"></ng-container>
-    <ng-container *ngIf="controlType == 'textarea'" [ngTemplateOutlet]="textarea"></ng-container>
-    <ng-container *ngIf="controlType == 'dual_slider'" [ngTemplateOutlet]="dual_slider"></ng-container>
-    <ng-container *ngIf="controlType == 'slider'" [ngTemplateOutlet]="slider"></ng-container>
+    <ng-container *ngIf="columnModel.type == 'text_field'" [ngTemplateOutlet]="text_field"></ng-container>
+    <ng-container *ngIf="columnModel.type == 'label'" [ngTemplateOutlet]="label"></ng-container>
+    <ng-container *ngIf="columnModel.type == 'dropdown'" [ngTemplateOutlet]="dropdown"></ng-container>
+    <ng-container *ngIf="columnModel.type == 'multi_select'" [ngTemplateOutlet]="multi_select"></ng-container>
+    <ng-container *ngIf="columnModel.type == 'option_button'" [ngTemplateOutlet]="option_button"></ng-container>
+    <ng-container *ngIf="columnModel.type == 'unit_input'" [ngTemplateOutlet]="unit_input"></ng-container>
+    <ng-container *ngIf="columnModel.type == 'toggle_button'" [ngTemplateOutlet]="toggle_button"></ng-container>
+    <ng-container *ngIf="columnModel.type == 'number'" [ngTemplateOutlet]="number"></ng-container>
+    <ng-container *ngIf="columnModel.type == 'button'" [ngTemplateOutlet]="button"></ng-container>
+    <ng-container *ngIf="columnModel.type == 'datepicker'" [ngTemplateOutlet]="datepicker"></ng-container>
+    <ng-container *ngIf="columnModel.type == 'textarea'" [ngTemplateOutlet]="textarea"></ng-container>
+    <ng-container *ngIf="columnModel.type == 'dual_slider'" [ngTemplateOutlet]="dual_slider"></ng-container>
+    <ng-container *ngIf="columnModel.type == 'slider'" [ngTemplateOutlet]="slider"></ng-container>
   </ng-template>
 </div>
 
 <ng-template #text_field>
-    <xui-text-field [id]="field" placeholder="Enter {{header}}"  [disabled]="disabled" [(ngModel)]="value" (ngModelChange)="updateValue($event)"></xui-text-field>
+    <xui-text-field [id]="columnModel.field" placeholder="Enter {{columnModel.title}}"  [disabled]="disabled" [(ngModel)]="value" (ngModelChange)="updateValue($event)"></xui-text-field>
 </ng-template>
 
 
 <ng-template #number>
-  <xui-text-field [min]="min" [max]="max" [id]="field" placeholder="Enter {{header}}"  [disabled]="disabled" [type]="'number'" [(ngModel)]="value" (ngModelChange)="updateValue($event)"></xui-text-field>
+  <xui-text-field [min]="columnModel.min" [max]="columnModel.max" [id]="columnModel.field" placeholder="Enter {{columnModel.title}}"  [disabled]="disabled" [type]="'number'" [(ngModel)]="value" (ngModelChange)="updateValue($event)"></xui-text-field>
 </ng-template>
 
 <ng-template #label>
-  <xui-text-field [id]="field" placeholder="Enter {{header}}"  [disabled]="true" [(ngModel)]="value" (ngModelChange)="updateValue($event)"></xui-text-field>
+  <xui-text-field [id]="columnModel.field" placeholder="Enter {{columnModel.title}}"  [disabled]="true" [(ngModel)]="value" (ngModelChange)="updateValue($event)"></xui-text-field>
 </ng-template>
 
 <ng-template #dropdown>
-  <xui-dropdown [id]="field" [disabled]="disabled" [listOptions]="listOptions" [(ngModel)]="value" (ngModelChange)="updateValue($event)"></xui-dropdown>
+  <xui-dropdown [id]="columnModel.field" [disabled]="disabled" [listOptions]="listOptions" [(ngModel)]="value" (ngModelChange)="updateValue($event)"></xui-dropdown>
 </ng-template>
 
 
 <ng-template #multi_select>
-  <xui-dropdown [id]="field" [disabled]="disabled" [multiple]="true" [listOptions]="listOptions" [(ngModel)]="value" (ngModelChange)="updateValue($event)"></xui-dropdown>
+  <xui-dropdown [id]="columnModel.field" [disabled]="disabled" [multiple]="true" [listOptions]="listOptions" [(ngModel)]="value" (ngModelChange)="updateValue($event)"></xui-dropdown>
 </ng-template>
 <ng-template #option_button>
-  <xui-option-button [id]="field" [disabled]="disabled" [options]="listOptions" [(ngModel)]="value" (ngModelChange)="updateValue($event)"></xui-option-button>
+  <xui-option-button [id]="columnModel.field" [disabled]="disabled" [options]="listOptions" [(ngModel)]="value" (ngModelChange)="updateValue($event)"></xui-option-button>
 </ng-template>
 
 <ng-template #unit_input>
-  <xui-unit-input [id]="field" [disabled]="disabled" [options]="listOptions" [(ngModel)]="value" (ngModelChange)="updateValue($event)"></xui-unit-input>
+  <xui-unit-input [id]="columnModel.field" [disabled]="disabled" [options]="listOptions" [(ngModel)]="value" (ngModelChange)="updateValue($event)"></xui-unit-input>
 </ng-template>
 
 <ng-template #toggle_button>
-  <xui-toggle-button [id]="field" [disabled]="disabled" [options]="listOptions" [(ngModel)]="value" (ngModelChange)="updateValue($event)"></xui-toggle-button>
+  <xui-toggle-button [id]="columnModel.field" [disabled]="disabled" [options]="listOptions" [(ngModel)]="value" (ngModelChange)="updateValue($event)"></xui-toggle-button>
 </ng-template>
 
 <ng-template #button>
-  <button class="aio_button" [id]="field" [disabled]="disabled" (click)="onButtonClick()">{{header}}</button>
+  <button class="aio_button" [id]="columnModel.field" [disabled]="disabled" (click)="onButtonClick()">{{columnModel.title}}</button>
 </ng-template>
 
 <ng-template #textarea>
-  <xui-text-area [id]="field" [(ngModel)]="value" [disabled]="disabled" (ngModelChange)="updateValue($event)"></xui-text-area>
+  <xui-text-area [id]="columnModel.field" [(ngModel)]="value" [disabled]="disabled" (ngModelChange)="updateValue($event)"></xui-text-area>
 </ng-template>
 
 <ng-template #datepicker>
-  <xui-date-picker [id]="field" placeholder="Select {{header}}" [disabled]="disabled" [(ngModel)]="value" (ngModelChange)="updateValue($event)"></xui-date-picker>
+  <xui-date-picker [id]="columnModel.field" placeholder="Select {{columnModel.title}}" [disabled]="disabled" [(ngModel)]="value" (ngModelChange)="updateValue($event)"></xui-date-picker>
 </ng-template>
 <ng-template #dual_slider>
-  <xui-dual-slider [(ngModel)]="value" [id]="field"
-                   [customOptions]="customOptions"
+  <xui-dual-slider [(ngModel)]="value" [id]="columnModel.field"
+                   [customOptions]="columnModel.customOptions"
                    [disabled]="disabled"
                    (ngModelChange)="updateValue($event)"></xui-dual-slider>
 </ng-template>
 <ng-template #slider>
-  <xui-slider [id]="field" [(ngModel)]="value" [disabled]="disabled" (ngModelChange)="updateValue($event)"></xui-slider>
+  <xui-slider [id]="columnModel.field" [(ngModel)]="value" [disabled]="disabled" (ngModelChange)="updateValue($event)"></xui-slider>
 </ng-template>

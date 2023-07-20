@@ -17,9 +17,8 @@
         <div class="input_ui">
           <div *ngFor="let col of getFormVisibleFields(sectionMap.get(section))" class="col col-{{(col.colSpan && !isNaN(col.colSpan))?(col.colSpan * 4):4}}">
             <xui-aio-controls
-              formControlName="{{col.field}}" [customOptions]="col.customOptions"
-              (onClickButton)="onClickButton($event)" [min]="col.min" [max]="col.max"
-              [field]="col.field" [header]="col.title" [controlType]="col.type"
+              formControlName="{{col.field}}" [columnModel]="col"
+              (onClickButton)="onClickButton($event)"
               [listOptions]="StoreService.getListValues(activity.screenJson.title,col.listStore,col.list)" (onFocusField)="onFocusChange($event)"></xui-aio-controls>
           </div>
         </div>
@@ -31,9 +30,8 @@
   <form [formGroup]="formControlService.getFormGroup()">
     <div class="input_ui">
       <div *ngFor="let col of getFormVisibleFields(columns)" class="col col-{{(col.colSpan && !isNaN(col.colSpan))?(col.colSpan * 4):4}}">
-        <xui-aio-controls [formControlName]="col.field" [field]="col.field"
-                          (onClickButton)="onClickButton($event)" [customOptions]="col['customOptions']"
-                          [header]="col.title" [controlType]="col.type"
+        <xui-aio-controls [formControlName]="col.field" [columnModel]="col"
+                          (onClickButton)="onClickButton($event)"
                           [listOptions]="StoreService.getListValues(activity.screenJson.title,col.listStore,col.list)" (onFocusField)="onFocusChange($event)"></xui-aio-controls>
       </div>
     </div>

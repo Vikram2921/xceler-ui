@@ -59,7 +59,7 @@ export class JSONToUIComponent extends BaseComponent{
       val = this.profile.columns;
     } else {
       if(this.profile.rowHeightList !== null && this.profile.rowHeightList !== undefined && this.profile.rowHeightList.length > 0) {
-        return this.profile.rowHeightList.map(i => `minmax(${i},${i})`).join(" ");
+        return this.profile.rowHeightList.map(i => `max(${i},${i})`).join(" ");
       }
       val = this.profile.rows;
     }

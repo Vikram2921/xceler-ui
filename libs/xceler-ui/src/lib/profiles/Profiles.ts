@@ -3,9 +3,11 @@ import {
   ApiService,
   ButtonModel,
   ColumnModel,
-  ComponentRegister, FormControlService,
+  ComponentRegister,
+  FormControlService,
   FormInputComponentComponent,
-  FunctionParams, FunctionRegister,
+  FunctionParams,
+  FunctionRegister,
   GridComponent,
   GridToolbarComponent,
   ListOption,
@@ -130,24 +132,26 @@ export const ProfileFunctions:{[key:string]:Function} = {
     let gridFunction:Function = async (grid:GridComponent) => {
       gridObj = grid;
       grid.show(activity);
-      refreshButton.disable();
-      refreshButton.setAnimation('spin');
-      activity.data = await ApiService.decideUrlCallItself(activity.screenJson.urls.fetchUrl,options.options.environment,{page:0}).then((next:any) => next);
-      grid.refreshData();
-      refreshButton.enable();
-      refreshButton.clearAnimation();
-      grid.onPageChange.subscribe( (pageNumber)=> {
+      if(!activity.screenJson.tabs || activity.screenJson.tabs.length === 0) {
+        refreshButton.disable();
+        refreshButton.setAnimation('spin');
+        activity.data = await ApiService.decideUrlCallItself(activity.screenJson.urls.fetchUrl,options.options.environment,{page:0}).then((next:any) => next);
+        grid.refreshData();
+        refreshButton.enable();
+        refreshButton.clearAnimation();
+        grid.onPageChange.subscribe( (pageNumber)=> {
           activity.data = [];
           grid.refreshData();
           refreshButton.disable();
-        refreshButton.setAnimation('spin');
-        ApiService.decideUrlCallItself(activity.screenJson.urls.fetchUrl,options.options.environment,{page:pageNumber}).then((next:any) => {
+          refreshButton.setAnimation('spin');
+          ApiService.decideUrlCallItself(activity.screenJson.urls.fetchUrl,options.options.environment,{page:pageNumber}).then((next:any) => {
             activity.data =next;
             grid.refreshData();
             refreshButton.enable();
             refreshButton.clearAnimation();
           });
-      })
+        })
+      }
     }
 
     let gridToolbarFunction:Function = (gridToolbar:GridToolbarComponent) => {
@@ -156,9 +160,34 @@ export const ProfileFunctions:{[key:string]:Function} = {
     let tabsFunction:Function = (opButton:OptionButtonComponent) => {
       opButton.options =  activity.screenJson.tabs.map(tab => new ListOption(tab.label,tab.label));
       opButton.value = activity.screenJson.tabs.find(tab => tab.selected)?.label;
+      let onTabChange = async (tabLabel:string) => {
+        refreshButton.disable();
+        refreshButton.setAnimation('spin');
+        activity.data =  [];
+        if(gridObj) {
+          gridObj.refreshData();
+        }
+        let tab = activity.screenJson.tabs.find((tab) => tab.label === tabLabel);
+        if(tab) {
+          if(tab.useSameModel) {
+            let urls = tab.urls;
+            if(urls.fetchUrl.payloadFunction && urls.fetchUrl.payloadFunction.length > 0) {
+              urls.fetchUrl.data = FunctionRegister.callFunction(activity.screenJson.functionFile, urls.fetchUrl.payloadFunction, {tab:tab});
+            }
+            activity.data = await ApiService.decideUrlCallItself(urls.fetchUrl,options.options.environment,{page:0}).then((next:any) => next);
+            gridObj.refreshData();
+          }
+          refreshButton.enable();
+          refreshButton.clearAnimation();
+        }
+      }
       if(opButton.value === null || opButton.value === undefined) {
           opButton.value = activity.screenJson.tabs[0].label;
       }
+      onTabChange(opButton.value);
+      opButton.onOptionChange.subscribe(async (next:ListOption) => {
+        await onTabChange(next.label);
+      })
     }
     if(update) {
       let screenInfo:ScreenInfoComponent = ComponentRegister.getElement("navbar").activity;

@@ -4,7 +4,8 @@ import {
   ListOption,
   PopupService,
   Resolver,
-  StoreService
+  StorageService,
+  StoreService, Tabs
 } from "@xceler-ui/xceler-ui";
 import {DeliveryScheduleComponent} from "./delivery-schedule/delivery-schedule.component";
 import {environment} from "../../environment";
@@ -13,6 +14,36 @@ import {Validators} from "@angular/forms";
 
 
 export const PhysicalTradeActions: { [key: string]: Function } = {
+
+  draft_payload:  (params: FunctionParams | any) => {
+    let tab:Tabs = params.tab;
+    let status = ["Draft", "Awaiting Approval"];
+    if(tab.label === "Confirmed") {
+      status = ["Confirmed"];
+    } else if(tab.label === "Void") {
+        status = ["void"];
+    }
+    return [
+      {
+        "fieldName": "tenantId",
+        "value": StorageService.get("tenantId"),
+        "condition": "equals",
+        "secondValue": "",
+      },
+      {
+        "fieldName": "tradeStatus",
+        "value": status,
+        "condition": "in",
+        "secondValue": "",
+      },
+      {
+        "fieldName": "tradeType",
+        "value": "Physical",
+        "condition": "equals",
+        "secondValue": "",
+      }
+    ];
+  },
   preSave: (params: FunctionParams,mode:string) => {
     console.log(params,mode);
   },
@@ -169,6 +200,7 @@ export const PhysicalTradeActions: { [key: string]: Function } = {
   },
   quantityToleranceType: (params:FunctionParams) => {
       if(params.field) {
+        params.field.customOptions = null;
         let hoverFormatMax: string;
         let maxFormatMax: string;
         let hoverFormatMin: string;

@@ -1,8 +1,9 @@
-import {Component, EventEmitter, forwardRef, Input, Output} from '@angular/core';
+import {Component, EventEmitter, forwardRef, Input, OnInit, Output} from '@angular/core';
 import {BaseFormControl} from "../core/base-form-control";
 import {NG_VALUE_ACCESSOR} from "@angular/forms";
 import {ControlType} from "../../../models/control-type";
 import {ListOption} from "../core/list-option";
+import {ColumnModel} from "../../../models/column-model";
 
 @Component({
   selector: 'xui-aio-controls',
@@ -16,35 +17,28 @@ import {ListOption} from "../core/list-option";
     },
   ]
 })
-export class AioControlsComponent extends BaseFormControl {
-  @Input() field: string | null = '';
-  @Input() header: string | null = '';
-  @Input() pipe!: string;
-  @Input() pipeOptions!: any;
-  @Input() controlDisabledView: boolean = false;
-  @Input() controlType: ControlType | string = '';
+export class AioControlsComponent extends BaseFormControl{
   @Input() listOptions!: ListOption[];
-  @Input() customOptions!: any;
+  @Input() showHeader:boolean = true;
+  @Input() columnModel!: ColumnModel;
   @Output() onChangeValue = new EventEmitter<any>();
   @Output() onFocusField: EventEmitter<string> = new EventEmitter<string>();
   @Output() onClickButton: EventEmitter<string> = new EventEmitter<string>();
-  @Input() max: any;
-  @Input() min: any;
-
   writeValue(obj: any): void {
     this.value = obj;
   }
 
   onFocusIn() {
-    this.onFocusField.emit(this.field ?? '');
+    this.onFocusField.emit(this.columnModel.field ?? '');
   }
 
   onButtonClick() {
-    this.onClickButton.emit(this.field ?? '');
+    this.onClickButton.emit(this.columnModel.field ?? '');
   }
 
   updateValue($event: any) {
     this.value = $event;
     this.onChangeValue.emit($event)
   }
+
 }

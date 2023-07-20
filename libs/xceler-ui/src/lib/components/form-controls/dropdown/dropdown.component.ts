@@ -4,6 +4,7 @@ import {
 import {BaseFormControl} from "../core/base-form-control";
 import {ListOption} from "../core/list-option";
 import {NG_VALUE_ACCESSOR} from "@angular/forms";
+import {Resolver} from "../../../models/resolver";
 
 @Component({
   selector: 'xui-dropdown',
@@ -77,7 +78,7 @@ export class DropdownComponent extends BaseFormControl implements  OnChanges {
     if(dropList !== null && dropList !== undefined) {
       const headerRect = dropdownHeader.getBoundingClientRect();
       dropList.nativeElement.style.minWidth = `${headerRect.width}px`;
-      dropList.nativeElement.style.top = `${headerRect.bottom}px`;
+      Resolver.decideDropdownPositionFromElement(dropdownHeader,dropList.nativeElement);
     }
   }
 

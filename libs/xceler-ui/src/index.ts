@@ -51,7 +51,7 @@ export * from './lib/interfaces/event-listener';
 
 /** ================= Exports Pipes ===================== **/
 export * from './lib/pipes/filter-list.pipe';
-export * from './lib/pipes/date-format.pipe';
+export * from './lib/pipes/transactiontype.pipe';
 export * from './lib/components/toaster/pipe/sanitize-html.pipe';
 
 /** ================= Directive ===================== **/
@@ -70,6 +70,7 @@ export * from './lib/services/api-service.service';
 export * from './lib/services/storage.service';
 export * from './lib/services/store.service';
 export * from './lib/services/form-control.service';
+export * from './lib/services/load-api.service'
 
 /** =================  Constants =================  **/
 export * from './lib/enums/profiles';

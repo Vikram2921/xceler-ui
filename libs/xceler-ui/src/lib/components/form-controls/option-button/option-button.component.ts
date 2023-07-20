@@ -40,6 +40,7 @@ export class OptionButtonComponent extends BaseFormControl{
 
   writeValue(obj: any): void {
     this.value = obj;
+    this.onOptionChange.emit(this.options.find(op => op.value == obj));
   }
 
   hide() {

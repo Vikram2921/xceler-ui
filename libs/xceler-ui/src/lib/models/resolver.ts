@@ -64,6 +64,19 @@ export class Resolver {
     }
   }
 
+  public static decideDropdownPositionFromElement(element: HTMLElement, popupElement: HTMLElement) {
+    const popupRect = popupElement.getBoundingClientRect();
+    const targetRect = element.getBoundingClientRect();
+    const viewportWidth = window.innerWidth || document.documentElement.clientWidth;
+    const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+    popupElement.style.left = `${targetRect.left}px`;
+    if (popupRect.bottom > (viewportHeight - 50)) {
+      popupElement.style.top = `${targetRect.top - popupRect.height}px`;
+    } else {
+      popupElement.style.top = `${targetRect.bottom}px`;
+    }
+  }
+
   public static decidePopupPositionFromEvent(event: MouseEvent, element: HTMLElement) {
     return this.decidePopupPositionFromElement(<HTMLElement>event.target, element);
   }
