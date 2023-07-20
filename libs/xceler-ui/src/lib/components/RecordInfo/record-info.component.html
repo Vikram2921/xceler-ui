@@ -1,3 +1,19 @@
-<div style="width: 100%;background: white;height: 100%;border-radius: 1px;box-shadow: 0 0 2px black">
-  <p>Phyiscal Trade</p>
+<div  style="display: flex;flex-direction: column;width: 100%">
+  <div style="width: 100%;background: white;height:auto;box-shadow: 0 0 1px black;padding: 0.3rem 1rem" class="scrollbar">
+    <div style="width: 100%;display: inline-flex;align-items: center;gap: 1rem">
+      <p style="color: #150d4e;font-size: 14px;font-weight: bold">Details</p>
+      <xui-icon-button icon="pencil-alt">Edit</xui-icon-button>
+    </div>
+    <div class="flex_box scrollbar"  id="infoBox">
+      <ng-container *ngFor="let col of columns;index as index">
+        <div *ngIf="!toggled && index < maxItem || toggled" class="value_box">
+          <p class="value_head">{{col.title}}</p>
+          <p class="value_value">{{rowData[col.field]}}</p>
+        </div>
+      </ng-container>
+    </div>
+  </div>
+  <div class="view_more" *ngIf="columns.length > 10" (click)="toggleViewMore()">
+    <p>{{view_more_label}}</p>
+  </div>
 </div>

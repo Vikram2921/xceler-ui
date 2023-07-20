@@ -80,11 +80,6 @@ export class AppComponent implements OnInit,AfterViewInit{
     this.jsonToUIComponent.loadProfile(Profiles.SIMPLE_GRID,{environment:environment,screen:'physicalTrade'});
   }
 
-  toggleOptions() {
-    this.screen = this.screen === 'physicalTrade' ? 'paperTrade' : 'physicalTrade';
-    this.jsonToUIComponent.loadProfile(Profiles.SIMPLE_GRID, this.screen)
-  }
-
   onItemChange(item: any) {
     if(item.profile) {
       this.jsonToUIComponent.loadProfile(Profiles.SIMPLE_GRID, {environment:environment,profile:item.profile});

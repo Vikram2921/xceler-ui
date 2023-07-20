@@ -2,7 +2,7 @@
   "columns": 13,
   "rows": 6,
   "setupFunction": "simple_grid",
-  "rowHeightList": ["5rem","5px","200px","45px","40px","calc(100% - 445px)"],
+  "rowHeightList": ["5rem","5px","min-content","45px","40px","calc(100% - 385px)"],
   "items": [
     {
       "itemId": "Navbar",
@@ -19,8 +19,7 @@
       "itemId": "info",
       "areaColRange": [1,13],
       "areaRowRange": [3],
-      "componentId": "info",
-      "padding": ["0.5rem 1rem 10px 0.6rem"]
+      "componentId": "info"
     },
     {
       "itemId": "tabs",

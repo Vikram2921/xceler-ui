@@ -45,7 +45,6 @@ export const PhysicalTradeActions: { [key: string]: Function } = {
     ];
   },
   preSave: (params: FunctionParams,mode:string) => {
-    console.log(params,mode);
   },
   company: (params: FunctionParams) => {
 

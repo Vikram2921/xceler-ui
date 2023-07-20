@@ -21,7 +21,7 @@ export class JSONToUIComponent extends BaseComponent{
   loaded:boolean = false;
   currentProfile:Profiles | string = '';
 
-  constructor(private cd:ChangeDetectorRef,private apiService:ApiService) {
+  constructor(private cd:ChangeDetectorRef) {
     super();
   }
 
@@ -59,7 +59,7 @@ export class JSONToUIComponent extends BaseComponent{
       val = this.profile.columns;
     } else {
       if(this.profile.rowHeightList !== null && this.profile.rowHeightList !== undefined && this.profile.rowHeightList.length > 0) {
-        return this.profile.rowHeightList.map(i => `max(${i},${i})`).join(" ");
+        return this.profile.rowHeightList.map(i => `minMax(${i},${i})`).join(" ");
       }
       val = this.profile.rows;
     }

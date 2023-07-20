@@ -131,6 +131,9 @@ export const ProfileFunctions:{[key:string]:Function} = {
 
     let gridFunction:Function = async (grid:GridComponent) => {
       gridObj = grid;
+      gridObj.onFieldClick.subscribe((next) => {
+        console.log(next);
+      })
       grid.show(activity);
       if(!activity.screenJson.tabs || activity.screenJson.tabs.length === 0) {
         refreshButton.disable();
