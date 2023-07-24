@@ -1,7 +1,6 @@
 import {Injectable} from '@angular/core';
 import {UrlModel} from "../models/screen-model";
 import {Resolver} from "../models/resolver";
-import {HttpRequest} from "@angular/common/http";
 
 @Injectable({
   providedIn: 'root'

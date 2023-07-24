@@ -13,15 +13,16 @@ import {
   Resolver,
   ScreenInfoComponent,
   ScreenRegister,
-  StoreService, ToastMessageModel,
-  ToastService
+  StoreService,
+  ToastMessageModel,
+  ToastService,
+  RecordInfoComponent,
+  JsonToUIService
 } from "@xceler-ui/xceler-ui";
 import {PhysicalTradeActions} from "./physicals/physical_trade/PhysicalTradeActions";
 import {ProfileFunctions} from "../../../../libs/xceler-ui/src/lib/profiles/Profiles";
 import {PhysicalTrade} from "./physicals/physical_trade/physical-trade";
 import {environment} from "./environment";
-import {RecordInfoComponent} from "../../../../libs/xceler-ui/src/lib/components/RecordInfo/record-info.component";
-import {JsonToUIService} from "../../../../libs/xceler-ui/src/lib/components/json-to-ui/json-to-ui/json-to-ui.service";
 import {TabLayoutComponent} from "../../../../libs/xceler-ui/src/lib/components/TabLayout/tab-layout.component";
 
 @Component({
@@ -50,7 +51,6 @@ export class AppComponent implements OnInit,AfterViewInit{
   private registerFunctionFiles() {
     FunctionRegister.registerFunctionsFile('profiles',ProfileFunctions);
     FunctionRegister.registerFunctionsFile('PhysicalTradeActions',PhysicalTradeActions);
-  //  this.loadingPop = ToastService.showLoadingPopup('Please wait while we load the application',{path:'./assets/loading.gif',width:100,height:100});
   }
 
 

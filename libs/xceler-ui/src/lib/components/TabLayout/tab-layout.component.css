@@ -1,0 +1,21 @@
+.tab_layout {
+  display: inline-flex;
+}
+.tab_item{
+  padding: 1rem;
+  cursor: pointer;
+  user-select: none;
+  font-weight: 600;
+  font-size: 14px;
+  font-family: 'Lato', sans-serif;
+  min-width: 100px;
+  text-align: center;
+}
+
+.tab_item:hover {
+  background-color: rgba(118, 118, 118, 0.09);
+}
+
+.selected {
+  border-bottom: 2px solid #ff8300;
+}

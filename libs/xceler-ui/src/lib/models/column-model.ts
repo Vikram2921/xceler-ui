@@ -1,6 +1,5 @@
 import {ControlType} from "./control-type";
 import {ListOption} from "@xceler-ui/xceler-ui";
-import {BehaviorSubject} from "rxjs";
 
 export class ColumnModel {
   field:string = '';

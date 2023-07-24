@@ -1,7 +1,6 @@
-import {Component, EventEmitter, forwardRef, Input, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, forwardRef, Input, Output} from '@angular/core';
 import {BaseFormControl} from "../core/base-form-control";
 import {NG_VALUE_ACCESSOR} from "@angular/forms";
-import {ControlType} from "../../../models/control-type";
 import {ListOption} from "../core/list-option";
 import {ColumnModel} from "../../../models/column-model";
 
