@@ -26,7 +26,7 @@ import {
   faCircle,
   faCheckCircle,
   faSpinner,
-  faInfoCircle,
+  faInfoCircle, faChevronLeft,
 } from '@fortawesome/free-solid-svg-icons';
 import { CommonModule } from '@angular/common';
 import { GridComponent } from './components/grid/grid.component';
@@ -68,7 +68,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RecordInfoComponent } from './components/RecordInfo/record-info.component';
 import { AppendToDirective } from './directives/append-to.directive';
-import {TransactionTypePipe} from './pipes/transactiontype.pipe';
+import { TransactionTypePipe } from './pipes/transactiontype.pipe';
+import {TabLayoutComponent} from "./components/TabLayout/tab-layout.component";
+import {HTTP_INTERCEPTORS} from "@angular/common/http";
+import {Interceptor} from "./interceptor/interceptor.interceptor";
 
 @NgModule({
   imports: [
@@ -111,6 +114,7 @@ import {TransactionTypePipe} from './pipes/transactiontype.pipe';
     DualSliderComponent,
     SliderComponent,
     RecordInfoComponent,
+    TabLayoutComponent,
   ],
   declarations: [
     GridComponent,
@@ -147,7 +151,9 @@ import {TransactionTypePipe} from './pipes/transactiontype.pipe';
     RecordInfoComponent,
     AppendToDirective,
     TransactionTypePipe,
+    TabLayoutComponent,
   ],
+  providers:[{provide: HTTP_INTERCEPTORS,useClass:Interceptor,multi:true}]
 })
 export class XcelerUiModule {
   constructor(library: FaIconLibrary) {
@@ -178,7 +184,8 @@ export class XcelerUiModule {
       faForwardFast,
       faBackward,
       faBackwardFast,
-      faInfoCircle
+      faInfoCircle,
+      faChevronLeft
     );
   }
 }

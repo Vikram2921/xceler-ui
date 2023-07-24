@@ -4,7 +4,6 @@ import {Profile, ProfileItem} from "./models/profile";
 import {FunctionRegister} from "../../registers/function-register.service";
 import {BaseComponent} from "../form-controls/core/base-component";
 import {PopupService} from "../popup/service/popup-service.service";
-import {ApiService} from "../../services/api-service.service";
 import {ProfileRegister} from "../../profiles/ProfileRegister";
 import {Profiles} from "../../enums/profiles";
 
@@ -59,7 +58,7 @@ export class JSONToUIComponent extends BaseComponent{
       val = this.profile.columns;
     } else {
       if(this.profile.rowHeightList !== null && this.profile.rowHeightList !== undefined && this.profile.rowHeightList.length > 0) {
-        return this.profile.rowHeightList.map(i => `minMax(${i},${i})`).join(" ");
+        return this.profile.rowHeightList.map(i => i.includes("minMax")?i:`minMax(${i},${i})`).join(" ");
       }
       val = this.profile.rows;
     }

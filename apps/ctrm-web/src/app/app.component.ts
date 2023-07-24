@@ -21,6 +21,8 @@ import {ProfileFunctions} from "../../../../libs/xceler-ui/src/lib/profiles/Prof
 import {PhysicalTrade} from "./physicals/physical_trade/physical-trade";
 import {environment} from "./environment";
 import {RecordInfoComponent} from "../../../../libs/xceler-ui/src/lib/components/RecordInfo/record-info.component";
+import {JsonToUIService} from "../../../../libs/xceler-ui/src/lib/components/json-to-ui/json-to-ui/json-to-ui.service";
+import {TabLayoutComponent} from "../../../../libs/xceler-ui/src/lib/components/TabLayout/tab-layout.component";
 
 @Component({
   selector: 'xceler-ui-root',
@@ -48,7 +50,7 @@ export class AppComponent implements OnInit,AfterViewInit{
   private registerFunctionFiles() {
     FunctionRegister.registerFunctionsFile('profiles',ProfileFunctions);
     FunctionRegister.registerFunctionsFile('PhysicalTradeActions',PhysicalTradeActions);
-    this.loadingPop = ToastService.showLoadingPopup('Please wait while we load the application',{path:'./assets/loading.gif',width:100,height:100});
+  //  this.loadingPop = ToastService.showLoadingPopup('Please wait while we load the application',{path:'./assets/loading.gif',width:100,height:100});
   }
 
 
@@ -58,6 +60,7 @@ export class AppComponent implements OnInit,AfterViewInit{
     ComponentRegister.registerComponent("grid_toolbar",GridToolbarComponent);
     ComponentRegister.registerComponent("tabs",OptionButtonComponent);
     ComponentRegister.registerComponent("info",RecordInfoComponent);
+    ComponentRegister.registerComponent("tabsLayout",TabLayoutComponent);
   }
 
 
@@ -66,6 +69,7 @@ export class AppComponent implements OnInit,AfterViewInit{
   }
 
   private registerToastTypes() {
+    ToastService.registerType('warning', '', 'rgba(255,165,0,0.64)');
     ToastService.registerType('error', '', '#E90000');
     ToastService.registerType('success', '', '#0080007F');
   }
@@ -77,12 +81,13 @@ export class AppComponent implements OnInit,AfterViewInit{
     this.loaded = true;
     this.cd.detectChanges();
     await this.storeCommonLists();
-    this.jsonToUIComponent.loadProfile(Profiles.SIMPLE_GRID,{environment:environment,screen:'physicalTrade'});
+    JsonToUIService.add('ctrm_web',this.jsonToUIComponent);
+    this.jsonToUIComponent.loadProfile(Profiles.SIMPLE_GRID,{environment:environment,screen:'physicalTrade',componentId:"ctrm_web",lastProfile:Profiles.SIMPLE_GRID});
   }
 
   onItemChange(item: any) {
     if(item.profile) {
-      this.jsonToUIComponent.loadProfile(Profiles.SIMPLE_GRID, {environment:environment,profile:item.profile});
+      this.jsonToUIComponent.loadProfile(Profiles.SIMPLE_GRID, {environment:environment,profile:item.profile,componentId:"ctrm_web",lastProfile:Profiles.SIMPLE_GRID});
     }
   }
 

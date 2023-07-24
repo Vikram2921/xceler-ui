@@ -64,6 +64,7 @@ export * from './lib/registers/component-register.service';
 export * from './lib/registers/function-register.service';
 export * from './lib/registers/screen-register.service';
 export * from './lib/profiles/ProfileRegister';
+export * from './lib/components/json-to-ui/json-to-ui/json-to-ui.service';
 
 /** ================= Services ================= **/
 export * from './lib/services/api-service.service';
@@ -74,3 +75,4 @@ export * from './lib/services/load-api.service'
 
 /** =================  Constants =================  **/
 export * from './lib/enums/profiles';
+export * from './lib/interceptor/interceptor.interceptor'

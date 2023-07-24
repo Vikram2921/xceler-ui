@@ -1,6 +1,8 @@
-import {Component, HostListener, OnInit} from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {HostActivity} from "../../models/host-activity";
 import {ColumnModel} from "../../models/column-model";
+import {JsonToUIService} from "../json-to-ui/json-to-ui/json-to-ui.service";
+import {Profiles} from "../../enums/profiles";
 
 @Component({
   selector: 'xui-record-info',
@@ -14,6 +16,9 @@ export class RecordInfoComponent extends HostActivity implements OnInit{
   maxItem: number = 5;
   columns: ColumnModel[] =[];
   rowData: any;
+  idField!:string;
+  options:any;
+  @Output() onClickBack = new EventEmitter();
   toggleViewMore() {
     if(!this.toggled) {
         this.view_more_label = 'View Less';
@@ -26,11 +31,23 @@ export class RecordInfoComponent extends HostActivity implements OnInit{
   }
 
   override init(props: { [p: string]: any }) {
+    this.options = props;
+    console.log(this.options);
     this.rowData = props['data'];
     this.columns = props['columns'];
+    this.idField= props['columns'].find((item:ColumnModel) => item.idField).field;
   }
 
   ngOnInit(): void {
     this.maxItem = (window['visualViewport']!.width) / (window['visualViewport']!.width * 0.12);
+  }
+
+  back() {
+    console.log(this.options);
+    let screenId = this.options.mainActivity.screenJson.title;
+    let state = JsonToUIService.getState(screenId,false);
+    let lastProfile = state.profile;
+    console.log(state);
+    JsonToUIService.get(this.options.componentId).loadProfile(lastProfile,{environment:"",screen:'physicalTrade',componentId:this.options.componentId,lastProfile:Profiles.SIMPLE_GRID});
   }
 }

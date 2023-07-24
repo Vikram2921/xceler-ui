@@ -33,6 +33,7 @@
         "payloadFunction": "draft_payload"
       }
     },"useSameModel": true}],
+  "innerTabs": [{"label": "Quality Specification"},{"label": "Cost"},{"label": "Trade Attachment"}],
   "sections": [
     {
       "sectionName": "Trade Counterparty and Company Details",

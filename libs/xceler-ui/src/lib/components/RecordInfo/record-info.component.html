@@ -1,7 +1,13 @@
 <div  style="display: flex;flex-direction: column;width: 100%">
-  <div style="width: 100%;background: white;height:auto;box-shadow: 0 0 1px black;padding: 0.3rem 1rem" class="scrollbar">
+  <div class="info_card" style="padding: 10px">
+    <div style="display: inline-flex;align-items: center">
+      <fa-icon icon="chevron-left" style="font-size: 25px;cursor: pointer" (click)="back()"></fa-icon>
+      <p style="font-size: 25px;font-weight: bold;margin-left: 10px">{{rowData[idField]}}</p>
+    </div>
+  </div>
+  <div class="info_card" style="margin-top: 5px">
     <div style="width: 100%;display: inline-flex;align-items: center;gap: 1rem">
-      <p style="color: #150d4e;font-size: 14px;font-weight: bold">Details</p>
+      <p style="color: #150d4e;font-size: 14px;font-weight: bold">{{options.mainActivity.screenJson.title}}</p>
       <xui-icon-button icon="pencil-alt">Edit</xui-icon-button>
     </div>
     <div class="flex_box scrollbar"  id="infoBox">

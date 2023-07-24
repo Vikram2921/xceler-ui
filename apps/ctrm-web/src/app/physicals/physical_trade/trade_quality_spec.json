@@ -1,0 +1,125 @@
+{
+  "title": "Quality Specification",
+  "urls": {
+    "saveUrl": "http://localhost/ctrm-api/api/qualitySpecification/v1/save",
+    "fetchUrl": "/api/qualitySpecification/v1/getAllQualitySpecificationsByTradeId?tenantId=d7408d31-d720-4173-b76e-0595ce2679b4&tradeId=",
+    "hrefUrl": "http://localhost/ctrm-api/api/qualitySpecification/v1/getbyqualityspecuuid?tenantId=d7408d31-d720-4173-b76e-0595ce2679b4&uuid=",
+    "updateUrl": "http://localhost/ctrm-api/api/qualitySpecification/v1/update",
+    "deleteUrl": "http://localhost/ctrm-api/api/qualitySpecification/v1/delete",
+    "importUrl": "http://localhost/ctrm-api/qualitySpecification/import"
+  },
+  "columns": [
+    {
+      "title": "Trade ID",
+      "field": "tradeId",
+      "type": "label",
+      "defaultValue": "",
+      "visibilityArea": "B",
+      "onChangeValue": false,
+      "unique": false,
+      "validators": [],
+      "pipe": "",
+      "pipeOptions": null
+    },
+    {
+      "title": "Quality Parameter Name",
+      "field": "name",
+      "type": "dropdown",
+      "defaultValue": "",
+      "visibilityArea": "B",
+      "onChangeValue": true,
+      "unique": false,
+      "list": [
+        {
+          "label": "Select",
+          "value": ""
+        }
+      ],
+      "validators": [
+        "required"
+      ],
+      "pipe": "",
+      "pipeOptions": null
+    },
+    {
+      "title": "Quality Parameter Description",
+      "field": "description",
+      "type": "label",
+      "defaultValue": "",
+      "visibilityArea": "B",
+      "onChangeValue": false,
+      "unique": false,
+      "validators": [],
+      "pipe": "",
+      "pipeOptions": null
+    },
+    {
+      "title": "Min",
+      "field": "min",
+      "type": "number",
+      "defaultValue": "",
+      "visibilityArea": "B",
+      "onChangeValue": true,
+      "unique": false,
+      "validators": [],
+      "pipe": "",
+      "pipeOptions": null
+    },
+    {
+      "title": "Max",
+      "field": "max",
+      "type": "number",
+      "defaultValue": "",
+      "visibilityArea": "B",
+      "onChangeValue": false,
+      "unique": false,
+      "validators": [],
+      "pipe": "",
+      "pipeOptions": null
+    },
+    {
+      "title": "Typical",
+      "field": "typical",
+      "type": "text_field",
+      "defaultValue": "",
+      "visibilityArea": "B",
+      "onChangeValue": false,
+      "unique": false,
+      "validators": [],
+      "pipe": "",
+      "pipeOptions": null
+    },
+    {
+      "title": "Basis",
+      "field": "basis",
+      "type": "text_field",
+      "defaultValue": "",
+      "visibilityArea": "B",
+      "onChangeValue": false,
+      "unique": false,
+      "validators": [],
+      "pipe": "",
+      "pipeOptions": null
+    },
+    {
+      "title": "Unit",
+      "field": "unit",
+      "type": "text_field",
+      "defaultValue": "",
+      "visibilityArea": "B",
+      "onChangeValue": false,
+      "unique": false,
+      "list": [
+        {
+          "label": "Select",
+          "value": ""
+        }
+      ],
+      "validators": [
+        "required"
+      ],
+      "pipe": "",
+      "pipeOptions": null
+    }
+  ]
+}

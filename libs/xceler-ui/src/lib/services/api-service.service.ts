@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {UrlModel} from "../models/screen-model";
 import {Resolver} from "../models/resolver";
+import {HttpRequest} from "@angular/common/http";
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +18,7 @@ export class ApiService {
 
   static get(url: string) {
     return new Promise((resolve, reject) => {
-      fetch(url, {method: 'GET', headers: this.getHeaders()})
+      fetch(this.reRoute(url), {method: 'GET', headers: this.getHeaders()})
         .then(res => res.json())
         .then(data => resolve(data))
         .catch(err => reject(err));
@@ -26,7 +27,7 @@ export class ApiService {
 
   static post(url: string, data: any) {
     return new Promise((resolve, reject) => {
-      fetch(url, {
+      fetch(this.reRoute(url), {
         method: 'POST',
         body: JSON.stringify(data),
         headers: this.getHeaders()
@@ -39,7 +40,7 @@ export class ApiService {
 
   static patch(url: string, data: any) {
     return new Promise((resolve, reject) => {
-      fetch(url, {
+      fetch(this.reRoute(url), {
         method: 'PATCH',
         body: JSON.stringify(data),
         headers: this.getHeaders()
@@ -52,7 +53,7 @@ export class ApiService {
 
   static delete(url: string) {
     return new Promise((resolve, reject) => {
-      fetch(url, {
+      fetch(this.reRoute(url), {
         method: 'DELETE', headers: this.getHeaders()
       })
         .then(res => res.json())
@@ -63,7 +64,7 @@ export class ApiService {
 
   static put(url: string, data: any) {
     return new Promise((resolve, reject) => {
-      fetch(url, {
+      fetch(this.reRoute(url), {
         method: 'PUT',
         body: JSON.stringify(data),
         headers: this.getHeaders()
@@ -91,5 +92,26 @@ export class ApiService {
     } else {
       return ApiService.get(url)
     }
+  }
+
+  private static reRoute(route:string):string {
+    if(route.includes("//localhost/")) {
+      let json:{[key:string]:any} = {
+        'ctrm-api':'http://localhost:8080',
+        'api-iam':'http://localhost:8082',
+        'api-bm':'http://localhost:8083',
+        'api-inventory':'http://localhost:8086',
+        'integration-service':'http://localhost:8084',
+        'approval-workflow':'http://localhost:8085'
+      }
+      let url = route.replace("http://localhost/","");
+      let split = url.split("/");
+      if(Object.keys(json).includes(split[1])) {
+        route = json[split[1]]+url;
+      } else {
+        route = "http://localhost:8080"+url;
+      }
+    }
+    return route;
   }
 }

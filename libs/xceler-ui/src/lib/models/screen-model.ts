@@ -50,6 +50,7 @@ export class ScreenModel {
   urls!: Urls;
   gridConfiguration: GridConfiguration = new GridConfiguration();
   tabs: Tabs[] = [];
+  innerTabs: Tabs[] = [];
   sections!: { "sectionName": string, columns: ColumnModel[] }[];
   columns: ColumnModel[] = [];
   title: string = "";

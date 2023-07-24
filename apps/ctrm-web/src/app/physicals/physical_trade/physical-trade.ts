@@ -15,14 +15,19 @@ export class PhysicalTrade implements Activity {
   selectedRows: any[] = [];
   data: any[] | PageObject = [];
   async beforeRender(grid:GridComponent) {
+
+
     let config = await ApiService.get(Resolver.getModifiedUrl('{endpoint}/ctrm-api/api/trade/v1/loadconfigdata?tenantId={tenantId}',environment)).then((next: any) => next);
     StoreService.addStore(this.screenJson.title);
     Object.keys(config).forEach(key => {
       StoreService.addListValues(this.screenJson.title,key,Resolver.convertListStringToListOptions(config[key]));
     })
+    this.screenJson.addOption('config',config);
+
+
     let traderNameList = await ApiService.get(Resolver.getModifiedUrl('{endpoint}/ctrm-api/api/trade/v1/getuser?tenantId={tenantId}&userType=Trader',environment)).then((next: any) => next);
     StoreService.addListValues("common","common_traderName",Resolver.convertListObjectToListOptions(traderNameList,'value','value'));
-    this.screenJson.addOption('config',config);
+
 
     let loadApiResponse:any = await LoadApiService.getInstance()
       .setMaster("commodity")

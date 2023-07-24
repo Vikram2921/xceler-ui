@@ -10,53 +10,58 @@ import {
   FunctionRegister,
   GridComponent,
   GridToolbarComponent,
+  JsonToUIService,
   ListOption,
   OptionButtonComponent,
   PopupProps,
   PopupService,
-  ProgressButtonProp,
+  Profiles,
+  ProgressButtonProp, RecordInfoComponent,
   ScreenInfoComponent,
   ScreenRegister,
   ToastService
 } from "@xceler-ui/xceler-ui";
+import {TabLayoutComponent} from "../components/TabLayout/tab-layout.component";
 
-export const ProfileFunctions:{[key:string]:Function} = {
+export const ProfileFunctions: { [key: string]: Function } = {
 
-  simple_grid : async (options:FunctionParams | any) => {
+  simple_grid: async (options: FunctionParams | any) => {
+    console.log(options);
+    let componentId = options.options.componentId;
     options['formControlService'] = new FormControlService();
-    let activity:Activity = ScreenRegister.getScreen(options.options.screen);
-    let update:boolean = options.update;
-    let idField:ColumnModel | undefined = activity.screenJson.getColumns().find(column => column.idField);
-    let gridObj!:GridComponent;
-    let screenInfoFunction:Function = (screenInfo:ScreenInfoComponent) => {
+    let activity: Activity = ScreenRegister.getScreen(options.options.screen);
+    let update: boolean = options.update;
+    let idField: ColumnModel | undefined = activity.screenJson.getColumns().find(column => column.idField);
+    let gridObj!: GridComponent;
+    let screenInfoFunction: Function = (screenInfo: ScreenInfoComponent) => {
       screenInfo.iconPath = activity.screenJson.iconPath;
       screenInfo.title = activity.screenJson.title;
       screenInfo.advanceFilter = true;
     }
 
-    let addEdit = (next:any) => {
-      if(next.buttonName == 'Add' || next.buttonName == 'Edit') {
+    let addEdit = (next: any) => {
+      if (next.buttonName == 'Add' || next.buttonName == 'Edit') {
         PopupService.removePopup(next.buttonName);
-        let headerProps:any = {
-          show:true,
-          title:'New '+activity.screenJson.title,
+        let headerProps: any = {
+          show: true,
+          title: 'New ' + activity.screenJson.title,
         }
-        let buttons:ProgressButtonProp[] =[];
-        let info:any = null;
-        if(next.buttonName == 'Edit') {
-          if(activity.selectedRows.length == 0){
-              ToastService.addErrorMessage('Warning','Please select a row to edit');
-              return;
+        let buttons: ProgressButtonProp[] = [];
+        let info: any = null;
+        if (next.buttonName == 'Edit') {
+          if (activity.selectedRows.length == 0) {
+            ToastService.addErrorMessage('Warning', 'Please select a row to edit');
+            return;
           }
-          let updateButton = new ProgressButtonProp('Update',false,false,(buttonProp:ProgressButtonProp) => {
+          let updateButton = new ProgressButtonProp('Update', false, false, (buttonProp: ProgressButtonProp) => {
             buttonProp.text = "Updating";
             buttonProp.disabled = true;
-            let hasPreSave = FunctionRegister.hasFunction(activity.screenJson.functionFile,"preSave");
+            let hasPreSave = FunctionRegister.hasFunction(activity.screenJson.functionFile, "preSave");
             let payload = {};
-            if(hasPreSave) {
-              let func = FunctionRegister.getFunction(activity.screenJson.functionFile,"preSave");
-              if(func) {
-                payload = func(options,'update');
+            if (hasPreSave) {
+              let func = FunctionRegister.getFunction(activity.screenJson.functionFile, "preSave");
+              if (func) {
+                payload = func(options, 'update');
               }
             }
             // ApiService.decideUrlCallItself(activity.screenJson.urls.updateUrl,options.options.environment,payload).then((next:any) => {
@@ -65,25 +70,25 @@ export const ProfileFunctions:{[key:string]:Function} = {
             // });
           })
           buttons.push(updateButton);
-          if(idField) {
+          if (idField) {
             headerProps.title = activity.selectedRows[0][idField.field];
           }
           info = {};
           info['createdBy'] = activity.selectedRows[0]['createdBy'];
           info['createdTimestamp'] = activity.selectedRows[0]['createdTimestamp'];
-          info['updatedBy']= activity.selectedRows[0]['updatedBy'];
+          info['updatedBy'] = activity.selectedRows[0]['updatedBy'];
           info['updatedTimestamp'] = activity.selectedRows[0]['updatedTimestamp'];
           options['rowData'] = activity.selectedRows[0];
         } else {
-          let saveButton = new ProgressButtonProp('Save',false,false,(buttonProp:ProgressButtonProp) => {
+          let saveButton = new ProgressButtonProp('Save', false, false, (buttonProp: ProgressButtonProp) => {
             buttonProp.text = "Saving";
             buttonProp.disabled = true;
-            let hasPreSave = FunctionRegister.hasFunction(activity.screenJson.functionFile,"preSave");
+            let hasPreSave = FunctionRegister.hasFunction(activity.screenJson.functionFile, "preSave");
             let payload = {};
-            if(hasPreSave) {
-              let func = FunctionRegister.getFunction(activity.screenJson.functionFile,"preSave");
-              if(func) {
-                payload = func(options,'save');
+            if (hasPreSave) {
+              let func = FunctionRegister.getFunction(activity.screenJson.functionFile, "preSave");
+              if (func) {
+                payload = func(options, 'save');
               }
             }
             // ApiService.decideUrlCallItself(activity.screenJson.urls.saveUrl,options.options.environment,payload).then((next:any) => {
@@ -94,22 +99,22 @@ export const ProfileFunctions:{[key:string]:Function} = {
           buttons.push(saveButton);
           options['rowData'] = null;
         }
-        let footerProps:any = {
-          show:true,
-          progressButtons:buttons,
-          info:info
+        let footerProps: any = {
+          show: true,
+          progressButtons: buttons,
+          info: info
         }
-        PopupService.addPopup(next.buttonName,FormInputComponentComponent,options,headerProps,footerProps,new PopupProps('right',true,true,'75%'));
+        PopupService.addPopup(next.buttonName, FormInputComponentComponent, options, headerProps, footerProps, new PopupProps('right', true, true, '75%'));
         activity.selectedRows = [];
       }
     }
 
-    let refresh = (next:any) => {
-      if(gridObj) {
+    let refresh = (next: any) => {
+      if (gridObj) {
         refreshButton.disable();
         refreshButton.setAnimation('spin');
-        ApiService.decideUrlCallItself(activity.screenJson.urls.fetchUrl,options.options.environment,{page:gridObj.currentPage}).then((next:any) => {
-          activity.data =next;
+        ApiService.decideUrlCallItself(activity.screenJson.urls.fetchUrl, options.options.environment, {page: gridObj.currentPage}).then((next: any) => {
+          activity.data = next;
           gridObj.refreshData();
           refreshButton.enable();
           refreshButton.clearAnimation();
@@ -117,38 +122,48 @@ export const ProfileFunctions:{[key:string]:Function} = {
       }
     }
 
-    let leftButton:ButtonModel[] =[];
-    let addButton:ButtonModel = new ButtonModel('Add',false,['fas','add'],addEdit);
-    let editButton:ButtonModel = new ButtonModel('Edit',false,['fas','pencil-alt'],addEdit);
-    let duplicateButton:ButtonModel = new ButtonModel('Duplicate',false,['fas','copy'],addEdit);
-    let deleteButton:ButtonModel = new ButtonModel('Delete',false,['fas','trash'],addEdit);
-    let refreshButton:ButtonModel = new ButtonModel('Refresh',false,['fas','redo'],refresh);
+    let leftButton: ButtonModel[] = [];
+    let addButton: ButtonModel = new ButtonModel('Add', false, ['fas', 'add'], addEdit);
+    let editButton: ButtonModel = new ButtonModel('Edit', false, ['fas', 'pencil-alt'], addEdit);
+    let duplicateButton: ButtonModel = new ButtonModel('Duplicate', false, ['fas', 'copy'], addEdit);
+    let deleteButton: ButtonModel = new ButtonModel('Delete', false, ['fas', 'trash'], addEdit);
+    let refreshButton: ButtonModel = new ButtonModel('Refresh', false, ['fas', 'redo'], refresh);
     leftButton.push(addButton)
     leftButton.push(editButton)
     leftButton.push(duplicateButton)
     leftButton.push(deleteButton)
     leftButton.push(refreshButton)
 
-    let gridFunction:Function = async (grid:GridComponent) => {
+    let gridFunction: Function = async (grid: GridComponent) => {
       gridObj = grid;
       gridObj.onFieldClick.subscribe((next) => {
-        console.log(next);
+        if(activity.screenJson.innerTabs && activity.screenJson.innerTabs.length > 0) {
+          JsonToUIService.saveState(activity.screenJson.title,{page:gridObj.currentPage,profile: options.options.lastProfile})
+          JsonToUIService.get(componentId).loadProfile(Profiles.TAB_GRID, {
+            data: next['row'],
+            columns: activity.screenJson.getColumns(),
+            tabs: activity.screenJson.innerTabs,
+            mainActivity: activity,
+            componentId:componentId,
+            environment: options.options.environment,
+          });
+        }
       })
       grid.show(activity);
-      if(!activity.screenJson.tabs || activity.screenJson.tabs.length === 0) {
+      if (!activity.screenJson.tabs || activity.screenJson.tabs.length === 0) {
         refreshButton.disable();
         refreshButton.setAnimation('spin');
-        activity.data = await ApiService.decideUrlCallItself(activity.screenJson.urls.fetchUrl,options.options.environment,{page:0}).then((next:any) => next);
+        activity.data = await ApiService.decideUrlCallItself(activity.screenJson.urls.fetchUrl, options.options.environment, {page: 0}).then((next: any) => next);
         grid.refreshData();
         refreshButton.enable();
         refreshButton.clearAnimation();
-        grid.onPageChange.subscribe( (pageNumber)=> {
+        grid.onPageChange.subscribe((pageNumber) => {
           activity.data = [];
           grid.refreshData();
           refreshButton.disable();
           refreshButton.setAnimation('spin');
-          ApiService.decideUrlCallItself(activity.screenJson.urls.fetchUrl,options.options.environment,{page:pageNumber}).then((next:any) => {
-            activity.data =next;
+          ApiService.decideUrlCallItself(activity.screenJson.urls.fetchUrl, options.options.environment, {page: pageNumber}).then((next: any) => {
+            activity.data = next;
             grid.refreshData();
             refreshButton.enable();
             refreshButton.clearAnimation();
@@ -157,56 +172,56 @@ export const ProfileFunctions:{[key:string]:Function} = {
       }
     }
 
-    let gridToolbarFunction:Function = (gridToolbar:GridToolbarComponent) => {
+    let gridToolbarFunction: Function = (gridToolbar: GridToolbarComponent) => {
       gridToolbar.setLeftButton(leftButton);
     }
-    let tabsFunction:Function = (opButton:OptionButtonComponent) => {
-      opButton.options =  activity.screenJson.tabs.map(tab => new ListOption(tab.label,tab.label));
+    let tabsFunction: Function = (opButton: OptionButtonComponent) => {
+      opButton.options = activity.screenJson.tabs.map(tab => new ListOption(tab.label, tab.label));
       opButton.value = activity.screenJson.tabs.find(tab => tab.selected)?.label;
-      let onTabChange = async (tabLabel:string) => {
+      let onTabChange = async (tabLabel: string) => {
         refreshButton.disable();
         refreshButton.setAnimation('spin');
-        activity.data =  [];
-        if(gridObj) {
+        activity.data = [];
+        if (gridObj) {
           gridObj.refreshData();
         }
         let tab = activity.screenJson.tabs.find((tab) => tab.label === tabLabel);
-        if(tab) {
-          if(tab.useSameModel) {
+        if (tab) {
+          if (tab.useSameModel) {
             let urls = tab.urls;
-            if(urls.fetchUrl.payloadFunction && urls.fetchUrl.payloadFunction.length > 0) {
-              urls.fetchUrl.data = FunctionRegister.callFunction(activity.screenJson.functionFile, urls.fetchUrl.payloadFunction, {tab:tab});
+            if (urls.fetchUrl.payloadFunction && urls.fetchUrl.payloadFunction.length > 0) {
+              urls.fetchUrl.data = FunctionRegister.callFunction(activity.screenJson.functionFile, urls.fetchUrl.payloadFunction, {tab: tab});
             }
-            activity.data = await ApiService.decideUrlCallItself(urls.fetchUrl,options.options.environment,{page:0}).then((next:any) => next);
+            activity.data = await ApiService.decideUrlCallItself(urls.fetchUrl, options.options.environment, {page: 0}).then((next: any) => next);
             gridObj.refreshData();
           }
           refreshButton.enable();
           refreshButton.clearAnimation();
         }
       }
-      if(opButton.value === null || opButton.value === undefined) {
-          opButton.value = activity.screenJson.tabs[0].label;
+      if (opButton.value === null || opButton.value === undefined) {
+        opButton.value = activity.screenJson.tabs[0].label;
       }
       onTabChange(opButton.value);
-      opButton.onOptionChange.subscribe(async (next:ListOption) => {
+      opButton.onOptionChange.subscribe(async (next: ListOption) => {
         await onTabChange(next.label);
       })
     }
-    if(update) {
-      let screenInfo:ScreenInfoComponent = ComponentRegister.getElement("navbar").activity;
-      let grid:GridComponent = ComponentRegister.getElement("grid").activity;
-      let toolbar:GridToolbarComponent = ComponentRegister.getElement("grid_toolbar").activity;
-      let tabs:OptionButtonComponent = ComponentRegister.getElement("tabs").activity;
+    if (update) {
+      let screenInfo: ScreenInfoComponent = ComponentRegister.getElement("navbar").activity;
+      let grid: GridComponent = ComponentRegister.getElement("grid").activity;
+      let toolbar: GridToolbarComponent = ComponentRegister.getElement("grid_toolbar").activity;
+      let tabs: OptionButtonComponent = ComponentRegister.getElement("tabs").activity;
       screenInfoFunction(screenInfo);
       gridFunction(grid);
       gridToolbarFunction(toolbar);
-      if(activity.screenJson.tabs) {
-          tabsFunction(tabs);
+      if (activity.screenJson.tabs) {
+        tabsFunction(tabs);
       } else {
         tabs.hide();
       }
     } else {
-      ComponentRegister.getElementMap().subscribe((next:any) => {
+      ComponentRegister.getElementMap().subscribe((next: any) => {
         switch (next['name']) {
           case 'tabs':
             tabsFunction(next.element);
@@ -219,6 +234,39 @@ export const ProfileFunctions:{[key:string]:Function} = {
             break;
           case 'navbar':
             screenInfoFunction(next.element);
+            break;
+        }
+
+      })
+    }
+  },
+  tab_grid: async (options: FunctionParams | any) => {
+    let update: boolean = options.update;
+    console.log(options)
+    let recordInfoFunction: Function = (info: RecordInfoComponent) => {
+      info.init(options.options);
+    }
+    let tabsLayoutFunction: Function = (tabsLayout: TabLayoutComponent) => {
+      tabsLayout.init({
+        tabs:options.options.tabs.map((item : any) => item.label),
+        selected: options.options.tabs.find((item:any) => item.selected)?.label,
+        idField: options.options.mainActivity.idField
+      });
+    }
+    if (update) {
+      let recordInfo: RecordInfoComponent = ComponentRegister.getElement("info").activity;
+      let tabLayout: RecordInfoComponent = ComponentRegister.getElement("tabsLayout").activity;
+      recordInfoFunction(recordInfo);
+      tabsLayoutFunction(tabLayout);
+
+    } else {
+      ComponentRegister.getElementMap().subscribe((next: any) => {
+        switch (next['name']) {
+          case 'info':
+            recordInfoFunction(next.element);
+            break;
+          case 'tabsLayout':
+            tabsLayoutFunction(next.element);
             break;
         }
 

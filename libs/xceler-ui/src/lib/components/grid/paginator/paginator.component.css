@@ -43,7 +43,8 @@
   cursor: pointer;
   width: auto;
   color: #767676;
-  min-width: 2rem;
+  height: 2.286rem;
+  min-width: 2.286rem;
   padding: 10px;
   font-size: 14px;
   text-align: center;
