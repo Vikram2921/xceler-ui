@@ -18,6 +18,8 @@ export * from './lib/components/toaster/toaster.component';
 export * from './lib/components/toaster/service/toast.service';
 export * from './lib/components/screen-info/screen-info.component';
 export * from './lib/components/RecordInfo/record-info.component';
+export * from './lib/components/TabLayout/tab-layout.component';
+export * from './lib/components/TabContent/tab-content.component';
 
 /** ================= Form Control  ===================== **/
 export * from './lib/components/form-controls/aio-controls/aio-controls.component';

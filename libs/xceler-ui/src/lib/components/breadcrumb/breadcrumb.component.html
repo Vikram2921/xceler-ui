@@ -1,0 +1,9 @@
+<div class="breadcrumb_box">
+  <fa-icon icon="home" style="font-size: 0.9rem"></fa-icon>
+  <ng-container *ngFor="let item of list">
+    <div style="display: inline-flex;align-items: center">
+      <fa-icon class="separator" icon="chevron-right"></fa-icon>
+      <p class="item_text">{{item}}</p>
+    </div>
+  </ng-container>
+</div>

@@ -34,7 +34,7 @@ export class ComponentRegister {
   static getElement(name:string):{activity:any,props:{[key:string]:any}} {
       let element = this.elements.get(name);
       if(element != undefined) {
-          return element;
+          return element.activity.instance;
       } else {
           throw new Error("Element not found for name "+ name);
       }

@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {ListOption} from "../components/form-controls/core/list-option";
 import {BehaviorSubject} from "rxjs";
 import currency from '../assets/currency.json'
+import advanceFilter from '../assets/advance_filter_search_types.json'
 import {Resolver} from "../models/resolver";
 
 export class Store {
@@ -17,9 +18,14 @@ export class StoreService {
   private static storeObserver = new BehaviorSubject({});
   private static stores: {[key: string]: Store} = {};
 
-  public static addCommon() {
+  public static init() {
     StoreService.addStore("common");
+    StoreService.addStore("advanceFilter");
     StoreService.addListValues("common","common_currency",Resolver.convertListObjectToListOptions(Object.values(currency),"code","code"));
+    let keys = Object.keys(advanceFilter);
+    keys.forEach(key => {
+      // StoreService.addListValues("advanceFilter",key,advanceFilter[key]));
+    })
   }
 
   public static hasStore(store: string) {

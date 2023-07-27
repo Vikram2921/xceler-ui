@@ -58,9 +58,9 @@ export class Resolver {
       popupElement.style.left = `${targetRect.right}px`;
     }
     if (popupRect.bottom > (viewportHeight - 50)) {
-      popupElement.style.top = `${targetRect.top - popupRect.height}px`;
+      popupElement.style.top = `${targetRect.bottom - popupRect.height}px`;
     } else {
-      popupElement.style.top = `${targetRect.bottom}px`;
+      popupElement.style.top = `${targetRect.top}px`;
     }
   }
 

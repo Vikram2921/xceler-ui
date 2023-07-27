@@ -18,7 +18,7 @@ import {
   Profiles,
   ProgressButtonProp, RecordInfoComponent,
   ScreenInfoComponent,
-  ScreenRegister,
+  ScreenRegister, TabContentComponent,
   ToastService
 } from "@xceler-ui/xceler-ui";
 import {TabLayoutComponent} from "../components/TabLayout/tab-layout.component";
@@ -26,10 +26,13 @@ import {TabLayoutComponent} from "../components/TabLayout/tab-layout.component";
 export const ProfileFunctions: { [key: string]: Function } = {
 
   simple_grid: async (options: FunctionParams | any) => {
-    console.log(options);
-    let componentId = options.options.componentId;
+    let componentId = options.componentId;
     options['formControlService'] = new FormControlService();
-    let activity: Activity = ScreenRegister.getScreen(options.options.screen);
+    let activity: Activity = ScreenRegister.getScreen(options.screen);
+    let lastState = JsonToUIService.getState(activity.screenJson.title);
+    if(lastState) {
+
+    }
     let update: boolean = options.update;
     let idField: ColumnModel | undefined = activity.screenJson.getColumns().find(column => column.idField);
     let gridObj!: GridComponent;
@@ -64,7 +67,7 @@ export const ProfileFunctions: { [key: string]: Function } = {
                 payload = func(options, 'update');
               }
             }
-            // ApiService.decideUrlCallItself(activity.screenJson.urls.updateUrl,options.options.environment,payload).then((next:any) => {
+            // ApiService.decideUrlCallItself(activity.screenJson.urls.updateUrl,options.environment,payload).then((next:any) => {
             //   PopupService.removePopup(next.buttonName);
             //   ToastService.addSuccessMessage('Success','Data updated successfully !');
             // });
@@ -91,7 +94,7 @@ export const ProfileFunctions: { [key: string]: Function } = {
                 payload = func(options, 'save');
               }
             }
-            // ApiService.decideUrlCallItself(activity.screenJson.urls.saveUrl,options.options.environment,payload).then((next:any) => {
+            // ApiService.decideUrlCallItself(activity.screenJson.urls.saveUrl,options.environment,payload).then((next:any) => {
             //   PopupService.removePopup(next.buttonName);
             //   ToastService.addSuccessMessage('Success','Data saved successfully !');
             // });
@@ -113,7 +116,7 @@ export const ProfileFunctions: { [key: string]: Function } = {
       if (gridObj) {
         refreshButton.disable();
         refreshButton.setAnimation('spin');
-        ApiService.decideUrlCallItself(activity.screenJson.urls.fetchUrl, options.options.environment, {page: gridObj.currentPage}).then((next: any) => {
+        ApiService.decideUrlCallItself(activity.screenJson.urls.fetchUrl, options.environment, {page: gridObj.currentPage}).then((next: any) => {
           activity.data = next;
           gridObj.refreshData();
           refreshButton.enable();
@@ -138,14 +141,14 @@ export const ProfileFunctions: { [key: string]: Function } = {
       gridObj = grid;
       gridObj.onFieldClick.subscribe((next) => {
         if(activity.screenJson.innerTabs && activity.screenJson.innerTabs.length > 0) {
-          JsonToUIService.saveState(activity.screenJson.title,{page:gridObj.currentPage,profile: options.options.lastProfile})
+          JsonToUIService.saveState(activity.screenJson.title,{page:gridObj.currentPage,profile: options.lastProfile,currentOptions:options})
           JsonToUIService.get(componentId).loadProfile(Profiles.TAB_GRID, {
             data: next['row'],
             columns: activity.screenJson.getColumns(),
             tabs: activity.screenJson.innerTabs,
             mainActivity: activity,
             componentId:componentId,
-            environment: options.options.environment,
+            environment: options.environment,
           });
         }
       })
@@ -153,7 +156,7 @@ export const ProfileFunctions: { [key: string]: Function } = {
       if (!activity.screenJson.tabs || activity.screenJson.tabs.length === 0) {
         refreshButton.disable();
         refreshButton.setAnimation('spin');
-        activity.data = await ApiService.decideUrlCallItself(activity.screenJson.urls.fetchUrl, options.options.environment, {page: 0}).then((next: any) => next);
+        activity.data = await ApiService.decideUrlCallItself(activity.screenJson.urls.fetchUrl, options.environment, {page: 0}).then((next: any) => next);
         grid.refreshData();
         refreshButton.enable();
         refreshButton.clearAnimation();
@@ -162,7 +165,7 @@ export const ProfileFunctions: { [key: string]: Function } = {
           grid.refreshData();
           refreshButton.disable();
           refreshButton.setAnimation('spin');
-          ApiService.decideUrlCallItself(activity.screenJson.urls.fetchUrl, options.options.environment, {page: pageNumber}).then((next: any) => {
+          ApiService.decideUrlCallItself(activity.screenJson.urls.fetchUrl, options.environment, {page: pageNumber}).then((next: any) => {
             activity.data = next;
             grid.refreshData();
             refreshButton.enable();
@@ -192,7 +195,7 @@ export const ProfileFunctions: { [key: string]: Function } = {
             if (urls.fetchUrl.payloadFunction && urls.fetchUrl.payloadFunction.length > 0) {
               urls.fetchUrl.data = FunctionRegister.callFunction(activity.screenJson.functionFile, urls.fetchUrl.payloadFunction, {tab: tab});
             }
-            activity.data = await ApiService.decideUrlCallItself(urls.fetchUrl, options.options.environment, {page: 0}).then((next: any) => next);
+            activity.data = await ApiService.decideUrlCallItself(urls.fetchUrl, options.environment, {page: 0}).then((next: any) => next);
             gridObj.refreshData();
           }
           refreshButton.enable();
@@ -224,16 +227,16 @@ export const ProfileFunctions: { [key: string]: Function } = {
       ComponentRegister.getElementMap().subscribe((next: any) => {
         switch (next['name']) {
           case 'tabs':
-            tabsFunction(next.element);
+            tabsFunction(next.element.instance);
             break;
           case 'grid':
-            gridFunction(next.element)
+            gridFunction(next.element.instance)
             break;
           case 'grid_toolbar':
-            gridToolbarFunction(next.element);
+            gridToolbarFunction(next.element.instance);
             break;
           case 'navbar':
-            screenInfoFunction(next.element);
+            screenInfoFunction(next.element.instance);
             break;
         }
 
@@ -242,34 +245,64 @@ export const ProfileFunctions: { [key: string]: Function } = {
   },
   tab_grid: async (options: FunctionParams | any) => {
     let update: boolean = options.update;
-    console.log(options)
     let recordInfoFunction: Function = (info: RecordInfoComponent) => {
-      info.init(options.options);
+      info.init(options);
     }
     let tabsLayoutFunction: Function = (tabsLayout: TabLayoutComponent) => {
       tabsLayout.init({
-        tabs:options.options.tabs.map((item : any) => item.label),
-        selected: options.options.tabs.find((item:any) => item.selected)?.label,
-        idField: options.options.mainActivity.idField
+        tabs:options.tabs,
+        selected: options.tabs.find((item:any) => item.selected)?.label,
+        idField: options.mainActivity.idField
       });
     }
     if (update) {
-      let recordInfo: RecordInfoComponent = ComponentRegister.getElement("info").activity;
-      let tabLayout: RecordInfoComponent = ComponentRegister.getElement("tabsLayout").activity;
+      let recordInfo: RecordInfoComponent = ComponentRegister.getElement("info").activity.instance;
+      let tabLayout: TabLayoutComponent = ComponentRegister.getElement("tabsLayout").activity.instance;
       recordInfoFunction(recordInfo);
       tabsLayoutFunction(tabLayout);
-
     } else {
       ComponentRegister.getElementMap().subscribe((next: any) => {
         switch (next['name']) {
           case 'info':
-            recordInfoFunction(next.element);
+            recordInfoFunction(next.element.instance);
             break;
           case 'tabsLayout':
-            tabsLayoutFunction(next.element);
+            tabsLayoutFunction(next.element.instance);
             break;
         }
+      })
+    }
+  },
+  grid_only: async (options: FunctionParams | any) => {
+    console.log(options)
+    let gridObj: GridComponent;
+    let activity: Activity = ScreenRegister.getScreen(options.screen);
+    let update = options['update'];
+    console.log(activity);
+    let gridFunction: Function = (grid: GridComponent) => {
+      gridObj = grid;
+      gridObj.onFieldClick.subscribe((next) => {
 
+      })
+      grid.show(activity);
+    }
+    let gridToolbarFunction: Function = (gridToolbar: GridToolbarComponent) => {
+    }
+    if (update) {
+      let toolbarComponent: GridToolbarComponent = ComponentRegister.getElement("grid_toolbar").activity.instance;
+      let gridComponent: GridComponent = ComponentRegister.getElement("grid").activity.instance;
+      gridToolbarFunction(toolbarComponent);
+      gridFunction(gridComponent);
+    } else {
+      ComponentRegister.getElementMap().subscribe((next: any) => {
+        switch (next['name']) {
+          case 'grid_toolbar':
+            gridToolbarFunction(next.element.instance);
+            break;
+          case 'grid':
+            gridFunction(next.element.instance);
+            break;
+        }
       })
     }
   }

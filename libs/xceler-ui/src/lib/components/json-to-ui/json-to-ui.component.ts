@@ -44,7 +44,7 @@ export class JSONToUIComponent extends BaseComponent{
 
   private setUpOptions(options:any,update:boolean = false)  {
     if(this.profile.setupFunction !== null && this.profile.setupFunction !== undefined) {
-      FunctionRegister.callFunction("profiles",this.profile.setupFunction,{options:options,update:update});
+      FunctionRegister.callFunction("profiles",this.profile.setupFunction,Object.assign(options,{update:update}));
     }
     this.options = options;
   }

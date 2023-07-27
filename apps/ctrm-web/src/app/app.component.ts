@@ -17,13 +17,16 @@ import {
   ToastMessageModel,
   ToastService,
   RecordInfoComponent,
-  JsonToUIService
+  JsonToUIService,
+  TabContentComponent
 } from "@xceler-ui/xceler-ui";
 import {PhysicalTradeActions} from "./physicals/physical_trade/PhysicalTradeActions";
 import {ProfileFunctions} from "../../../../libs/xceler-ui/src/lib/profiles/Profiles";
 import {PhysicalTrade} from "./physicals/physical_trade/physical-trade";
 import {environment} from "./environment";
-import {TabLayoutComponent} from "../../../../libs/xceler-ui/src/lib/components/TabLayout/tab-layout.component";
+import {TabLayoutComponent} from "@xceler-ui/xceler-ui";
+import {QualitySpecification} from "./physicals/physical_trade/quality_specs/quality_specification";
+import {Cost} from "./physicals/physical_trade/cost/cost";
 
 @Component({
   selector: 'xceler-ui-root',
@@ -66,6 +69,8 @@ export class AppComponent implements OnInit,AfterViewInit{
 
   private registerScreens() {
     ScreenRegister.addScreen("physicalTrade",new PhysicalTrade());
+    ScreenRegister.addScreen("qualitySpecs",new QualitySpecification());
+    ScreenRegister.addScreen("cost",new Cost());
   }
 
   private registerToastTypes() {
@@ -92,7 +97,7 @@ export class AppComponent implements OnInit,AfterViewInit{
   }
 
   private async storeCommonLists() {
-    StoreService.addCommon();
+    StoreService.init();
     let url = "{endpoint}/api-iam/api/userProfile/v1/getUserDetails?userId={username}&tenantId={tenantId}"
     let resp = await ApiService.get(Resolver.getModifiedUrl(url,environment)).then((next:any) => next);
     StoreService.addStore("common");

@@ -1,4 +1,5 @@
 import {ColumnModel} from "./column-model";
+import {Profiles} from "../enums/profiles";
 
 export class UrlModel {
   method!: string;
@@ -22,6 +23,7 @@ export class Tabs {
   useSameModel!: boolean;
   modelName!: string;
   urls!: Urls;
+  profile!:Profiles;
   payloadFunction!: string
 }
 
@@ -57,6 +59,11 @@ export class ScreenModel {
   functionFile!: string;
   iconPath: string = "";
   options: { [key: string]: any } = {};
+
+
+  static fromJson(json: any): ScreenModel {
+    return Object.assign(new ScreenModel(), json);
+  }
 
   getColumns() {
     if (this.sections && this.sections.length > 0) {

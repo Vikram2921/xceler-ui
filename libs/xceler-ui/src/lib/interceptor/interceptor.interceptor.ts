@@ -10,7 +10,6 @@ import { Observable} from 'rxjs';
 @Injectable()
 export class Interceptor implements HttpInterceptor {
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
-    console.log(request.url);
     const accessToken = localStorage.getItem('token');
     if (accessToken) {
       request = request.clone({

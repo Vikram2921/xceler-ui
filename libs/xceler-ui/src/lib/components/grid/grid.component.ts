@@ -46,7 +46,7 @@ export class GridComponent extends HostActivity{
       this.activity = activity;
       activity.beforeRender(this);
       this.gridConfig = gridConfig?? this.getDefaultGridConfig();
-      this.showGrid = true;
+
       if(json !== null && json !== undefined) {
         this.loadJson(json);
       }
@@ -88,6 +88,7 @@ export class GridComponent extends HostActivity{
       this.columns = screenModel.columns;
     }
     this.gridColumns = this.columns.filter(col => col.visibilityArea !== undefined && ['B','G'].includes(col.visibilityArea));
+    this.showGrid = true;
   }
 
   onClickButton(title: string,index:number) {

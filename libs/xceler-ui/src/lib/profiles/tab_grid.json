@@ -1,0 +1,21 @@
+{
+  "columns": 13,
+  "rows": 2,
+  "setupFunction": "tab_grid",
+  "rowHeightList": ["min-content","calc(100% - 385px)"],
+  "items": [
+    {
+      "itemId": "info",
+      "areaColRange": [1,13],
+      "areaRowRange": [1],
+      "componentId": "info"
+    },
+    {
+      "itemId": "tabs",
+      "areaColRange": [1,13],
+      "areaRowRange": [2],
+      "componentId": "tabsLayout",
+      "padding": ["0 1rem 10px 0.6rem"]
+    }
+  ]
+}

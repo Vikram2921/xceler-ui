@@ -1,0 +1,20 @@
+{
+  "columns": 13,
+  "rows": 2,
+  "setupFunction": "grid_only",
+  "rowHeightList": ["2.5rem","min-content"],
+  "items": [
+    {
+      "itemId": "toolbar",
+      "areaColRange": [1,13],
+      "areaRowRange": [1],
+      "componentId": "grid_toolbar"
+    },
+    {
+      "itemId": "grid",
+      "areaColRange": [1,13],
+      "areaRowRange": [2],
+      "componentId": "grid"
+    }
+  ]
+}

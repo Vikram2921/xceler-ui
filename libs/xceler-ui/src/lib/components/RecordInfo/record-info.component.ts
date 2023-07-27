@@ -32,7 +32,6 @@ export class RecordInfoComponent extends HostActivity implements OnInit{
 
   override init(props: { [p: string]: any }) {
     this.options = props;
-    console.log(this.options);
     this.rowData = props['data'];
     this.columns = props['columns'];
     this.idField= props['columns'].find((item:ColumnModel) => item.idField).field;
@@ -43,11 +42,10 @@ export class RecordInfoComponent extends HostActivity implements OnInit{
   }
 
   back() {
-    console.log(this.options);
     let screenId = this.options.mainActivity.screenJson.title;
     let state = JsonToUIService.getState(screenId,false);
     let lastProfile = state.profile;
-    console.log(state);
-    JsonToUIService.get(this.options.componentId).loadProfile(lastProfile,{environment:"",screen:'physicalTrade',componentId:this.options.componentId,lastProfile:Profiles.SIMPLE_GRID});
+    let currentOption = state.currentOptions;
+    JsonToUIService.get(this.options.componentId).loadProfile(lastProfile,currentOption);
   }
 }

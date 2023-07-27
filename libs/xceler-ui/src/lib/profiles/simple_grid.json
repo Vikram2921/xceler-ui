@@ -1,33 +1,38 @@
 {
   "columns": 13,
-  "rows": 4,
-  "setupFunction": "tab_grid",
-  "rowHeightList": ["min-content","45px","40px","calc(100% - 385px)"],
+  "rows": 5,
+  "setupFunction": "simple_grid",
+  "rowHeightList": ["5.3rem","0.2rem","2.8rem","2.5rem","calc(100% - 15.6rem)"],
   "items": [
     {
-      "itemId": "info",
+      "itemId": "Navbar",
       "areaColRange": [1,13],
       "areaRowRange": [1],
-      "componentId": "info"
+      "componentId": "navbar"
+    },
+    {
+      "itemId": "blank1",
+      "areaColRange": [1,13],
+      "areaRowRange": [2]
     },
     {
       "itemId": "tabs",
       "areaColRange": [1,13],
-      "areaRowRange": [2],
-      "componentId": "tabsLayout",
-      "padding": ["0 1rem 10px 0.6rem"]
+      "areaRowRange": [3],
+      "componentId": "tabs",
+      "padding": ["0.5rem 1rem 10px 0.6rem"]
     },
     {
       "itemId": "toolbar",
       "areaColRange": [1,13],
-      "areaRowRange": [3],
+      "areaRowRange": [4],
       "componentId": "grid_toolbar",
       "padding": ["0","10px"]
     },
     {
       "itemId": "grid",
       "areaColRange": [1,13],
-      "areaRowRange": [4],
+      "areaRowRange": [5],
       "componentId": "grid",
       "padding": ["0","10px"]
     }

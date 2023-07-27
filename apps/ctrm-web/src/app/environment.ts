@@ -1,3 +1,3 @@
 export const environment = {
-  endpoint:"http://localhost/"
+  endpoint:"https://api-becrux-dev.ctrm-xceler.com"
 }

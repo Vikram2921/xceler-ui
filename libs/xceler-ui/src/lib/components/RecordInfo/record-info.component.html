@@ -1,6 +1,7 @@
 <div  style="display: flex;flex-direction: column;width: 100%">
   <div class="info_card" style="padding: 10px">
-    <div style="display: inline-flex;align-items: center">
+    <xui-breadcrumb [list]="[options.mainActivity.screenJson.title,rowData[idField]]"></xui-breadcrumb>
+    <div style="display: inline-flex;margin-top:0.5rem;align-items: center">
       <fa-icon icon="chevron-left" style="font-size: 25px;cursor: pointer" (click)="back()"></fa-icon>
       <p style="font-size: 25px;font-weight: bold;margin-left: 10px">{{rowData[idField]}}</p>
     </div>

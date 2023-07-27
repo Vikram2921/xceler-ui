@@ -1,0 +1,1952 @@
+{
+  "title": "Cost",
+  "urls": {
+    "saveUrl": "http://localhost/ctrm-api/api/cost/v1/savecost?tenantId=d7408d31-d720-4173-b76e-0595ce2679b4",
+    "fetchUrl": "/api/cost/v1/getAllCosts?tenantId=d7408d31-d720-4173-b76e-0595ce2679b4&costChargeType=cost",
+    "hrefUrl": "http://localhost/ctrm-api/api/cost/v1/getbycostuuid?tenantId=d7408d31-d720-4173-b76e-0595ce2679b4&uuid=",
+    "updateUrl": "http://localhost/ctrm-api/api/cost/v1/update?tenantId=d7408d31-d720-4173-b76e-0595ce2679b4",
+    "importUrl": "http://localhost/ctrm-api/api/cost/v1/import?tenantId=d7408d31-d720-4173-b76e-0595ce2679b4"
+  },
+  "sections": [
+    {
+      "sectionName": "Cost Details",
+      "columns": [
+        {
+          "title": "Cost For",
+          "field": "costFor",
+          "type": "dropdown",
+          "defaultValue": "",
+          "visibilityArea": "B",
+          "onChangeValue": true,
+          "unique": true,
+          "list": [
+            {
+              "label": "Select",
+              "value": ""
+            },
+            {
+              "label": "OBLIGATION",
+              "value": "OBLIGATION"
+            },
+            {
+              "label": "TRADE",
+              "value": "TRADE"
+            }
+          ],
+          "validators": [],
+          "pipe": "",
+          "pipeOptions": null
+        },
+        {
+          "title": "Link To",
+          "field": "linkTo",
+          "type": "dropdown",
+          "defaultValue": "",
+          "visibilityArea": "B",
+          "onChangeValue": true,
+          "unique": true,
+          "validators": [],
+          "pipe": "",
+          "pipeOptions": null
+        },
+        {
+          "title": "Cost ID",
+          "field": "costId",
+          "type": "label",
+          "defaultValue": "",
+          "visibilityArea": "B",
+          "onChangeValue": false,
+          "unique": false,
+          "validators": [],
+          "pipe": "",
+          "pipeOptions": null
+        },
+        {
+          "title": "Name",
+          "field": "name",
+          "type": "dropdown",
+          "defaultValue": "",
+          "visibilityArea": "B",
+          "onChangeValue": false,
+          "unique": false,
+          "list": [
+            {
+              "label": "Select",
+              "value": ""
+            }
+          ],
+          "validators": [
+            "required"
+          ],
+          "pipe": "",
+          "pipeOptions": null
+        },
+        {
+          "title": "Type",
+          "field": "type",
+          "type": "dropdown",
+          "defaultValue": "",
+          "visibilityArea": "B",
+          "onChangeValue": false,
+          "unique": false,
+          "list": [
+            {
+              "label": "Select",
+              "value": ""
+            },
+            {
+              "label": "Internal",
+              "value": "Internal"
+            },
+            {
+              "label": "Passthrough",
+              "value": "Passthrough"
+            },
+            {
+              "label": "Primary",
+              "value": "Primary"
+            },
+            {
+              "label": "Secondary",
+              "value": "Secondary"
+            }
+          ],
+          "validators": [
+            "required"
+          ],
+          "pipe": "",
+          "pipeOptions": null
+        },
+        {
+          "title": "Counterparty",
+          "field": "counterparty",
+          "type": "dropdown",
+          "defaultValue": "",
+          "visibilityArea": "B",
+          "onChangeValue": false,
+          "unique": false,
+          "list": [
+            {
+              "label": "Select",
+              "value": ""
+            },
+            {
+              "label": "(APICAL)",
+              "value": "(APICAL)"
+            },
+            {
+              "label": "00",
+              "value": "00"
+            },
+            {
+              "label": "00000",
+              "value": "00000"
+            },
+            {
+              "label": "010",
+              "value": "010"
+            },
+            {
+              "label": "012",
+              "value": "012"
+            },
+            {
+              "label": "01222",
+              "value": "01222"
+            },
+            {
+              "label": "091",
+              "value": "091"
+            },
+            {
+              "label": "1",
+              "value": "1"
+            },
+            {
+              "label": "100",
+              "value": "100"
+            },
+            {
+              "label": "1111",
+              "value": "1111"
+            },
+            {
+              "label": "12",
+              "value": "12"
+            },
+            {
+              "label": "12121",
+              "value": "12121"
+            },
+            {
+              "label": "123",
+              "value": "123"
+            },
+            {
+              "label": "1234",
+              "value": "1234"
+            },
+            {
+              "label": "123456",
+              "value": "123456"
+            },
+            {
+              "label": "201",
+              "value": "201"
+            },
+            {
+              "label": "214",
+              "value": "214"
+            },
+            {
+              "label": "215",
+              "value": "215"
+            },
+            {
+              "label": "22222",
+              "value": "22222"
+            },
+            {
+              "label": "2244",
+              "value": "2244"
+            },
+            {
+              "label": "2345678",
+              "value": "2345678"
+            },
+            {
+              "label": "25364",
+              "value": "25364"
+            },
+            {
+              "label": "301",
+              "value": "301"
+            },
+            {
+              "label": "308131652",
+              "value": "308131652"
+            },
+            {
+              "label": "32142",
+              "value": "32142"
+            },
+            {
+              "label": "323",
+              "value": "323"
+            },
+            {
+              "label": "342",
+              "value": "342"
+            },
+            {
+              "label": "456787",
+              "value": "456787"
+            },
+            {
+              "label": "58588",
+              "value": "58588"
+            },
+            {
+              "label": "636335",
+              "value": "636335"
+            },
+            {
+              "label": "6789",
+              "value": "6789"
+            },
+            {
+              "label": "7667",
+              "value": "7667"
+            },
+            {
+              "label": "78897",
+              "value": "78897"
+            },
+            {
+              "label": "801",
+              "value": "801"
+            },
+            {
+              "label": "852",
+              "value": "852"
+            },
+            {
+              "label": "852285",
+              "value": "852285"
+            },
+            {
+              "label": "85252",
+              "value": "85252"
+            },
+            {
+              "label": "85285",
+              "value": "85285"
+            },
+            {
+              "label": "85285852",
+              "value": "85285852"
+            },
+            {
+              "label": "8585858",
+              "value": "8585858"
+            },
+            {
+              "label": "87898",
+              "value": "87898"
+            },
+            {
+              "label": "89585",
+              "value": "89585"
+            },
+            {
+              "label": "987654321",
+              "value": "987654321"
+            },
+            {
+              "label": "99",
+              "value": "99"
+            },
+            {
+              "label": "99999CC",
+              "value": "99999CC"
+            },
+            {
+              "label": "AAA",
+              "value": "AAA"
+            },
+            {
+              "label": "AAA OILS & FATS LTD",
+              "value": "AAA OILS & FATS LTD"
+            },
+            {
+              "label": "AAA1",
+              "value": "AAA1"
+            },
+            {
+              "label": "AAStar",
+              "value": "AAStar"
+            },
+            {
+              "label": "ABC",
+              "value": "ABC"
+            },
+            {
+              "label": "ACMEAU",
+              "value": "ACMEAU"
+            },
+            {
+              "label": "ACMEID",
+              "value": "ACMEID"
+            },
+            {
+              "label": "ACMENZ",
+              "value": "ACMENZ"
+            },
+            {
+              "label": "ADN_B_32",
+              "value": "ADN_B_32"
+            },
+            {
+              "label": "ADS2323",
+              "value": "ADS2323"
+            },
+            {
+              "label": "AG",
+              "value": "AG"
+            },
+            {
+              "label": "AGRO TECH PRODUCTION AS",
+              "value": "AGRO TECH PRODUCTION AS"
+            },
+            {
+              "label": "AGRO TECH PRODUCTION AS",
+              "value": "AGRO TECH PRODUCTION AS"
+            },
+            {
+              "label": "AGRO TECH PRODUCTION AS",
+              "value": "AGRO TECH PRODUCTION AS"
+            },
+            {
+              "label": "AGRO TECH PRODUCTION AS",
+              "value": "AGRO TECH PRODUCTION AS"
+            },
+            {
+              "label": "AGRO TECH PRODUCTION AS",
+              "value": "AGRO TECH PRODUCTION AS"
+            },
+            {
+              "label": "AGROTECH",
+              "value": "AGROTECH"
+            },
+            {
+              "label": "AMD",
+              "value": "AMD"
+            },
+            {
+              "label": "APICAL",
+              "value": "APICAL"
+            },
+            {
+              "label": "APP",
+              "value": "APP"
+            },
+            {
+              "label": "AQVV",
+              "value": "AQVV"
+            },
+            {
+              "label": "ARES MERCHANTS PTE LTD",
+              "value": "ARES MERCHANTS PTE LTD"
+            },
+            {
+              "label": "ASIS GHEE MILLS (PRIVATE) LIMITED",
+              "value": "ASIS GHEE MILLS (PRIVATE) LIMITED"
+            },
+            {
+              "label": "Adida1",
+              "value": "Adida1"
+            },
+            {
+              "label": "Amal",
+              "value": "Amal"
+            },
+            {
+              "label": "Asia Globe",
+              "value": "Asia Globe"
+            },
+            {
+              "label": "BC1",
+              "value": "BC1"
+            },
+            {
+              "label": "BC2",
+              "value": "BC2"
+            },
+            {
+              "label": "BC3",
+              "value": "BC3"
+            },
+            {
+              "label": "BC4",
+              "value": "BC4"
+            },
+            {
+              "label": "BC5",
+              "value": "BC5"
+            },
+            {
+              "label": "BFL",
+              "value": "BFL"
+            },
+            {
+              "label": "BHARAT JYOTI IMPEX",
+              "value": "BHARAT JYOTI IMPEX"
+            },
+            {
+              "label": "BHEAD",
+              "value": "BHEAD"
+            },
+            {
+              "label": "BILLION",
+              "value": "BILLION"
+            },
+            {
+              "label": "BL1",
+              "value": "BL1"
+            },
+            {
+              "label": "BRIDGE",
+              "value": "BRIDGE"
+            },
+            {
+              "label": "BV1",
+              "value": "BV1"
+            },
+            {
+              "label": "BV2",
+              "value": "BV2"
+            },
+            {
+              "label": "BV3",
+              "value": "BV3"
+            },
+            {
+              "label": "BV4",
+              "value": "BV4"
+            },
+            {
+              "label": "BYT",
+              "value": "BYT"
+            },
+            {
+              "label": "C",
+              "value": "C"
+            },
+            {
+              "label": "C0001",
+              "value": "C0001"
+            },
+            {
+              "label": "CARGIL BV",
+              "value": "CARGIL BV"
+            },
+            {
+              "label": "CAW",
+              "value": "CAW"
+            },
+            {
+              "label": "CCC",
+              "value": "CCC"
+            },
+            {
+              "label": "CHIN YEE CHEMICAL INDUSTRIES CO., LTD.",
+              "value": "CHIN YEE CHEMICAL INDUSTRIES CO., LTD."
+            },
+            {
+              "label": "CHIN YEE CHEMICAL INDUSTRIES CO., LTD.",
+              "value": "CHIN YEE CHEMICAL INDUSTRIES CO., LTD."
+            },
+            {
+              "label": "CHIN YEE CHEMICAL INDUSTRIES CO., LTD.",
+              "value": "CHIN YEE CHEMICAL INDUSTRIES CO., LTD."
+            },
+            {
+              "label": "COCASRC",
+              "value": "COCASRC"
+            },
+            {
+              "label": "COCOASOURCE ",
+              "value": "COCOASOURCE "
+            },
+            {
+              "label": "COCOASOURCE ",
+              "value": "COCOASOURCE "
+            },
+            {
+              "label": "COCOASOURCE ",
+              "value": "COCOASOURCE "
+            },
+            {
+              "label": "COCOASOURCE ",
+              "value": "COCOASOURCE "
+            },
+            {
+              "label": "CON",
+              "value": "CON"
+            },
+            {
+              "label": "CVB",
+              "value": "CVB"
+            },
+            {
+              "label": "Cargil/Malaysia/01",
+              "value": "Cargil/Malaysia/01"
+            },
+            {
+              "label": "Cargil/Malaysia/02",
+              "value": "Cargil/Malaysia/02"
+            },
+            {
+              "label": "Cas@123",
+              "value": "Cas@123"
+            },
+            {
+              "label": "Clean123",
+              "value": "Clean123"
+            },
+            {
+              "label": "Clear",
+              "value": "Clear"
+            },
+            {
+              "label": "Code 1",
+              "value": "Code 1"
+            },
+            {
+              "label": "EMAMI AGROTECH LIMITED",
+              "value": "EMAMI AGROTECH LIMITED"
+            },
+            {
+              "label": "EMAMI AGROTECH LIMITED",
+              "value": "EMAMI AGROTECH LIMITED"
+            },
+            {
+              "label": "GRNRES",
+              "value": "GRNRES"
+            },
+            {
+              "label": "GUL SHAHZADA ENTERPRISES (PVT) LTD",
+              "value": "GUL SHAHZADA ENTERPRISES (PVT) LTD"
+            },
+            {
+              "label": "GUL SHAHZADA ENTERPRISES (PVT) LTD",
+              "value": "GUL SHAHZADA ENTERPRISES (PVT) LTD"
+            },
+            {
+              "label": "GUL SHAHZADA ENTERPRISES (PVT) LTD",
+              "value": "GUL SHAHZADA ENTERPRISES (PVT) LTD"
+            },
+            {
+              "label": "GUL SHAHZADA ENTERPRISES (PVT) LTD",
+              "value": "GUL SHAHZADA ENTERPRISES (PVT) LTD"
+            },
+            {
+              "label": "GUL SHAHZADA ENTERPRISES (PVT) LTD",
+              "value": "GUL SHAHZADA ENTERPRISES (PVT) LTD"
+            },
+            {
+              "label": "HCL",
+              "value": "HCL"
+            },
+            {
+              "label": "HNKJP",
+              "value": "HNKJP"
+            },
+            {
+              "label": "HNKKR",
+              "value": "HNKKR"
+            },
+            {
+              "label": "HNKTW",
+              "value": "HNKTW"
+            },
+            {
+              "label": "HSBCGBM",
+              "value": "HSBCGBM"
+            },
+            {
+              "label": "IB1",
+              "value": "IB1"
+            },
+            {
+              "label": "IB4",
+              "value": "IB4"
+            },
+            {
+              "label": "IB5",
+              "value": "IB5"
+            },
+            {
+              "label": "IFS101",
+              "value": "IFS101"
+            },
+            {
+              "label": "IFS102",
+              "value": "IFS102"
+            },
+            {
+              "label": "IG",
+              "value": "IG"
+            },
+            {
+              "label": "IG1",
+              "value": "IG1"
+            },
+            {
+              "label": "INTER UNIT",
+              "value": "INTER UNIT"
+            },
+            {
+              "label": "InterCompany1",
+              "value": "InterCompany1"
+            },
+            {
+              "label": "KHADIJA EDIBLE OIL REFINERY (PVT) LTD",
+              "value": "KHADIJA EDIBLE OIL REFINERY (PVT) LTD"
+            },
+            {
+              "label": "KHADIJA EDIBLE OIL REFINERY (PVT) LTD",
+              "value": "KHADIJA EDIBLE OIL REFINERY (PVT) LTD"
+            },
+            {
+              "label": "Kargil Warriors",
+              "value": "Kargil Warriors"
+            },
+            {
+              "label": "LB1",
+              "value": "LB1"
+            },
+            {
+              "label": "LEEOM",
+              "value": "LEEOM"
+            },
+            {
+              "label": "N1",
+              "value": "N1"
+            },
+            {
+              "label": "OISCP1",
+              "value": "OISCP1"
+            },
+            {
+              "label": "OL002",
+              "value": "OL002"
+            },
+            {
+              "label": "OL3",
+              "value": "OL3"
+            },
+            {
+              "label": "OL5",
+              "value": "OL5"
+            },
+            {
+              "label": "OOCE3",
+              "value": "OOCE3"
+            },
+            {
+              "label": "OSK",
+              "value": "OSK"
+            },
+            {
+              "label": "Ol2",
+              "value": "Ol2"
+            },
+            {
+              "label": "PATANJALI FOODS LIMITED",
+              "value": "PATANJALI FOODS LIMITED"
+            },
+            {
+              "label": "PIL",
+              "value": "PIL"
+            },
+            {
+              "label": "PO1",
+              "value": "PO1"
+            },
+            {
+              "label": "PO2",
+              "value": "PO2"
+            },
+            {
+              "label": "PO3",
+              "value": "PO3"
+            },
+            {
+              "label": "PO4",
+              "value": "PO4"
+            },
+            {
+              "label": "PO5",
+              "value": "PO5"
+            },
+            {
+              "label": "PT SARI DUMAI SEJATI",
+              "value": "PT SARI DUMAI SEJATI"
+            },
+            {
+              "label": "Palmtop",
+              "value": "Palmtop"
+            },
+            {
+              "label": "Pandey3",
+              "value": "Pandey3"
+            },
+            {
+              "label": "PandeyParty2",
+              "value": "PandeyParty2"
+            },
+            {
+              "label": "Pespsi",
+              "value": "Pespsi"
+            },
+            {
+              "label": "PiplineMotors",
+              "value": "PiplineMotors"
+            },
+            {
+              "label": "QiNGDAO HAITAILIN INTERNATIONAL TRADING CO LTD",
+              "value": "QiNGDAO HAITAILIN INTERNATIONAL TRADING CO LTD"
+            },
+            {
+              "label": "QiNGDAO HAITAILIN INTERNATIONAL TRADING CO LTD",
+              "value": "QiNGDAO HAITAILIN INTERNATIONAL TRADING CO LTD"
+            },
+            {
+              "label": "QiNGDAO HAITAILIN INTERNATIONAL TRADING CO LTD",
+              "value": "QiNGDAO HAITAILIN INTERNATIONAL TRADING CO LTD"
+            },
+            {
+              "label": "QiNGDAO HAITAILIN INTERNATIONAL TRADING CO LTD",
+              "value": "QiNGDAO HAITAILIN INTERNATIONAL TRADING CO LTD"
+            },
+            {
+              "label": "QiNGDAO HAITAILIN INTERNATIONAL TRADING CO LTD",
+              "value": "QiNGDAO HAITAILIN INTERNATIONAL TRADING CO LTD"
+            },
+            {
+              "label": "QiNGDAO HAITAILIN INTERNATIONAL TRADING CO LTD",
+              "value": "QiNGDAO HAITAILIN INTERNATIONAL TRADING CO LTD"
+            },
+            {
+              "label": "REG_01",
+              "value": "REG_01"
+            },
+            {
+              "label": "REG_02",
+              "value": "REG_02"
+            },
+            {
+              "label": "Redmi",
+              "value": "Redmi"
+            },
+            {
+              "label": "SAAI",
+              "value": "SAAI"
+            },
+            {
+              "label": "SANGKEE EDIBLE",
+              "value": "SANGKEE EDIBLE"
+            },
+            {
+              "label": "SBO1",
+              "value": "SBO1"
+            },
+            {
+              "label": "SBO2",
+              "value": "SBO2"
+            },
+            {
+              "label": "SBO3",
+              "value": "SBO3"
+            },
+            {
+              "label": "SBO4",
+              "value": "SBO4"
+            },
+            {
+              "label": "SBO5",
+              "value": "SBO5"
+            },
+            {
+              "label": "SGPL",
+              "value": "SGPL"
+            },
+            {
+              "label": "SGPL01",
+              "value": "SGPL01"
+            },
+            {
+              "label": "SHANGHAI UNION-OLEOCHEMICALS CO.,LTD",
+              "value": "SHANGHAI UNION-OLEOCHEMICALS CO.,LTD"
+            },
+            {
+              "label": "STT",
+              "value": "STT"
+            },
+            {
+              "label": "STT",
+              "value": "STT"
+            },
+            {
+              "label": "STT",
+              "value": "STT"
+            },
+            {
+              "label": "STT",
+              "value": "STT"
+            },
+            {
+              "label": "STT",
+              "value": "STT"
+            },
+            {
+              "label": "STT",
+              "value": "STT"
+            },
+            {
+              "label": "STT",
+              "value": "STT"
+            },
+            {
+              "label": "STT",
+              "value": "STT"
+            },
+            {
+              "label": "SYNTEX",
+              "value": "SYNTEX"
+            },
+            {
+              "label": "SYNTEX",
+              "value": "SYNTEX"
+            },
+            {
+              "label": "Sangkee",
+              "value": "Sangkee"
+            },
+            {
+              "label": "Sank",
+              "value": "Sank"
+            },
+            {
+              "label": "Sum987",
+              "value": "Sum987"
+            },
+            {
+              "label": "TATA_CHEM",
+              "value": "TATA_CHEM"
+            },
+            {
+              "label": "TEST1",
+              "value": "TEST1"
+            },
+            {
+              "label": "TEST2",
+              "value": "TEST2"
+            },
+            {
+              "label": "TIONG HUAT",
+              "value": "TIONG HUAT"
+            },
+            {
+              "label": "Taomish",
+              "value": "Taomish"
+            },
+            {
+              "label": "TaomishParty",
+              "value": "TaomishParty"
+            },
+            {
+              "label": "Test C1",
+              "value": "Test C1"
+            },
+            {
+              "label": "TransGlobal",
+              "value": "TransGlobal"
+            },
+            {
+              "label": "UFOL",
+              "value": "UFOL"
+            },
+            {
+              "label": "UOB-AAA",
+              "value": "UOB-AAA"
+            },
+            {
+              "label": "VC",
+              "value": "VC"
+            },
+            {
+              "label": "VEGETABLE OIL",
+              "value": "VEGETABLE OIL"
+            },
+            {
+              "label": "VII2",
+              "value": "VII2"
+            },
+            {
+              "label": "VII3",
+              "value": "VII3"
+            },
+            {
+              "label": "VII4",
+              "value": "VII4"
+            },
+            {
+              "label": "WHI_UNI",
+              "value": "WHI_UNI"
+            },
+            {
+              "label": "WP101",
+              "value": "WP101"
+            },
+            {
+              "label": "WP102",
+              "value": "WP102"
+            },
+            {
+              "label": "Wilson Global",
+              "value": "Wilson Global"
+            },
+            {
+              "label": "X!1235",
+              "value": "X!1235"
+            },
+            {
+              "label": "XS123",
+              "value": "XS123"
+            },
+            {
+              "label": "YUNNAN FARMSTATE",
+              "value": "YUNNAN FARMSTATE"
+            },
+            {
+              "label": "cargo",
+              "value": "cargo"
+            },
+            {
+              "label": "jhgjhf",
+              "value": "jhgjhf"
+            },
+            {
+              "label": "local bulk new",
+              "value": "local bulk new"
+            },
+            {
+              "label": "savola",
+              "value": "savola"
+            },
+            {
+              "label": "sdf",
+              "value": "sdf"
+            },
+            {
+              "label": "spl2",
+              "value": "spl2"
+            },
+            {
+              "label": "spl4",
+              "value": "spl4"
+            }
+          ],
+          "validators": [],
+          "pipe": "",
+          "pipeOptions": null
+        },
+        {
+          "title": "Cost Group",
+          "field": "costGroup",
+          "type": "dropdown",
+          "defaultValue": "",
+          "visibilityArea": "B",
+          "onChangeValue": false,
+          "unique": false,
+          "list": [
+            {
+              "label": "Select",
+              "value": ""
+            },
+            {
+              "label": "Bank Charges",
+              "value": "Bank Charges"
+            },
+            {
+              "label": "Finance",
+              "value": "Finance"
+            },
+            {
+              "label": "Intersales",
+              "value": "Intersales"
+            },
+            {
+              "label": "Others",
+              "value": "Others"
+            },
+            {
+              "label": "Shortages Unloading",
+              "value": "Shortages Unloading"
+            },
+            {
+              "label": "Storage Cost",
+              "value": "Storage Cost"
+            },
+            {
+              "label": "Survey Cost",
+              "value": "Survey Cost"
+            },
+            {
+              "label": "Trade Discount",
+              "value": "Trade Discount"
+            },
+            {
+              "label": "Transport Cost",
+              "value": "Transport Cost"
+            }
+          ],
+          "validators": [
+            "required"
+          ],
+          "pipe": "",
+          "pipeOptions": null
+        },
+        {
+          "title": "Cost Type",
+          "field": "costType",
+          "type": "dropdown",
+          "defaultValue": "",
+          "visibilityArea": "B",
+          "onChangeValue": true,
+          "unique": false,
+          "list": [
+            {
+              "label": "Select",
+              "value": ""
+            }
+          ],
+          "validators": [
+            "required"
+          ],
+          "pipe": "",
+          "pipeOptions": null
+        },
+        {
+          "title": "Cost Value",
+          "field": "costValue",
+          "type": "number",
+          "defaultValue": "",
+          "visibilityArea": "B",
+          "onChangeValue": false,
+          "unique": false,
+          "validators": [
+            "required"
+          ],
+          "pipe": "",
+          "pipeOptions": null
+        },
+        {
+          "title": "Cost Currency",
+          "field": "costCurrency",
+          "type": "dropdown",
+          "defaultValue": "",
+          "visibilityArea": "B",
+          "onChangeValue": false,
+          "unique": false,
+          "list": [
+            {
+              "label": "Select",
+              "value": ""
+            },
+            {
+              "label": "USD",
+              "value": "USD"
+            },
+            {
+              "label": "CAD",
+              "value": "CAD"
+            },
+            {
+              "label": "EUR",
+              "value": "EUR"
+            },
+            {
+              "label": "AED",
+              "value": "AED"
+            },
+            {
+              "label": "AFN",
+              "value": "AFN"
+            },
+            {
+              "label": "ALL",
+              "value": "ALL"
+            },
+            {
+              "label": "AMD",
+              "value": "AMD"
+            },
+            {
+              "label": "ARS",
+              "value": "ARS"
+            },
+            {
+              "label": "AUD",
+              "value": "AUD"
+            },
+            {
+              "label": "AZN",
+              "value": "AZN"
+            },
+            {
+              "label": "BAM",
+              "value": "BAM"
+            },
+            {
+              "label": "BDT",
+              "value": "BDT"
+            },
+            {
+              "label": "BGN",
+              "value": "BGN"
+            },
+            {
+              "label": "BHD",
+              "value": "BHD"
+            },
+            {
+              "label": "BIF",
+              "value": "BIF"
+            },
+            {
+              "label": "BND",
+              "value": "BND"
+            },
+            {
+              "label": "BOB",
+              "value": "BOB"
+            },
+            {
+              "label": "BRL",
+              "value": "BRL"
+            },
+            {
+              "label": "BWP",
+              "value": "BWP"
+            },
+            {
+              "label": "BYR",
+              "value": "BYR"
+            },
+            {
+              "label": "BZD",
+              "value": "BZD"
+            },
+            {
+              "label": "CDF",
+              "value": "CDF"
+            },
+            {
+              "label": "CHF",
+              "value": "CHF"
+            },
+            {
+              "label": "CLP",
+              "value": "CLP"
+            },
+            {
+              "label": "CNY",
+              "value": "CNY"
+            },
+            {
+              "label": "COP",
+              "value": "COP"
+            },
+            {
+              "label": "CRC",
+              "value": "CRC"
+            },
+            {
+              "label": "CVE",
+              "value": "CVE"
+            },
+            {
+              "label": "CZK",
+              "value": "CZK"
+            },
+            {
+              "label": "DJF",
+              "value": "DJF"
+            },
+            {
+              "label": "DKK",
+              "value": "DKK"
+            },
+            {
+              "label": "DOP",
+              "value": "DOP"
+            },
+            {
+              "label": "DZD",
+              "value": "DZD"
+            },
+            {
+              "label": "EEK",
+              "value": "EEK"
+            },
+            {
+              "label": "EGP",
+              "value": "EGP"
+            },
+            {
+              "label": "ERN",
+              "value": "ERN"
+            },
+            {
+              "label": "ETB",
+              "value": "ETB"
+            },
+            {
+              "label": "GBP",
+              "value": "GBP"
+            },
+            {
+              "label": "GEL",
+              "value": "GEL"
+            },
+            {
+              "label": "GHS",
+              "value": "GHS"
+            },
+            {
+              "label": "GNF",
+              "value": "GNF"
+            },
+            {
+              "label": "GTQ",
+              "value": "GTQ"
+            },
+            {
+              "label": "HKD",
+              "value": "HKD"
+            },
+            {
+              "label": "HNL",
+              "value": "HNL"
+            },
+            {
+              "label": "HRK",
+              "value": "HRK"
+            },
+            {
+              "label": "HUF",
+              "value": "HUF"
+            },
+            {
+              "label": "IDR",
+              "value": "IDR"
+            },
+            {
+              "label": "ILS",
+              "value": "ILS"
+            },
+            {
+              "label": "INR",
+              "value": "INR"
+            },
+            {
+              "label": "IQD",
+              "value": "IQD"
+            },
+            {
+              "label": "IRR",
+              "value": "IRR"
+            },
+            {
+              "label": "ISK",
+              "value": "ISK"
+            },
+            {
+              "label": "JMD",
+              "value": "JMD"
+            },
+            {
+              "label": "JOD",
+              "value": "JOD"
+            },
+            {
+              "label": "JPY",
+              "value": "JPY"
+            },
+            {
+              "label": "KES",
+              "value": "KES"
+            },
+            {
+              "label": "KHR",
+              "value": "KHR"
+            },
+            {
+              "label": "KMF",
+              "value": "KMF"
+            },
+            {
+              "label": "KRW",
+              "value": "KRW"
+            },
+            {
+              "label": "KWD",
+              "value": "KWD"
+            },
+            {
+              "label": "KZT",
+              "value": "KZT"
+            },
+            {
+              "label": "LBP",
+              "value": "LBP"
+            },
+            {
+              "label": "LKR",
+              "value": "LKR"
+            },
+            {
+              "label": "LTL",
+              "value": "LTL"
+            },
+            {
+              "label": "LVL",
+              "value": "LVL"
+            },
+            {
+              "label": "LYD",
+              "value": "LYD"
+            },
+            {
+              "label": "MAD",
+              "value": "MAD"
+            },
+            {
+              "label": "MDL",
+              "value": "MDL"
+            },
+            {
+              "label": "MGA",
+              "value": "MGA"
+            },
+            {
+              "label": "MKD",
+              "value": "MKD"
+            },
+            {
+              "label": "MMK",
+              "value": "MMK"
+            },
+            {
+              "label": "MOP",
+              "value": "MOP"
+            },
+            {
+              "label": "MUR",
+              "value": "MUR"
+            },
+            {
+              "label": "MXN",
+              "value": "MXN"
+            },
+            {
+              "label": "MYR",
+              "value": "MYR"
+            },
+            {
+              "label": "MZN",
+              "value": "MZN"
+            },
+            {
+              "label": "NAD",
+              "value": "NAD"
+            },
+            {
+              "label": "NGN",
+              "value": "NGN"
+            },
+            {
+              "label": "NIO",
+              "value": "NIO"
+            },
+            {
+              "label": "NOK",
+              "value": "NOK"
+            },
+            {
+              "label": "NPR",
+              "value": "NPR"
+            },
+            {
+              "label": "NZD",
+              "value": "NZD"
+            },
+            {
+              "label": "OMR",
+              "value": "OMR"
+            },
+            {
+              "label": "PAB",
+              "value": "PAB"
+            },
+            {
+              "label": "PEN",
+              "value": "PEN"
+            },
+            {
+              "label": "PHP",
+              "value": "PHP"
+            },
+            {
+              "label": "PKR",
+              "value": "PKR"
+            },
+            {
+              "label": "PLN",
+              "value": "PLN"
+            },
+            {
+              "label": "PYG",
+              "value": "PYG"
+            },
+            {
+              "label": "QAR",
+              "value": "QAR"
+            },
+            {
+              "label": "RON",
+              "value": "RON"
+            },
+            {
+              "label": "RSD",
+              "value": "RSD"
+            },
+            {
+              "label": "RUB",
+              "value": "RUB"
+            },
+            {
+              "label": "RWF",
+              "value": "RWF"
+            },
+            {
+              "label": "SAR",
+              "value": "SAR"
+            },
+            {
+              "label": "SDG",
+              "value": "SDG"
+            },
+            {
+              "label": "SEK",
+              "value": "SEK"
+            },
+            {
+              "label": "SGD",
+              "value": "SGD"
+            },
+            {
+              "label": "SOS",
+              "value": "SOS"
+            },
+            {
+              "label": "SYP",
+              "value": "SYP"
+            },
+            {
+              "label": "THB",
+              "value": "THB"
+            },
+            {
+              "label": "TND",
+              "value": "TND"
+            },
+            {
+              "label": "TOP",
+              "value": "TOP"
+            },
+            {
+              "label": "TRY",
+              "value": "TRY"
+            },
+            {
+              "label": "TTD",
+              "value": "TTD"
+            },
+            {
+              "label": "TWD",
+              "value": "TWD"
+            },
+            {
+              "label": "TZS",
+              "value": "TZS"
+            },
+            {
+              "label": "UAH",
+              "value": "UAH"
+            },
+            {
+              "label": "UGX",
+              "value": "UGX"
+            },
+            {
+              "label": "UYU",
+              "value": "UYU"
+            },
+            {
+              "label": "UZS",
+              "value": "UZS"
+            },
+            {
+              "label": "VEF",
+              "value": "VEF"
+            },
+            {
+              "label": "VND",
+              "value": "VND"
+            },
+            {
+              "label": "XAF",
+              "value": "XAF"
+            },
+            {
+              "label": "XOF",
+              "value": "XOF"
+            },
+            {
+              "label": "YER",
+              "value": "YER"
+            },
+            {
+              "label": "ZAR",
+              "value": "ZAR"
+            },
+            {
+              "label": "ZMK",
+              "value": "ZMK"
+            }
+          ],
+          "validators": [],
+          "pipe": "",
+          "pipeOptions": null
+        },
+        {
+          "title": "Unit of Measurement",
+          "field": "uom",
+          "type": "dropdown",
+          "defaultValue": "",
+          "visibilityArea": "B",
+          "onChangeValue": false,
+          "unique": false,
+          "list": [
+            {
+              "label": "Select",
+              "value": ""
+            },
+            {
+              "label": "Bsh",
+              "value": "Bsh"
+            },
+            {
+              "label": "KG",
+              "value": "KG"
+            },
+            {
+              "label": "L",
+              "value": "L"
+            },
+            {
+              "label": "LBs",
+              "value": "LBs"
+            },
+            {
+              "label": "MT",
+              "value": "MT"
+            }
+          ],
+          "validators": [],
+          "pipe": "",
+          "pipeOptions": null
+        },
+        {
+          "title": "Quantity Option",
+          "field": "quantityOption",
+          "type": "dropdown",
+          "defaultValue": "",
+          "visibilityArea": "B",
+          "onChangeValue": false,
+          "unique": false,
+          "list": [
+            {
+              "label": "Select",
+              "value": ""
+            },
+            {
+              "label": "Contract Quantity",
+              "value": "Contract Quantity"
+            },
+            {
+              "label": "Schedule Quantity",
+              "value": "Schedule Quantity"
+            }
+          ],
+          "validators": [
+            "required"
+          ],
+          "pipe": "",
+          "pipeOptions": null
+        },
+        {
+          "title": "Percentage Component",
+          "field": "percentageComponent",
+          "type": "dropdown",
+          "defaultValue": "",
+          "visibilityArea": "B",
+          "onChangeValue": false,
+          "unique": false,
+          "list": [
+            {
+              "label": "Select",
+              "value": ""
+            },
+            {
+              "label": "Existing Costs",
+              "value": "Existing Costs"
+            },
+            {
+              "label": "Primary CF value",
+              "value": "Primary CF value"
+            }
+          ],
+          "validators": [
+            "required"
+          ],
+          "pipe": "",
+          "pipeOptions": null
+        },
+        {
+          "title": "Description",
+          "field": "description",
+          "type": "textarea",
+          "defaultValue": "",
+          "visibilityArea": "B",
+          "onChangeValue": false,
+          "unique": false,
+          "validators": [],
+          "pipe": "",
+          "pipeOptions": null
+        }
+      ]
+    },
+    {
+      "sectionName": "Cost Payment & Schedule Details",
+      "columns": [
+        {
+          "title": "Input Date",
+          "field": "inputDate",
+          "type": "datepicker",
+          "visibilityArea": "B",
+          "onChangeValue": false,
+          "unique": false,
+          "validators": [
+            "required"
+          ],
+          "pipe": "dateFormat",
+          "pipeOptions": {
+            "format": "dd MMM yyyy"
+          }
+        },
+        {
+          "title": "Payment Option Type",
+          "field": "paymentType",
+          "type": "dropdown",
+          "defaultValue": "",
+          "visibilityArea": "F",
+          "onChangeValue": true,
+          "unique": false,
+          "list": [
+            {
+              "label": "Select",
+              "value": ""
+            },
+            {
+              "label": "Actual",
+              "value": "Actual"
+            },
+            {
+              "label": "Relative",
+              "value": "Relative"
+            }
+          ],
+          "validators": [],
+          "pipe": "",
+          "pipeOptions": null
+        },
+        {
+          "title": "Payment Term",
+          "field": "paymentTerm",
+          "type": "dropdown",
+          "defaultValue": "",
+          "visibilityArea": "B",
+          "onChangeValue": false,
+          "unique": false,
+          "list": [
+            {
+              "label": "Select",
+              "value": ""
+            },
+            {
+              "label": "100% AD_7&",
+              "value": "100% AD_7&"
+            },
+            {
+              "label": ";%Abc5454",
+              "value": ";%Abc5454"
+            },
+            {
+              "label": ";%Abc5454",
+              "value": ";%Abc5454"
+            },
+            {
+              "label": "CAD",
+              "value": "CAD"
+            },
+            {
+              "label": "CAD 100% WITHIN 48 HRS",
+              "value": "CAD 100% WITHIN 48 HRS"
+            },
+            {
+              "label": "CAD-PORAM 2",
+              "value": "CAD-PORAM 2"
+            },
+            {
+              "label": "Crude oil _-/\\\\().&\";:",
+              "value": "Crude oil _-/\\\\().&\";:"
+            },
+            {
+              "label": "DA-120 DAYS",
+              "value": "DA-120 DAYS"
+            },
+            {
+              "label": "DPS10A",
+              "value": "DPS10A"
+            },
+            {
+              "label": "ICC SPREAD FAT WINTER",
+              "value": "ICC SPREAD FAT WINTER"
+            },
+            {
+              "label": "LC 30 DAYS",
+              "value": "LC 30 DAYS"
+            },
+            {
+              "label": "LC SIGHT",
+              "value": "LC SIGHT"
+            },
+            {
+              "label": "LC12",
+              "value": "LC12"
+            },
+            {
+              "label": "LC20",
+              "value": "LC20"
+            },
+            {
+              "label": "LC21",
+              "value": "LC21"
+            },
+            {
+              "label": "LC30",
+              "value": "LC30"
+            },
+            {
+              "label": "LC60",
+              "value": "LC60"
+            },
+            {
+              "label": "LC70",
+              "value": "LC70"
+            },
+            {
+              "label": "PAYMENT BEFORE DELIVERY",
+              "value": "PAYMENT BEFORE DELIVERY"
+            },
+            {
+              "label": "PAYMENT FATS",
+              "value": "PAYMENT FATS"
+            },
+            {
+              "label": "PAYMENT FATS",
+              "value": "PAYMENT FATS"
+            },
+            {
+              "label": "Pay",
+              "value": "Pay"
+            },
+            {
+              "label": "Payment",
+              "value": "Payment"
+            },
+            {
+              "label": "Saudi Pay",
+              "value": "Saudi Pay"
+            },
+            {
+              "label": "TT AGAINST",
+              "value": "TT AGAINST"
+            },
+            {
+              "label": "TT AGAINST 100",
+              "value": "TT AGAINST 100"
+            },
+            {
+              "label": "pay1",
+              "value": "pay1"
+            },
+            {
+              "label": "sa",
+              "value": "sa"
+            },
+            {
+              "label": "sky",
+              "value": "sky"
+            },
+            {
+              "label": "sky",
+              "value": "sky"
+            },
+            {
+              "label": "ww",
+              "value": "ww"
+            }
+          ],
+          "validators": [],
+          "pipe": "",
+          "pipeOptions": null
+        },
+        {
+          "title": "Payment Due Date",
+          "field": "paymentDueDate",
+          "type": "datepicker",
+          "defaultValue": "",
+          "visibilityArea": "B",
+          "onChangeValue": false,
+          "unique": false,
+          "validators": [],
+          "pipe": "dateFormat",
+          "pipeOptions": {
+            "format": "dd MMM yyyy"
+          }
+        },
+        {
+          "title": "Percentage Payable",
+          "field": "percentagePayable",
+          "type": "number",
+          "defaultValue": 100,
+          "visibilityArea": "B",
+          "onChangeValue": false,
+          "unique": false,
+          "validators": [
+            "required"
+          ],
+          "pipe": "",
+          "pipeOptions": null
+        },
+        {
+          "title": "Tax Applicable",
+          "field": "taxApplicable",
+          "type": "toggle_button",
+          "defaultValue": true,
+          "visibilityArea": "B",
+          "onChangeValue": false,
+          "unique": false,
+          "list": [
+            {
+              "label": "Yes",
+              "value": true
+            },
+            {
+              "label": "No",
+              "value": false
+            }
+          ],
+          "validators": [
+            "required"
+          ],
+          "pipe": "",
+          "pipeOptions": null
+        }
+      ]
+    },
+    {
+      "sectionName": "Others",
+      "columns": [
+        {
+          "title": "Additional Note",
+          "field": "additionalNote",
+          "type": "textarea",
+          "defaultValue": "",
+          "visibilityArea": "B",
+          "onChangeValue": false,
+          "unique": false,
+          "validators": [],
+          "pipe": "",
+          "pipeOptions": null
+        }
+      ]
+    }
+  ]
+}

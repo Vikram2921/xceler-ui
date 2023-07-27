@@ -26,7 +26,10 @@ import {
   faCircle,
   faCheckCircle,
   faSpinner,
-  faInfoCircle, faChevronLeft,
+  faInfoCircle,
+  faChevronLeft,
+  faHome,
+  faChevronRight,
 } from '@fortawesome/free-solid-svg-icons';
 import { CommonModule } from '@angular/common';
 import { GridComponent } from './components/grid/grid.component';
@@ -69,9 +72,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RecordInfoComponent } from './components/RecordInfo/record-info.component';
 import { AppendToDirective } from './directives/append-to.directive';
 import { TransactionTypePipe } from './pipes/transactiontype.pipe';
-import {TabLayoutComponent} from "./components/TabLayout/tab-layout.component";
-import {HTTP_INTERCEPTORS} from "@angular/common/http";
-import {Interceptor} from "./interceptor/interceptor.interceptor";
+import { TabLayoutComponent } from './components/TabLayout/tab-layout.component';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { Interceptor } from './interceptor/interceptor.interceptor';
+import { BreadcrumbComponent } from './components/breadcrumb/breadcrumb.component';
+import {TabContentComponent} from "./components/TabContent/tab-content.component";
 
 @NgModule({
   imports: [
@@ -152,8 +157,12 @@ import {Interceptor} from "./interceptor/interceptor.interceptor";
     AppendToDirective,
     TransactionTypePipe,
     TabLayoutComponent,
+    BreadcrumbComponent,
+    TabContentComponent,
   ],
-  providers:[{provide: HTTP_INTERCEPTORS,useClass:Interceptor,multi:true}]
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: Interceptor, multi: true },
+  ],
 })
 export class XcelerUiModule {
   constructor(library: FaIconLibrary) {
@@ -185,7 +194,9 @@ export class XcelerUiModule {
       faBackward,
       faBackwardFast,
       faInfoCircle,
-      faChevronLeft
+      faChevronLeft,
+      faHome,
+      faChevronRight
     );
   }
 }
