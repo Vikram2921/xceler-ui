@@ -2,7 +2,10 @@
   "title": "Cost",
   "urls": {
     "saveUrl": "http://localhost/ctrm-api/api/cost/v1/savecost?tenantId=d7408d31-d720-4173-b76e-0595ce2679b4",
-    "fetchUrl": "/api/cost/v1/getAllCosts?tenantId=d7408d31-d720-4173-b76e-0595ce2679b4&costChargeType=cost",
+    "fetchUrl": {
+      "method": "GET",
+      "url": "{endpoint}/ctrm-api/api/cost/v1/getallcostbycostforandlinkto?tenantId={tenantId}&costFor=TRADE&linkTo={tradeId}&page={page}&size=20"
+    },
     "hrefUrl": "http://localhost/ctrm-api/api/cost/v1/getbycostuuid?tenantId=d7408d31-d720-4173-b76e-0595ce2679b4&uuid=",
     "updateUrl": "http://localhost/ctrm-api/api/cost/v1/update?tenantId=d7408d31-d720-4173-b76e-0595ce2679b4",
     "importUrl": "http://localhost/ctrm-api/api/cost/v1/import?tenantId=d7408d31-d720-4173-b76e-0595ce2679b4"
@@ -16,7 +19,7 @@
           "field": "costFor",
           "type": "dropdown",
           "defaultValue": "",
-          "visibilityArea": "B",
+          "visibilityArea": "F",
           "onChangeValue": true,
           "unique": true,
           "list": [
@@ -42,7 +45,7 @@
           "field": "linkTo",
           "type": "dropdown",
           "defaultValue": "",
-          "visibilityArea": "B",
+          "visibilityArea": "F",
           "onChangeValue": true,
           "unique": true,
           "validators": [],
@@ -57,6 +60,7 @@
           "visibilityArea": "B",
           "onChangeValue": false,
           "unique": false,
+          "idField": true,
           "validators": [],
           "pipe": "",
           "pipeOptions": null

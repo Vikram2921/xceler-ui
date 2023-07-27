@@ -7,7 +7,6 @@ export class Cost implements Activity {
   selectedRows: any[] = [];
 
   beforeRender(grid: GridComponent): any {
-    console.log(grid);
     grid.loadJson(this.screenJson);
   }
 

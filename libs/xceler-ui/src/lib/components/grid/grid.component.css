@@ -36,6 +36,11 @@ th,td {
   cursor: default;
 }
 
+tfoot td {
+  background: white;
+  border-bottom: none;
+}
+
 .checkbox-col {
   min-width: 3rem;
   max-width: 3rem;
@@ -144,4 +149,17 @@ td {
 
 .clickable:hover {
   text-decoration: underline;
+}
+
+.no_data_box {
+  width: fit-content;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  padding: 2rem;
+  gap: 1rem;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  left: 50%;
 }

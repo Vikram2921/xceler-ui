@@ -16,12 +16,14 @@ import {
   PopupProps,
   PopupService,
   Profiles,
-  ProgressButtonProp, RecordInfoComponent,
+  ProgressButtonProp,
+  RecordInfoComponent,
   ScreenInfoComponent,
-  ScreenRegister, TabContentComponent,
-  ToastService
+  ScreenRegister,
+  ToastService,
+  TabLayoutComponent
 } from "@xceler-ui/xceler-ui";
-import {TabLayoutComponent} from "../components/TabLayout/tab-layout.component";
+import {Subscription} from "rxjs";
 
 export const ProfileFunctions: { [key: string]: Function } = {
 
@@ -29,10 +31,8 @@ export const ProfileFunctions: { [key: string]: Function } = {
     let componentId = options.componentId;
     options['formControlService'] = new FormControlService();
     let activity: Activity = ScreenRegister.getScreen(options.screen);
+    let subscription:Subscription;
     let lastState = JsonToUIService.getState(activity.screenJson.title);
-    if(lastState) {
-
-    }
     let update: boolean = options.update;
     let idField: ColumnModel | undefined = activity.screenJson.getColumns().find(column => column.idField);
     let gridObj!: GridComponent;
@@ -141,6 +141,7 @@ export const ProfileFunctions: { [key: string]: Function } = {
       gridObj = grid;
       gridObj.onFieldClick.subscribe((next) => {
         if(activity.screenJson.innerTabs && activity.screenJson.innerTabs.length > 0) {
+          subscription.unsubscribe();
           JsonToUIService.saveState(activity.screenJson.title,{page:gridObj.currentPage,profile: options.lastProfile,currentOptions:options})
           JsonToUIService.get(componentId).loadProfile(Profiles.TAB_GRID, {
             data: next['row'],
@@ -211,10 +212,10 @@ export const ProfileFunctions: { [key: string]: Function } = {
       })
     }
     if (update) {
-      let screenInfo: ScreenInfoComponent = ComponentRegister.getElement("navbar").activity;
-      let grid: GridComponent = ComponentRegister.getElement("grid").activity;
-      let toolbar: GridToolbarComponent = ComponentRegister.getElement("grid_toolbar").activity;
-      let tabs: OptionButtonComponent = ComponentRegister.getElement("tabs").activity;
+      let screenInfo: ScreenInfoComponent = ComponentRegister.getElement("navbar").component;
+      let grid: GridComponent = ComponentRegister.getElement("grid").component;
+      let toolbar: GridToolbarComponent = ComponentRegister.getElement("grid_toolbar").component;
+      let tabs: OptionButtonComponent = ComponentRegister.getElement("tabs").component;
       screenInfoFunction(screenInfo);
       gridFunction(grid);
       gridToolbarFunction(toolbar);
@@ -224,19 +225,19 @@ export const ProfileFunctions: { [key: string]: Function } = {
         tabs.hide();
       }
     } else {
-      ComponentRegister.getElementMap().subscribe((next: any) => {
+      subscription = ComponentRegister.getElementMap().subscribe((next: any) => {
         switch (next['name']) {
           case 'tabs':
-            tabsFunction(next.element.instance);
+            tabsFunction(next.element);
             break;
           case 'grid':
-            gridFunction(next.element.instance)
+            gridFunction(next.element)
             break;
           case 'grid_toolbar':
-            gridToolbarFunction(next.element.instance);
+            gridToolbarFunction(next.element);
             break;
           case 'navbar':
-            screenInfoFunction(next.element.instance);
+            screenInfoFunction(next.element);
             break;
         }
 
@@ -245,62 +246,185 @@ export const ProfileFunctions: { [key: string]: Function } = {
   },
   tab_grid: async (options: FunctionParams | any) => {
     let update: boolean = options.update;
+    let subscribe:Subscription;
     let recordInfoFunction: Function = (info: RecordInfoComponent) => {
       info.init(options);
+      info.onClickBack.subscribe((next) => {
+        subscribe.unsubscribe();
+      })
     }
     let tabsLayoutFunction: Function = (tabsLayout: TabLayoutComponent) => {
       tabsLayout.init({
         tabs:options.tabs,
         selected: options.tabs.find((item:any) => item.selected)?.label,
-        idField: options.mainActivity.idField
+        idField: options.mainActivity.idField,
+        environment: options.environment,
+        parentData: options.data,
       });
     }
     if (update) {
-      let recordInfo: RecordInfoComponent = ComponentRegister.getElement("info").activity.instance;
-      let tabLayout: TabLayoutComponent = ComponentRegister.getElement("tabsLayout").activity.instance;
+      let recordInfo: RecordInfoComponent = ComponentRegister.getElement("info").component;
+      let tabLayout: TabLayoutComponent = ComponentRegister.getElement("tabsLayout").component;
       recordInfoFunction(recordInfo);
       tabsLayoutFunction(tabLayout);
     } else {
-      ComponentRegister.getElementMap().subscribe((next: any) => {
+      subscribe = ComponentRegister.getElementMap().subscribe((next: any) => {
         switch (next['name']) {
           case 'info':
-            recordInfoFunction(next.element.instance);
+            recordInfoFunction(next.element);
             break;
           case 'tabsLayout':
-            tabsLayoutFunction(next.element.instance);
+            tabsLayoutFunction(next.element);
             break;
         }
       })
     }
   },
   grid_only: async (options: FunctionParams | any) => {
-    console.log(options)
     let gridObj: GridComponent;
+    let subscribe:Subscription;
     let activity: Activity = ScreenRegister.getScreen(options.screen);
     let update = options['update'];
-    console.log(activity);
-    let gridFunction: Function = (grid: GridComponent) => {
-      gridObj = grid;
-      gridObj.onFieldClick.subscribe((next) => {
+    options['formControlService'] = new FormControlService();
+    let parentData = options['parentData'];
+    let idField:ColumnModel | undefined = activity.screenJson.getColumns().find(column => column.idField);
+    let addEdit = (next: any) => {
+      if (next.buttonName == 'Add' || next.buttonName == 'Edit') {
+        PopupService.removePopup(next.buttonName);
+        let headerProps: any = {
+          show: true,
+          title: 'New ' + activity.screenJson.title,
+        }
+        let buttons: ProgressButtonProp[] = [];
+        let info: any = null;
+        if (next.buttonName == 'Edit') {
+          if (activity.selectedRows.length == 0) {
+            ToastService.addErrorMessage('Warning', 'Please select a row to edit');
+            return;
+          }
+          let updateButton = new ProgressButtonProp('Update', false, false, (buttonProp: ProgressButtonProp) => {
+            buttonProp.text = "Updating";
+            buttonProp.disabled = true;
+            let hasPreSave = FunctionRegister.hasFunction(activity.screenJson.functionFile, "preSave");
+            let payload = {};
+            if (hasPreSave) {
+              let func = FunctionRegister.getFunction(activity.screenJson.functionFile, "preSave");
+              if (func) {
+                payload = func(options, 'update');
+              }
+            }
+            // ApiService.decideUrlCallItself(activity.screenJson.urls.updateUrl,options.environment,payload).then((next:any) => {
+            //   PopupService.removePopup(next.buttonName);
+            //   ToastService.addSuccessMessage('Success','Data updated successfully !');
+            // });
+          })
+          buttons.push(updateButton);
+          if (idField) {
+            headerProps.title = activity.selectedRows[0][idField.field];
+          }
+          info = {};
+          info['createdBy'] = activity.selectedRows[0]['createdBy'];
+          info['createdTimestamp'] = activity.selectedRows[0]['createdTimestamp'];
+          info['updatedBy'] = activity.selectedRows[0]['updatedBy'];
+          info['updatedTimestamp'] = activity.selectedRows[0]['updatedTimestamp'];
+          options['rowData'] = activity.selectedRows[0];
+        } else {
+          let saveButton = new ProgressButtonProp('Save', false, false, (buttonProp: ProgressButtonProp) => {
+            buttonProp.text = "Saving";
+            buttonProp.disabled = true;
+            let hasPreSave = FunctionRegister.hasFunction(activity.screenJson.functionFile, "preSave");
+            let payload = {};
+            if (hasPreSave) {
+              let func = FunctionRegister.getFunction(activity.screenJson.functionFile, "preSave");
+              if (func) {
+                payload = func(options, 'save');
+              }
+            }
+            // ApiService.decideUrlCallItself(activity.screenJson.urls.saveUrl,options.environment,payload).then((next:any) => {
+            //   PopupService.removePopup(next.buttonName);
+            //   ToastService.addSuccessMessage('Success','Data saved successfully !');
+            // });
+          })
+          buttons.push(saveButton);
+          options['rowData'] = null;
+        }
+        let footerProps: any = {
+          show: true,
+          progressButtons: buttons,
+          info: info
+        }
+        PopupService.addPopup(next.buttonName, FormInputComponentComponent, options, headerProps, footerProps, new PopupProps('right', true, true, '75%'));
+        activity.selectedRows = [];
+      }
+    }
 
-      })
+    let refresh = (next: any) => {
+      if (gridObj) {
+        refreshButton.disable();
+        refreshButton.setAnimation('spin');
+        ApiService.decideUrlCallItself(activity.screenJson.urls.fetchUrl, options.environment, Object.assign(parentData,{page: gridObj.currentPage})).then((next: any) => {
+          activity.data = next;
+          gridObj.refreshData();
+          refreshButton.enable();
+          refreshButton.clearAnimation();
+        });
+      }
+    }
+
+    let leftButton: ButtonModel[] = [];
+    let addButton: ButtonModel = new ButtonModel('Add', false, ['fas', 'add'], addEdit);
+    let editButton: ButtonModel = new ButtonModel('Edit', false, ['fas', 'pencil-alt'], addEdit);
+    let duplicateButton: ButtonModel = new ButtonModel('Duplicate', false, ['fas', 'copy'], addEdit);
+    let deleteButton: ButtonModel = new ButtonModel('Delete', false, ['fas', 'trash'], addEdit);
+    let refreshButton: ButtonModel = new ButtonModel('Refresh', false, ['fas', 'redo'], refresh);
+    leftButton.push(addButton)
+    leftButton.push(editButton)
+    leftButton.push(duplicateButton)
+    leftButton.push(deleteButton)
+    leftButton.push(refreshButton)
+    let gridFunction: Function = async (grid: GridComponent) => {
+      gridObj = grid;
+      // gridObj.onFieldClick.subscribe((next) => {
+      //
+      // })
       grid.show(activity);
+      if (!activity.screenJson.tabs || activity.screenJson.tabs.length === 0) {
+        refreshButton.disable();
+        refreshButton.setAnimation('spin');
+        activity.data = await ApiService.decideUrlCallItself(activity.screenJson.urls.fetchUrl, options.environment, Object.assign(parentData,{page: 0})).then((next: any) => next);
+        grid.refreshData();
+        refreshButton.enable();
+        refreshButton.clearAnimation();
+        grid.onPageChange.subscribe((pageNumber) => {
+          activity.data = [];
+          grid.refreshData();
+          refreshButton.disable();
+          refreshButton.setAnimation('spin');
+          ApiService.decideUrlCallItself(activity.screenJson.urls.fetchUrl, options.environment, Object.assign(parentData,{page: pageNumber})).then((next: any) => {
+            activity.data = next;
+            grid.refreshData();
+            refreshButton.enable();
+            refreshButton.clearAnimation();
+          });
+        })
+      }
     }
     let gridToolbarFunction: Function = (gridToolbar: GridToolbarComponent) => {
+      gridToolbar.setLeftButton(leftButton);
     }
     if (update) {
-      let toolbarComponent: GridToolbarComponent = ComponentRegister.getElement("grid_toolbar").activity.instance;
-      let gridComponent: GridComponent = ComponentRegister.getElement("grid").activity.instance;
+      let toolbarComponent: GridToolbarComponent = ComponentRegister.getElement("grid_toolbar").component;
+      let gridComponent: GridComponent = ComponentRegister.getElement("grid").component;
       gridToolbarFunction(toolbarComponent);
       gridFunction(gridComponent);
     } else {
-      ComponentRegister.getElementMap().subscribe((next: any) => {
+      subscribe = ComponentRegister.getElementMap().subscribe((next: any) => {
         switch (next['name']) {
           case 'grid_toolbar':
-            gridToolbarFunction(next.element.instance);
+            gridToolbarFunction(next.element);
             break;
           case 'grid':
-            gridFunction(next.element.instance);
+            gridFunction(next.element);
             break;
         }
       })

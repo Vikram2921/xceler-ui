@@ -1,14 +1,14 @@
 <div *ngIf="showGrid"
      class="grid_box"
-     [style.height]="gridConfig.height">
+     [style.height]="gridConfig!.height">
   <div class="table-container scrollbar">
     <table [cellSpacing]="0" [cellPadding]="0">
       <thead>
       <tr>
-        <th class="checkbox-col z-2" *ngIf="gridConfig.checkbox">
-          <xui-checkbox (onCheckedChange)="toggleAll()" [checked]="activity.selectedRows.length == rows.length && rows.length > 0"></xui-checkbox>
+        <th class="checkbox-col z-2" *ngIf="gridConfig!.checkbox">
+          <xui-checkbox (onCheckedChange)="toggleAll()" [checked]="activity!.selectedRows.length == rows.length && rows.length > 0"></xui-checkbox>
         </th>
-        <th class="action z-2" *ngIf="gridConfig.actions">
+        <th class="action z-2" *ngIf="gridConfig!.actions">
           <div class="headerDiv divider">
             <p class="headerTitle">Actions</p>
           </div>
@@ -22,10 +22,10 @@
       </thead>
       <tbody>
       <tr *ngFor="let row of rows;index as index">
-        <td class="checkbox-col z-1" *ngIf="gridConfig.checkbox">
-          <xui-checkbox (onCheckedChange)="toggleSingle(row)" [checked]="activity.selectedRows.includes(row)"></xui-checkbox>
+        <td class="checkbox-col z-1" *ngIf="gridConfig!.checkbox">
+          <xui-checkbox (onCheckedChange)="toggleSingle(row)" [checked]="activity!.selectedRows.includes(row)"></xui-checkbox>
         </td>
-        <td class="action z-1" *ngIf="gridConfig.actions">
+        <td class="action z-1" *ngIf="gridConfig!.actions">
           <div style="display: inline-flex;gap: 0.5rem" *ngIf="screenModel && screenModel.gridConfiguration">
             <fa-icon icon="pencil-alt" class="grid-icon" *ngIf="screenModel.gridConfiguration.canEdit && !editingRows.includes(index)" (click)="onClickButton('Edit',index)"></fa-icon>
             <fa-icon icon="save" class="grid-icon" *ngIf="screenModel.gridConfiguration.canEdit && editingRows.includes(index)" (click)="onClickButton('Save',index)"></fa-icon>
@@ -39,7 +39,7 @@
           <ng-template #input let-row="row" let-col="col">
             <xui-aio-controls [disabled]="col.disabled" [columnModel]="col" [showHeader]="false"
                           [value]="row[col.field]" (onChangeValue)="onChangeValue.emit($event)"
-                          [listOptions]="activity?StoreService.getListValues(activity.screenJson.title,col.listStore,col.list):col.list?col.list:[]"></xui-aio-controls>
+                          [listOptions]="activity?StoreService.getListValues(activity!.screenJson.title,col.listStore,col.list):col.list?col.list:[]"></xui-aio-controls>
           </ng-template>
           <ng-template #output let-row="row" let-col="col">
             <ng-container [ngSwitch]="col.pipe">
@@ -53,14 +53,24 @@
         </td>
       </tr>
       </tbody>
+      <tfoot *ngIf="!rows || rows.length == 0">
+        <tr>
+          <td [colSpan]="gridColumns.length + 2">
+            <ng-container [ngTemplateOutlet]="noDataView"></ng-container>
+          </td>
+        </tr>
+      </tfoot>
     </table>
   </div>
   <xui-paginator *ngIf="page" [totalItems]="page.totalElements"
-             [currentPageRecords]="page.numberOfElements" [selectedRecords]="activity.selectedRows.length"
+             [currentPageRecords]="page.numberOfElements" [selectedRecords]="activity!.selectedRows.length"
              [totalPages]="page.totalPages" [selectedPage]="page.number" (onPageChange)="onChangePage($event)"></xui-paginator>
 </div>
 
 <ng-template #noDataView>
-
+  <div class="no_data_box">
+    <fa-icon icon="home" style="font-size: 30px"></fa-icon>
+    <xui-button>Add new {{activity?.screenJson?.title}}</xui-button>
+  </div>
 </ng-template>
 

@@ -11,11 +11,18 @@ import {Profiles} from "../../enums/profiles";
 export class TabContentComponent implements AfterViewInit {
 
 
-  @ViewChild(JSONToUIComponent) jsonToUIComponent!: JSONToUIComponent;
+  @ViewChild("jsonToUIComponent") jsonToUIComponent!: JSONToUIComponent;
   currentTab!: Tabs;
+  environment!: any;
+  private parentData: any;
 
-  changeTab(tab: Tabs) {
+  changeTab(tab: Tabs, environment: any, parentData: any) {
+    if(this.currentTab && this.currentTab.label == tab.label) {
+      return;
+    }
     this.currentTab = tab;
+    this.environment = environment;
+    this.parentData = parentData;
     this.updateView(true);
   }
 
@@ -24,6 +31,8 @@ export class TabContentComponent implements AfterViewInit {
       let profile:Profiles = this.currentTab.profile;
       let options:any = {};
       options['update'] = update;
+      options['environment'] = this.environment;
+      options['parentData'] = this.parentData;
       if(profile === Profiles.GRID_ONLY){
         options['screen'] = this.currentTab.modelName;
       }

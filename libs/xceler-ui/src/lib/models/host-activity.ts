@@ -29,4 +29,6 @@ export class HostActivity extends BaseComponent{
   }
 
   init(props: {[key:string]:any}) {}
+
+  reset() {}
 }

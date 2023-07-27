@@ -25,7 +25,7 @@ export class LoadComponentDirective implements OnInit,EventListener{
       componentRef.instance.id = this.componentId;
       componentRef.instance.popupStateListener = this;
     } else {
-      ComponentRegister.registerElement(this.componentId,componentRef,this.props);
+      ComponentRegister.registerElement(this.componentId,componentRef.instance,this.props);
     }
   }
 

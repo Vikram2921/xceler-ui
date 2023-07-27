@@ -76,7 +76,8 @@ import { TabLayoutComponent } from './components/TabLayout/tab-layout.component'
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { Interceptor } from './interceptor/interceptor.interceptor';
 import { BreadcrumbComponent } from './components/breadcrumb/breadcrumb.component';
-import {TabContentComponent} from "./components/TabContent/tab-content.component";
+import { TabContentComponent } from './components/TabContent/tab-content.component';
+import { ButtonComponent } from './components/buttons/button/button.component';
 
 @NgModule({
   imports: [
@@ -159,6 +160,7 @@ import {TabContentComponent} from "./components/TabContent/tab-content.component
     TabLayoutComponent,
     BreadcrumbComponent,
     TabContentComponent,
+    ButtonComponent,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: Interceptor, multi: true },

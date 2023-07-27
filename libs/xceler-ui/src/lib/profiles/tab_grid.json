@@ -2,7 +2,7 @@
   "columns": 13,
   "rows": 2,
   "setupFunction": "tab_grid",
-  "rowHeightList": ["min-content","calc(100% - 385px)"],
+  "rowHeightList": ["min-content","calc(100% - 400px)"],
   "items": [
     {
       "itemId": "info",

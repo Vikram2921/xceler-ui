@@ -46,6 +46,7 @@ export class RecordInfoComponent extends HostActivity implements OnInit{
     let state = JsonToUIService.getState(screenId,false);
     let lastProfile = state.profile;
     let currentOption = state.currentOptions;
+    this.onClickBack.emit();
     JsonToUIService.get(this.options.componentId).loadProfile(lastProfile,currentOption);
   }
 }

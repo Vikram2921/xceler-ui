@@ -8,7 +8,7 @@ import {HostActivity} from "../models/host-activity";
 export class ComponentRegister {
   private static componentMap:Map<string,Type<HostActivity>> = new Map<string, Type<HostActivity>> ();
   private static elementMap = new BehaviorSubject({});
-  private static elements:Map<string,{activity:any,props:{[key:string]:any}}> = new Map<string, {activity: any; props: {[p: string]: any}}>()
+  private static elements:Map<string,{component:any,props:{[key:string]:any}}> = new Map<string, {component: any; props: {[p: string]: any}}>()
   static registerComponent(name:string,component:Type<HostActivity>) {
     this.componentMap.set(name,component);
   }
@@ -23,7 +23,7 @@ export class ComponentRegister {
   }
 
   static registerElement(name:string,element:any,props:{[key:string]:any}) {
-    this.elements.set(name,{activity:element,props:props});
+    this.elements.set(name,{component:element,props:props});
     this.elementMap.next({"name":name,"element":element});
   }
 
@@ -31,10 +31,14 @@ export class ComponentRegister {
     return this.elementMap;
   }
 
-  static getElement(name:string):{activity:any,props:{[key:string]:any}} {
+  static unsubscribeAll() {
+    this.elementMap.unsubscribe();
+  }
+
+  static getElement(name:string):{component:any,props:{[key:string]:any}} {
       let element = this.elements.get(name);
       if(element != undefined) {
-          return element.activity.instance;
+          return element;
       } else {
           throw new Error("Element not found for name "+ name);
       }
