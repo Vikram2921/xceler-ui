@@ -43,10 +43,10 @@
           </ng-template>
           <ng-template #output let-row="row" let-col="col">
             <ng-container [ngSwitch]="col.pipe">
-              <ng-container *ngSwitchCase="'dateFormat'">{{row[col.field] | date : col.pipeOptions.format}}</ng-container>
-              <ng-container *ngSwitchCase="'transactionType'"><div #element [innerHTML]="row[col.field] | transactionType : element"></div></ng-container>
+              <ng-container *ngSwitchCase="'dateFormat'">{{row[col.field] && row[col.field].length > 0?row[col.field]:'-' | date : col.pipeOptions.format}}</ng-container>
+              <ng-container *ngSwitchCase="'transactionType'"><div #element [innerHTML]="row[col.field] && row[col.field].length > 0?row[col.field]:'-' | transactionType : element"></div></ng-container>
               <ng-container *ngSwitchDefault>
-                <p [ngClass]="col.idField?'clickable':''" (click)="onClickClickableField(col,row)">{{row[col.field]}}<p>
+                <p [ngClass]="col.idField?'clickable':''" (click)="onClickClickableField(col,row)">{{row[col.field] && row[col.field].length > 0?row[col.field]:'-'}}<p>
               </ng-container>
             </ng-container>
           </ng-template>

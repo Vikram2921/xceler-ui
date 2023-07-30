@@ -1,7 +1,8 @@
-import {Component, forwardRef, Input, OnInit} from '@angular/core';
+import {Component, ElementRef, forwardRef, Input, OnInit} from '@angular/core';
 import {BaseFormControl} from "../core/base-form-control";
 import {NG_VALUE_ACCESSOR} from "@angular/forms";
 import { DatePipe } from '@angular/common';
+import {Resolver} from "../../../models/resolver";
 
 @Component({
   selector: 'xui-date-picker',
@@ -104,5 +105,13 @@ export class DatePickerComponent extends BaseFormControl implements OnInit{
       return null;
     }
     return new Date(text);
+  }
+
+  adjustDropdownPosition(dropList: ElementRef, dropdownHeader: HTMLDivElement) {
+    if(dropList !== null && dropList !== undefined) {
+      const headerRect = dropdownHeader.getBoundingClientRect();
+      dropList.nativeElement.style.minWidth = `${headerRect.width}px`;
+      Resolver.decideDropdownPositionFromElement(dropdownHeader,dropList.nativeElement);
+    }
   }
 }

@@ -1,5 +1,5 @@
 import {Injectable, Type} from '@angular/core';
-import {BehaviorSubject} from "rxjs";
+import {BehaviorSubject, Subscription} from "rxjs";
 import {HostActivity} from "../models/host-activity";
 
 @Injectable({
@@ -9,6 +9,7 @@ export class ComponentRegister {
   private static componentMap:Map<string,Type<HostActivity>> = new Map<string, Type<HostActivity>> ();
   private static elementMap = new BehaviorSubject({});
   private static elements:Map<string,{component:any,props:{[key:string]:any}}> = new Map<string, {component: any; props: {[p: string]: any}}>()
+  private static subscription?:Subscription;
   static registerComponent(name:string,component:Type<HostActivity>) {
     this.componentMap.set(name,component);
   }
@@ -32,7 +33,15 @@ export class ComponentRegister {
   }
 
   static unsubscribeAll() {
-    this.elementMap.unsubscribe();
+    this.subscription?.unsubscribe();
+    this.subscription = undefined;
+  }
+
+  static setCurrentSubscription(subscription:Subscription) {
+    if(this.subscription) {
+      this.subscription.unsubscribe();
+    }
+    this.subscription = subscription;
   }
 
   static getElement(name:string):{component:any,props:{[key:string]:any}} {

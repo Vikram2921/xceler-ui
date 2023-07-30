@@ -1,12 +1,12 @@
 <div class="datepicker" (mouseleave)="showCalendar = false">
-  <div  style="display: inline-flex;width: 100%" (click)="!disabled?showCalendar = true:''">
+  <div  #dpHeader style="display: inline-flex;width: 100%" (click)="!disabled?showCalendar = true:''">
     <input [disabled]="true" [placeholder]="placeholder" [ngClass]="disabled?'dp_disabled':''" class="datepicker_input" type="text" [(ngModel)]="text">
     <div class="calender_icon" [style.cursor]="disabled?'default':'pointer'" (click)="!disabled?toggleCalendar():''">
       <fa-icon icon="calendar"></fa-icon>
     </div>
   </div>
-  <div class="calendar" *ngIf="showCalendar">
-    <div class="calendar-header">
+  <div class="calendar" (insideViewport)="adjustDropdownPosition($event,dpHeader)" *ngIf="showCalendar" >
+    <div class="calendar-header" >
       <fa-icon class="datepicker_header_item" (click)="previousMonth()" icon="arrow-circle-left"></fa-icon>
       <span class="datepicker_header_item">{{ getCurrentMonth() }}</span>
       <span class="datepicker_header_item">{{ getCurrentYear() }}</span>

@@ -1,4 +1,4 @@
-<div style="display: flex;flex-direction: column">
+<div style="display: flex;flex-direction: column;gap: 5px">
   <div style="display: inline-flex;width: 100%">
     <div class="tab_layout" *ngFor="let tab of tabs">
       <div class="tab_item" (click)="onSelect(tab)" [ngClass]="selected.label === tab.label?'selected':''">

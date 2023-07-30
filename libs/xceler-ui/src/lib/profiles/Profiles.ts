@@ -141,7 +141,7 @@ export const ProfileFunctions: { [key: string]: Function } = {
       gridObj = grid;
       gridObj.onFieldClick.subscribe((next) => {
         if(activity.screenJson.innerTabs && activity.screenJson.innerTabs.length > 0) {
-          subscription.unsubscribe();
+          ComponentRegister.unsubscribeAll();
           JsonToUIService.saveState(activity.screenJson.title,{page:gridObj.currentPage,profile: options.lastProfile,currentOptions:options})
           JsonToUIService.get(componentId).loadProfile(Profiles.TAB_GRID, {
             data: next['row'],
@@ -242,15 +242,15 @@ export const ProfileFunctions: { [key: string]: Function } = {
         }
 
       })
+      ComponentRegister.setCurrentSubscription(subscription);
     }
   },
   tab_grid: async (options: FunctionParams | any) => {
     let update: boolean = options.update;
-    let subscribe:Subscription;
     let recordInfoFunction: Function = (info: RecordInfoComponent) => {
       info.init(options);
       info.onClickBack.subscribe((next) => {
-        subscribe.unsubscribe();
+        ComponentRegister.unsubscribeAll();
       })
     }
     let tabsLayoutFunction: Function = (tabsLayout: TabLayoutComponent) => {
@@ -268,7 +268,7 @@ export const ProfileFunctions: { [key: string]: Function } = {
       recordInfoFunction(recordInfo);
       tabsLayoutFunction(tabLayout);
     } else {
-      subscribe = ComponentRegister.getElementMap().subscribe((next: any) => {
+      let subscribe = ComponentRegister.getElementMap().subscribe((next: any) => {
         switch (next['name']) {
           case 'info':
             recordInfoFunction(next.element);
@@ -278,11 +278,11 @@ export const ProfileFunctions: { [key: string]: Function } = {
             break;
         }
       })
+      ComponentRegister.setCurrentSubscription(subscribe);
     }
   },
   grid_only: async (options: FunctionParams | any) => {
     let gridObj: GridComponent;
-    let subscribe:Subscription;
     let activity: Activity = ScreenRegister.getScreen(options.screen);
     let update = options['update'];
     options['formControlService'] = new FormControlService();
@@ -418,7 +418,7 @@ export const ProfileFunctions: { [key: string]: Function } = {
       gridToolbarFunction(toolbarComponent);
       gridFunction(gridComponent);
     } else {
-      subscribe = ComponentRegister.getElementMap().subscribe((next: any) => {
+      let subscribe = ComponentRegister.getElementMap().subscribe((next: any) => {
         switch (next['name']) {
           case 'grid_toolbar':
             gridToolbarFunction(next.element);
@@ -428,6 +428,7 @@ export const ProfileFunctions: { [key: string]: Function } = {
             break;
         }
       })
+      ComponentRegister.setCurrentSubscription(subscribe);
     }
   }
 }

@@ -4,7 +4,7 @@
 }
 
 .calendar {
-  position: absolute;
+  position: fixed;
   top: 35px;
   left: 0;
   width: 300px;

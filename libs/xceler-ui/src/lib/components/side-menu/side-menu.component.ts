@@ -10,6 +10,7 @@ import {
 import {BaseComponent} from "../form-controls/core/base-component";
 import {ApiService} from "../../services/api-service.service";
 import {ContextPopupComponent} from "../context-popup/context-popup.component";
+import {ComponentRegister} from "../../registers/component-register.service";
 
 @Component({
   selector: 'xui-side-menu',
@@ -52,6 +53,7 @@ export class SideMenuComponent extends BaseComponent implements OnChanges {
   }
 
   onClickItem(item: any) {
+    ComponentRegister.unsubscribeAll();
     this.onChangeItem.emit(item);
   }
 

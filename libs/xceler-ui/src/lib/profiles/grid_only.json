@@ -2,7 +2,7 @@
   "columns": 13,
   "rows": 2,
   "setupFunction": "grid_only",
-  "rowHeightList": ["2.5rem","min-content"],
+  "rowHeightList": ["2.5rem","100%"],
   "items": [
     {
       "itemId": "toolbar",
